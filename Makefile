@@ -5,9 +5,30 @@
 ## Makefile
 ##
 
-SRC		=		$(wildcard src/*.c)
+SRC		=		src/destroy.c \
+				src/main.c \
+				src/my_hunter.c
 
-OBJ		=		$(SRC:.c=.o)
+SRC_DISP	=	src/display/display.c \
+				src/display/event.c \
+				src/display/mouse.c \
+				src/display/tool_char.c
+
+SRC_ENMY	=	src/enemies/animations.c \
+				src/enemies/move_enemies.c \
+				src/enemies/spawn.c
+
+SRC_INIT	=	src/init/initialize.c \
+				src/init/initialize2.c \
+				src/init/initialize3.c
+
+OBJ		=	$(SRC:.c=.o)
+
+OBJ_DISP =		$(SRC_DISP:.c=.o)
+
+OBJ_ENMY =		$(SRC_ENMY:.c=.o)
+
+OBJ_INIT =		$(SRC_INIT:.c=.o)
 
 NAME	=		my_hunter
 
@@ -20,8 +41,8 @@ all: libs $(NAME)
 libs:
 	make -C lib/my
 
-$(NAME): $(OBJ)
-	gcc $(OBJ) -o $(NAME) $(LFLAGS) $(CFLAGS)
+$(NAME): $(OBJ) $(OBJ_DISP) $(OBJ_ENMY) $(OBJ_INIT)
+	gcc $(OBJ) $(OBJ_DISP) $(OBJ_ENMY) $(OBJ_INIT) -o $(NAME) $(LFLAGS) $(CFLAGS)
 
 clean:
 	make clean -C lib/my

@@ -5,7 +5,7 @@
 ** Other functions to initialize
 */
 
-#include "../include/my_hunter.h"
+#include "../../include/my_hunter.h"
 
 void init_sprites(display_t *sprite)
 {

@@ -5,7 +5,7 @@
 ** Functions to move sprites
 */
 
-#include "../include/my_hunter.h"
+#include "../../include/my_hunter.h"
 
 void move_skeleton(game_t *game)
 {

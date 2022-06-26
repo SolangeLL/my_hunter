@@ -5,7 +5,7 @@
 ** Functions about monsters' respawn
 */
 
-#include "../include/my_hunter.h"
+#include "../../include/my_hunter.h"
 
 void respawn_slime(game_t *game)
 {

@@ -5,7 +5,7 @@
 ** Functions concerning display
 */
 
-#include "../include/my_hunter.h"
+#include "../../include/my_hunter.h"
 
 void set_TextRect_and_clear(game_t *game)
 {

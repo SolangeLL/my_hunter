@@ -5,7 +5,7 @@
 ** Functions to create a char *
 */
 
-#include "../include/my_hunter.h"
+#include "../../include/my_hunter.h"
 
 int get_length_nb(int nb)
 {

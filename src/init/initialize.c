@@ -5,7 +5,7 @@
 ** Functions for initializations
 */
 
-#include "../include/my_hunter.h"
+#include "../../include/my_hunter.h"
 
 void initialize(game_t *game)
 {

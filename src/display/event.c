@@ -5,7 +5,7 @@
 ** Functions about events
 */
 
-#include "../include/my_hunter.h"
+#include "../../include/my_hunter.h"
 
 int shoot_slime(game_t *game)
 {
