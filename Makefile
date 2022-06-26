@@ -15,12 +15,12 @@ CFLAGS += -g2 -Wall -Wextra -L lib/my -lmy
 
 LFLAGS = -lcsfml-system -lcsfml-audio -lcsfml-window -lcsfml-graphics -lm
 
-all: libs gcc clean
+all: libs $(NAME)
 
 libs:
 	make -C lib/my
 
-gcc: $(OBJ)
+$(NAME): $(OBJ)
 	gcc $(OBJ) -o $(NAME) $(LFLAGS) $(CFLAGS)
 
 clean:
