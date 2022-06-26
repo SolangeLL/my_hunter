@@ -7,31 +7,20 @@
 
 #include "../include/my_hunter.h"
 
-void do_loop(game_t *game)
+void init_scenes_tab(void (*scene_loop[]) (game_t *))
 {
-    while (sfRenderWindow_isOpen(game->window->window) \
-    && game->gameplay->life > 0)
-    {
-        get_mouse_hitbox(game);
-        analyse_events(game);
-        get_seconds(game);
-        do_slime_animation(game);
-        do_skeleton_animation(game);
-        move_skeleton(game);
-        move_slime(game);
-        respawn_slime(game);
-        respawn_skeleton(game);
-        set_TextRect_and_clear(game);
-        draw_all(game);
-    }
+    scene_loop[MENU] = &menu_loop;
+    scene_loop[GAME] = &game_loop;
 }
 
-int my_hunter(void)
+void my_hunter(void)
 {
     game_t *game = malloc(sizeof(game_t));
+    void (*scene_loop[2]) (game_t *);
 
     init_all(game);
-    do_loop(game);
+    init_scenes_tab(scene_loop);
+    while (game->scene != QUIT)
+        scene_loop[game->scene](game);
     destroy_all(game);
-    return (EXIT_SUCCESS);
 }

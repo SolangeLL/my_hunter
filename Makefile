@@ -5,30 +5,33 @@
 ## Makefile
 ##
 
-SRC		=		src/destroy.c \
-				src/main.c \
-				src/my_hunter.c
+GAME	=	src/game
 
-SRC_DISP	=	src/display/display.c \
-				src/display/event.c \
-				src/display/mouse.c \
-				src/display/tool_char.c
+MENU	=	src/menu
 
-SRC_ENMY	=	src/enemies/animations.c \
-				src/enemies/move_enemies.c \
-				src/enemies/spawn.c
+SRC		=	src/destroy.c \
+			src/main.c \
+			src/my_hunter.c \
 
-SRC_INIT	=	src/init/initialize.c \
+SRC_GAME	=	$(GAME)/display/display.c \
+				$(GAME)/display/event.c \
+				$(GAME)/display/mouse.c \
+				$(GAME)/display/tool_char.c \
+				$(GAME)/enemies/animations.c \
+				$(GAME)/enemies/move_enemies.c \
+				$(GAME)/enemies/spawn.c \
+				$(GAME)/loop.c \
+				src/init/initialize.c \
 				src/init/initialize2.c \
 				src/init/initialize3.c
 
+SRC_MENU	=	$(MENU)/loop.c
+
 OBJ		=	$(SRC:.c=.o)
 
-OBJ_DISP =		$(SRC_DISP:.c=.o)
+OBJ_GAME	=	$(SRC_GAME:.c=.o)
 
-OBJ_ENMY =		$(SRC_ENMY:.c=.o)
-
-OBJ_INIT =		$(SRC_INIT:.c=.o)
+OBJ_MENU	=	$(SRC_MENU:.c=.o)
 
 NAME	=		my_hunter
 
@@ -41,17 +44,17 @@ all: libs $(NAME)
 libs:
 	make -C lib/my
 
-$(NAME): $(OBJ) $(OBJ_DISP) $(OBJ_ENMY) $(OBJ_INIT)
-	gcc $(OBJ) $(OBJ_DISP) $(OBJ_ENMY) $(OBJ_INIT) -o $(NAME) $(LFLAGS) $(CFLAGS)
+$(NAME): $(OBJ) $(OBJ_GAME) $(OBJ_MENU)
+	gcc $(OBJ) $(OBJ_GAME) $(OBJ_MENU) -o $(NAME) $(LFLAGS) $(CFLAGS)
 
 clean:
 	make clean -C lib/my
-	rm -f $(OBJ)
+	rm -f $(OBJ_GAME)
+	rm $(NAME)
 	rm -f *.o
 	rm -f *~
 
 fclean: clean
-	rm $(NAME)
 	make fclean -C lib/my
 
 re: fclean all
