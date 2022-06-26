@@ -11,8 +11,12 @@
     #include "struct.h"
     #include "init.h"
     #include "macros.h"
+    #include "my.h"
 
-int my_hunter(void);
+void game_loop(game_t *game);
+void menu_loop(game_t *game);
+
+void my_hunter(void);
 void get_mouse_hitbox(game_t *game);
 
 void analyse_events(game_t *game);

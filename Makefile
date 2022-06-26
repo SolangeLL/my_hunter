@@ -22,8 +22,9 @@ SRC_GAME	=	$(GAME)/display/display.c \
 				$(GAME)/enemies/spawn.c \
 				$(GAME)/loop.c \
 				src/init/initialize.c \
-				src/init/initialize2.c \
-				src/init/initialize3.c
+				src/init/init_rect.c \
+				src/init/init_sprites.c \
+				src/init/init_assets.c
 
 SRC_MENU	=	$(MENU)/loop.c
 
@@ -49,7 +50,9 @@ $(NAME): $(OBJ) $(OBJ_GAME) $(OBJ_MENU)
 
 clean:
 	make clean -C lib/my
+	rm -f $(OBJ)
 	rm -f $(OBJ_GAME)
+	rm -f $(OBJ_MENU)
 	rm $(NAME)
 	rm -f *.o
 	rm -f *~

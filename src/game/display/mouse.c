@@ -5,7 +5,7 @@
 ** mouse
 */
 
-#include "../../include/my_hunter.h"
+#include "../../../include/my_hunter.h"
 
 void get_mouse_hitbox(game_t *game)
 {

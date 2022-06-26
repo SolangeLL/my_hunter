@@ -5,7 +5,7 @@
 ** Functions converning animations
 */
 
-#include "../../include/my_hunter.h"
+#include "../../../include/my_hunter.h"
 
 void move_skeleton_rect(game_t *game, int max_value, int increment)
 {

@@ -8,6 +8,10 @@
 #ifndef STRUCT_H_
     #define STRUCT_H_
 
+enum SCENES {
+    MENU, GAME, QUIT
+};
+
 typedef struct heart_s {
     sfSprite *sp;
     sfTexture *texture;
@@ -96,12 +100,19 @@ typedef struct sound_s {
     sfSound *game;
 } sound_t;
 
+typedef struct menu_s {
+    sfSprite *back_sp;
+    sfTexture *back_texture;
+} menu_t;
+
 typedef struct game_s {
+    int scene;
     window_t *window;
     sound_t *sound;
     display_t *display;
     gameplay_t *gameplay;
     animation_t *animation;
+    menu_t *menu;
 } game_t;
 
 #endif /* !STRUCT_H_ */

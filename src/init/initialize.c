@@ -7,7 +7,7 @@
 
 #include "../../include/my_hunter.h"
 
-void initialize(game_t *game)
+void init_struct(game_t *game)
 {
     game->window = malloc(sizeof(window_t));
     game->window->dimension = (sfVector2f) {1920, 1080};
@@ -22,6 +22,7 @@ void initialize(game_t *game)
     game->display->heart = malloc(sizeof(heart_t));
     game->sound = malloc(sizeof(sound_t));
     game->gameplay->life = 3;
+    game->menu = malloc(sizeof(menu_t));
 }
 
 void init_window(window_t *window)
@@ -49,6 +50,7 @@ void init_text(display_t *display)
 
 void init_values(game_t *game)
 {
+    game->scene = MENU;
     game->gameplay->count = 0;
     game->display->slime->alpha = 255;
     game->display->slime->wave = 0;
@@ -58,16 +60,13 @@ void init_values(game_t *game)
 
 void init_all(game_t *game)
 {
-    initialize(game);
+    init_struct(game);
     init_window(game->window);
     init_rect(game->display);
     init_animation(game->animation);
     init_sound(game->sound);
-    init_sprites(game->display);
-    init_textures(game->display);
-    init_scales(game->display);
+    init_sprites(game);
     init_rect_scaled(game->display);
-    init_position(game->display);
     init_text(game->display);
     init_values(game);
 }
