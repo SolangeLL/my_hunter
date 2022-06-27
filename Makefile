@@ -12,6 +12,11 @@ MENU	=	src/menu
 SRC		=	src/destroy.c \
 			src/main.c \
 			src/my_hunter.c \
+			src/init/initialize.c \
+			src/init/init_rect.c \
+			src/init/init_sprites.c \
+			src/init/init_assets.c \
+			src/init/init_buttons.c
 
 SRC_GAME	=	$(GAME)/display/display.c \
 				$(GAME)/display/event.c \
@@ -21,12 +26,9 @@ SRC_GAME	=	$(GAME)/display/display.c \
 				$(GAME)/enemies/move_enemies.c \
 				$(GAME)/enemies/spawn.c \
 				$(GAME)/loop.c \
-				src/init/initialize.c \
-				src/init/init_rect.c \
-				src/init/init_sprites.c \
-				src/init/init_assets.c
 
-SRC_MENU	=	$(MENU)/loop.c
+SRC_MENU	=	$(MENU)/loop.c \
+				$(MENU)/display/display.c
 
 OBJ		=	$(SRC:.c=.o)
 
@@ -53,7 +55,7 @@ clean:
 	rm -f $(OBJ)
 	rm -f $(OBJ_GAME)
 	rm -f $(OBJ_MENU)
-	rm $(NAME)
+	rm -f $(NAME)
 	rm -f *.o
 	rm -f *~
 

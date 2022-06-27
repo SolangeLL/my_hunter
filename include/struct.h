@@ -12,6 +12,17 @@ enum SCENES {
     MENU, GAME, QUIT
 };
 
+typedef struct button_s {
+    int pressed;
+    sfSprite *sprite;
+    sfTexture *texture;
+    sfIntRect btn_rect;
+    sfVector2f pos;
+    sfColor color;
+    // void (*change_scene)(struct button_s *, sfSound *, int *);
+    // void (*modify)(struct global_s *, int);
+} button_t;
+
 typedef struct heart_s {
     sfSprite *sp;
     sfTexture *texture;
@@ -79,7 +90,7 @@ typedef struct animation_s {
 
 typedef struct window_s {
     sfVector2f dimension;
-    sfRenderWindow* window;
+    sfRenderWindow* win;
     sfVideoMode mode;
 } window_t;
 
@@ -103,11 +114,12 @@ typedef struct sound_s {
 typedef struct menu_s {
     sfSprite *back_sp;
     sfTexture *back_texture;
+    button_t **btn;
 } menu_t;
 
 typedef struct game_s {
     int scene;
-    window_t *window;
+    window_t *win;
     sound_t *sound;
     display_t *display;
     gameplay_t *gameplay;

@@ -10,7 +10,7 @@
 void game_loop(game_t *game)
 {
     sfSound_play(game->sound->game);
-    while (sfRenderWindow_isOpen(game->window->window) \
+    while (sfRenderWindow_isOpen(game->win->win) \
     && game->gameplay->life > 0)
     {
         get_mouse_hitbox(game);

@@ -39,10 +39,30 @@ void destroy_texts(display_t *display)
     sfText_destroy(display->sign->count);
 }
 
+void destroy_btn(button_t *btn)
+{
+    sfSprite_destroy(btn->sprite);
+    sfTexture_destroy(btn->texture);
+    free(btn);
+}
+
+void destroy_btn_tab(button_t **button_tab)
+{
+    for (int i = 0; button_tab[i] != NULL; i++)
+        destroy_btn(button_tab[i]);
+    free(button_tab);
+}
+
+void destroy_btn_tabs(game_t *game)
+{
+    destroy_btn_tab(game->menu->btn);
+}
+
 void destroy_all(game_t *game)
 {
-    sfRenderWindow_destroy(game->window->window);
+    sfRenderWindow_destroy(game->win->win);
     destroy_sprites(game->display);
     destroy_textures(game->display);
     destroy_sounds(game->sound);
+    destroy_btn_tabs(game);
 }

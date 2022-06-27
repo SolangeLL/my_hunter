@@ -13,12 +13,12 @@ void set_TextRect_and_clear(game_t *game)
 
     sfSprite_setTextureRect(disp->skeleton->sp, disp->skeleton->rect);
     sfSprite_setTextureRect(disp->slime->sp, disp->slime->rect);
-    sfRenderWindow_clear(game->window->window, sfBlack);
+    sfRenderWindow_clear(game->win->win, sfBlack);
 }
 
 void draw_all(game_t *game)
 {
-    sfRenderWindow *window = game->window->window;
+    sfRenderWindow *window = game->win->win;
     display_t *disp = game->display;
 
     sfRenderWindow_drawSprite(window, disp->background->back_sp, NULL);
@@ -27,5 +27,5 @@ void draw_all(game_t *game)
     sfRenderWindow_drawSprite(window, disp->sign->sp, NULL);
     sfRenderWindow_drawSprite(window, disp->heart->sp, NULL);
     sfRenderWindow_drawText(window, disp->sign->count, NULL);
-    sfRenderWindow_display(game->window->window);
+    sfRenderWindow_display(game->win->win);
 }

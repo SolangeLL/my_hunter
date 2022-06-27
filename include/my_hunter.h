@@ -32,8 +32,10 @@ void respawn_slime(game_t *game);
 void respawn_skeleton(game_t *game);
 
 void set_TextRect_and_clear(game_t *game);
-void draw_all(game_t *game);
 void destroy_all(game_t *game);
+
+void draw_all(game_t *game);
+void draw_menu(game_t *game);
 
 void refresh_count(game_t *game);
 char *create_str(int nb, char *str);

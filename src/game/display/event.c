@@ -52,9 +52,9 @@ void analyse_events(game_t *game)
 {
     while (IS_EVENT) {
         if (game->gameplay->event.type == sfEvtClosed)
-            sfRenderWindow_close(game->window->window);
+            sfRenderWindow_close(game->win->win);
         if (ESCAPE_IS_PRESSED)
-            sfRenderWindow_close(game->window->window);
+            sfRenderWindow_close(game->win->win);
         if (game->gameplay->event.type == sfEvtMouseButtonReleased)
             shoot(game);
     }

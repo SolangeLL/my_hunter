@@ -18,4 +18,6 @@ void init_sprites(game_t *game);
 void init_sound(sound_t *sound);
 void init_text(display_t *display);
 
+void init_menu_buttons(menu_t *menu);
+
 #endif /* !INIT_H_ */

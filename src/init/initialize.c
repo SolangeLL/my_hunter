@@ -9,9 +9,9 @@
 
 void init_struct(game_t *game)
 {
-    game->window = malloc(sizeof(window_t));
-    game->window->dimension = (sfVector2f) {1920, 1080};
-    game->window->mode = (sfVideoMode) {1920, 1080, 32};
+    game->win = malloc(sizeof(window_t));
+    game->win->dimension = (sfVector2f) {1920, 1080};
+    game->win->mode = (sfVideoMode) {1920, 1080, 32};
     game->display = malloc(sizeof(display_t));
     game->gameplay = malloc(sizeof(gameplay_t));
     game->animation = malloc(sizeof(animation_t));
@@ -27,8 +27,8 @@ void init_struct(game_t *game)
 
 void init_window(window_t *window)
 {
-    window->window = sfRenderWindow_create(WINDOW_INFO);
-    sfRenderWindow_setFramerateLimit(window->window, 30);
+    window->win = sfRenderWindow_create(WINDOW_INFO);
+    sfRenderWindow_setFramerateLimit(window->win, 30);
 }
 
 void init_text(display_t *display)
@@ -61,7 +61,7 @@ void init_values(game_t *game)
 void init_all(game_t *game)
 {
     init_struct(game);
-    init_window(game->window);
+    init_window(game->win);
     init_rect(game->display);
     init_animation(game->animation);
     init_sound(game->sound);
@@ -69,4 +69,5 @@ void init_all(game_t *game)
     init_rect_scaled(game->display);
     init_text(game->display);
     init_values(game);
+    init_menu_buttons(game->menu);
 }
