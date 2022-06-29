@@ -9,17 +9,17 @@
     #define STRUCT_H_
 
 enum SCENES {
-    MENU, GAME, QUIT
+    MENU, SETTINGS, GAME, QUIT
 };
 
 typedef struct button_s {
     int pressed;
     sfSprite *sprite;
     sfTexture *texture;
-    sfIntRect btn_rect;
+    sfFloatRect btn_rect;
     sfVector2f pos;
     sfColor color;
-    // void (*change_scene)(struct button_s *, sfSound *, int *);
+    void (*change_scene)(struct button_s *, sfSound *, int *);
     // void (*modify)(struct global_s *, int);
 } button_t;
 
@@ -106,9 +106,11 @@ typedef struct sound_s {
     sfSoundBuffer *skel_death_buf;
     sfSoundBuffer *slime_buf;
     sfSoundBuffer *game_buf;
+    sfSoundBuffer *click_buf;
     sfSound *slime_death;
     sfSound *skel_death;
     sfSound *game;
+    sfSound *click;
 } sound_t;
 
 typedef struct menu_s {

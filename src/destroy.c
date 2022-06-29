@@ -28,9 +28,11 @@ void destroy_sounds(sound_t *sound)
     sfSound_destroy(sound->game);
     sfSound_destroy(sound->skel_death);
     sfSound_destroy(sound->slime_death);
+    sfSound_destroy(sound->click);
     sfSoundBuffer_destroy(sound->game_buf);
     sfSoundBuffer_destroy(sound->skel_death_buf);
     sfSoundBuffer_destroy(sound->slime_buf);
+    sfSoundBuffer_destroy(sound->click_buf);
 }
 
 void destroy_texts(display_t *display)

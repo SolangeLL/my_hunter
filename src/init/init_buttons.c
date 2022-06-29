@@ -23,7 +23,7 @@ button_t *init_button(char *texture_path, sfVector2f pos)
     sfSprite_setTexture(btn->sprite, btn->texture, 0);
     sfSprite_setPosition(btn->sprite, btn->pos);
     btn->pressed = 0;
-    btn->btn_rect = (sfIntRect) {size.x, size.y, pos.x, pos.y};
+    btn->btn_rect = (sfFloatRect) {pos.x, pos.y, size.x, size.y};
     return btn;
 }
 

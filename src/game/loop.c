@@ -10,7 +10,7 @@
 void game_loop(game_t *game)
 {
     sfSound_play(game->sound->game);
-    while (sfRenderWindow_isOpen(game->win->win) \
+    while (game->scene == GAME \
     && game->gameplay->life > 0)
     {
         get_mouse_hitbox(game);
@@ -25,5 +25,5 @@ void game_loop(game_t *game)
         set_TextRect_and_clear(game);
         draw_all(game);
     }
-    game->scene = QUIT;
+    sfSound_stop(game->sound->game);
 }

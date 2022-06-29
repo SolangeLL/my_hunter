@@ -16,7 +16,9 @@ SRC		=	src/destroy.c \
 			src/init/init_rect.c \
 			src/init/init_sprites.c \
 			src/init/init_assets.c \
-			src/init/init_buttons.c
+			src/init/init_buttons.c \
+			src/init/callbacks_function.c \
+			src/init/init_buttons_callbacks.c
 
 SRC_GAME	=	$(GAME)/display/display.c \
 				$(GAME)/display/event.c \
@@ -28,7 +30,8 @@ SRC_GAME	=	$(GAME)/display/display.c \
 				$(GAME)/loop.c \
 
 SRC_MENU	=	$(MENU)/loop.c \
-				$(MENU)/display/display.c
+				$(MENU)/display/display.c \
+				$(MENU)/display/buttons_effect.c
 
 OBJ		=	$(SRC:.c=.o)
 
@@ -58,6 +61,7 @@ clean:
 	rm -f $(NAME)
 	rm -f *.o
 	rm -f *~
+	rm -f vgcore.*
 
 fclean: clean
 	make fclean -C lib/my
