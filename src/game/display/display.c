@@ -25,7 +25,8 @@ void draw_all(game_t *game)
     sfRenderWindow_drawSprite(window,disp->skeleton->sp, NULL);
     sfRenderWindow_drawSprite(window, disp->slime->sp, NULL);
     sfRenderWindow_drawSprite(window, disp->sign->sp, NULL);
-    sfRenderWindow_drawSprite(window, disp->heart->sp, NULL);
+    for (int i = 0; i < game->gameplay->life; i++)
+        sfRenderWindow_drawSprite(window, disp->heart[i]->sp, NULL);
     sfRenderWindow_drawText(window, disp->sign->count, NULL);
     sfRenderWindow_display(game->win->win);
 }

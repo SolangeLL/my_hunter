@@ -44,8 +44,12 @@ int shoot_skeleton(game_t *game)
 
 void shoot(game_t *game)
 {
-    if (shoot_slime(game) == 0 && shoot_skeleton(game) == 0)
+    if (shoot_slime(game) == 0 && shoot_skeleton(game) == 0) {
         game->gameplay->life--;
+        sfSound_play(game->sound->miss);
+    }
+    if (game->gameplay->life <= 0)
+        game->scene = MENU;
 }
 
 void analyse_events(game_t *game)

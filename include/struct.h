@@ -73,7 +73,7 @@ typedef struct background_s {
 
 typedef struct display_s {
     skeleton_t *skeleton;
-    heart_t *heart;
+    heart_t **heart;
     sign_t *sign;
     slime_t *slime;
     background_t *background;
@@ -107,10 +107,12 @@ typedef struct sound_s {
     sfSoundBuffer *slime_buf;
     sfSoundBuffer *game_buf;
     sfSoundBuffer *click_buf;
+    sfSoundBuffer *miss_buf;
     sfSound *slime_death;
     sfSound *skel_death;
     sfSound *game;
     sfSound *click;
+    sfSound *miss;
 } sound_t;
 
 typedef struct menu_s {

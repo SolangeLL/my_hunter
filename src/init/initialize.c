@@ -10,8 +10,6 @@
 void init_struct(game_t *game)
 {
     game->win = malloc(sizeof(window_t));
-    game->win->dimension = (sfVector2f) {1920, 1080};
-    game->win->mode = (sfVideoMode) {1920, 1080, 32};
     game->display = malloc(sizeof(display_t));
     game->gameplay = malloc(sizeof(gameplay_t));
     game->animation = malloc(sizeof(animation_t));
@@ -19,14 +17,17 @@ void init_struct(game_t *game)
     game->display->slime = malloc(sizeof(slime_t));
     game->display->background = malloc(sizeof(background_t));
     game->display->sign = malloc(sizeof(sign_t));
-    game->display->heart = malloc(sizeof(heart_t));
+    game->display->heart = malloc(sizeof(heart_t *) * 4);
+    for (int i = 0; i < 3; game->display->heart[i] = malloc(sizeof(heart_t)), i++);
+    game->display->heart[3] = NULL;
     game->sound = malloc(sizeof(sound_t));
-    game->gameplay->life = 3;
     game->menu = malloc(sizeof(menu_t));
 }
 
 void init_window(window_t *window)
 {
+    window->dimension = (sfVector2f) {1920, 1080};
+    window->mode = (sfVideoMode) {1920, 1080, 32};
     window->win = sfRenderWindow_create(WINDOW_INFO);
     sfRenderWindow_setFramerateLimit(window->win, 30);
 }
@@ -51,6 +52,7 @@ void init_text(display_t *display)
 void init_values(game_t *game)
 {
     game->scene = MENU;
+    game->gameplay->life = 3;
     game->gameplay->count = 0;
     game->display->slime->alpha = 255;
     game->display->slime->wave = 0;
