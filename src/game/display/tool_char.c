@@ -6,6 +6,7 @@
 */
 
 #include "../../../include/my_hunter.h"
+#include <string.h>
 
 int get_length_nb(int nb)
 {
@@ -16,21 +17,12 @@ int get_length_nb(int nb)
     return (len + 1);
 }
 
-void add_minus(int *nb, int *minus)
-{
-    if (*nb < 0) {
-        *nb *= -1;
-        *minus = 1;
-    }
-}
-
 char *create_str(int nb, char *str)
 {
     int unit = 0;
     int i = 0;
     int minus = 0;
 
-    add_minus(&nb, &minus);
     while (nb > 9) {
         unit = nb % 10;
         str[i++] = unit + '0';
@@ -52,5 +44,6 @@ void refresh_count(game_t *game)
     int len = get_length_nb(game->gameplay->count);
     counter = malloc(sizeof(char) * (len + 1));
     counter = create_str(game->gameplay->count, counter);
-    sfText_setString(game->display->sign->count, counter);
+    sfText_setString(game->display->sign->count, strdup(counter));
+    free(counter);
 }

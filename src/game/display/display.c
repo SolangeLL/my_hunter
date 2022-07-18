@@ -28,5 +28,6 @@ void draw_all(game_t *game)
     for (int i = 0; i < game->gameplay->life; i++)
         sfRenderWindow_drawSprite(window, disp->heart[i]->sp, NULL);
     sfRenderWindow_drawText(window, disp->sign->count, NULL);
+    sfRenderWindow_drawText(window, disp->sign->bestScoreTxt, NULL);
     sfRenderWindow_display(game->win->win);
 }

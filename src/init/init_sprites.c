@@ -71,7 +71,7 @@ static void set_scales(game_t *game)
     sfSprite_setScale(game->display->slime->sp, game->display->slime->scale);
     sfSprite_setScale(game->display->sign->sp, game->display->sign->scale);
     sfSprite_setScale(game->display->background->back_sp, game->display->background->back_scale);
-    sfSprite_setScale(game->menu->back_sp, (sfVector2f) {1, 0.95});
+    sfSprite_setScale(game->menu->back_sp, (sfVector2f) {1, 0.98});
     sfSprite_setColor(game->display->slime->sp, (sfColor) {200, 200, 255, 255});
 }
 

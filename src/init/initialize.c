@@ -73,4 +73,5 @@ void init_all(game_t *game)
     init_values(game);
     init_menu_buttons(game->menu);
     init_buttons_callbacks(game);
+    loadBestScore(game->display->sign);
 }

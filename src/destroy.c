@@ -7,26 +7,29 @@
 
 #include "../include/my_hunter.h"
 
-void destroy_sprites(display_t *display)
+void destroy_sprites(game_t *game)
 {
-    sfSprite_destroy(display->skeleton->sp);
-    sfSprite_destroy(display->slime->sp);
-    sfSprite_destroy(display->sign->sp);
-    sfSprite_destroy(display->background->back_sp);
-    sfSprite_destroy(display->heart[0]->sp);
-    sfSprite_destroy(display->heart[1]->sp);
-    sfSprite_destroy(display->heart[2]->sp);
+    sfSprite_destroy(game->display->skeleton->sp);
+    sfSprite_destroy(game->display->slime->sp);
+    sfSprite_destroy(game->display->sign->sp);
+    sfSprite_destroy(game->display->background->back_sp);
+    sfSprite_destroy(game->display->heart[0]->sp);
+    sfSprite_destroy(game->display->heart[1]->sp);
+    sfSprite_destroy(game->display->heart[2]->sp);
+    sfSprite_destroy(game->menu->back_sp);
 }
 
-void destroy_textures(display_t *display)
+void destroy_textures(game_t *game)
 {
-    sfTexture_destroy(display->background->back_texture);
-    sfTexture_destroy(display->sign->texture);
-    sfTexture_destroy(display->skeleton->texture);
-    sfTexture_destroy(display->slime->texture);
-    sfTexture_destroy(display->heart[0]->texture);
-    sfTexture_destroy(display->heart[1]->texture);
-    sfTexture_destroy(display->heart[2]->texture);
+    sfTexture_destroy(game->display->background->back_texture);
+    sfTexture_destroy(game->display->sign->texture);
+    sfTexture_destroy(game->display->skeleton->texture);
+    sfTexture_destroy(game->display->slime->texture);
+    sfTexture_destroy(game->display->slime->death_texture);
+    sfTexture_destroy(game->display->heart[0]->texture);
+    sfTexture_destroy(game->display->heart[1]->texture);
+    sfTexture_destroy(game->display->heart[2]->texture);
+    sfTexture_destroy(game->menu->back_texture);
 }
 
 void destroy_sounds(sound_t *sound)
@@ -45,8 +48,10 @@ void destroy_sounds(sound_t *sound)
 
 void destroy_texts(display_t *display)
 {
+    free(display->sign->bestScore);
     sfFont_destroy(display->sign->font);
     sfText_destroy(display->sign->count);
+    sfText_destroy(display->sign->bestScoreTxt);
 }
 
 void destroy_btn(button_t *btn)
@@ -91,8 +96,9 @@ void destroy_all(game_t *game)
     sfClock_destroy(game->animation->clock);
     sfClock_destroy(game->animation->slime_clk);
     sfRenderWindow_destroy(game->win->win);
-    destroy_sprites(game->display);
-    destroy_textures(game->display);
+    destroy_sprites(game);
+    destroy_textures(game);
+    destroy_texts(game->display);
     destroy_sounds(game->sound);
     destroy_btn_tabs(game);
     destroy_structures(game);

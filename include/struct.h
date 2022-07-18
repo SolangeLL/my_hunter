@@ -38,6 +38,7 @@ typedef struct skeleton_s {
     sfIntRect rect;
     sfFloatRect rect_scaled;
     sfVector2f scale;
+    struct skeleton_s *next;
 } skeleton_t;
 
 typedef struct slime_s {
@@ -51,10 +52,12 @@ typedef struct slime_s {
     sfIntRect rect;
     sfFloatRect rect_scaled;
     sfVector2f scale;
+    struct slime_s *next;
 } slime_t;
 
 typedef struct sign_s {
     char *char_count;
+    char *bestScore;
     sfSprite *sp;
     sfTexture *texture;
     sfVector2f pos;
@@ -62,6 +65,7 @@ typedef struct sign_s {
     sfVector2f scale;
     sfFont *font;
     sfText *count;
+    sfText *bestScoreTxt;
 } sign_t;
 
 typedef struct background_s {
