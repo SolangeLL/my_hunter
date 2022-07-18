@@ -35,3 +35,5 @@ slime_t *create_slime(void)
     sfSprite_setPosition(slime->sp, slime->pos);
     return slime;
 }
+
+// void spawn_enemy(enemies_t *)

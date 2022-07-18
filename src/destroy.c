@@ -39,11 +39,13 @@ void destroy_sounds(sound_t *sound)
     sfSound_destroy(sound->slime_death);
     sfSound_destroy(sound->click);
     sfSound_destroy(sound->miss);
+    sfSound_destroy(sound->highScore);
     sfSoundBuffer_destroy(sound->game_buf);
     sfSoundBuffer_destroy(sound->skel_death_buf);
     sfSoundBuffer_destroy(sound->slime_buf);
     sfSoundBuffer_destroy(sound->click_buf);
     sfSoundBuffer_destroy(sound->miss_buf);
+    sfSoundBuffer_destroy(sound->highScoreBuf);
 }
 
 void destroy_texts(display_t *display)
@@ -85,6 +87,7 @@ void destroy_structures(game_t *game)
     free(game->display->heart[2]);
     free(game->display->heart);
     free(game->display);
+    free(game->enemies);
     free(game->gameplay);
     free(game->sound);
     free(game->animation);
@@ -94,7 +97,6 @@ void destroy_structures(game_t *game)
 void destroy_all(game_t *game)
 {
     sfClock_destroy(game->animation->clock);
-    sfClock_destroy(game->animation->slime_clk);
     sfRenderWindow_destroy(game->win->win);
     destroy_sprites(game);
     destroy_textures(game);

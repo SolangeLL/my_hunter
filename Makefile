@@ -16,6 +16,7 @@ SRC		=	src/destroy.c \
 			src/init/init_rect.c \
 			src/init/init_sprites.c \
 			src/init/init_assets.c \
+			src/init/init_sounds.c \
 			src/init/init_buttons.c \
 			src/init/callbacks_function.c \
 			src/init/init_buttons_callbacks.c

@@ -6,10 +6,15 @@
 */
 
 #include "../../include/my_hunter.h"
+static void prepareGameScene(game_t *game)
+{
+    sfSound_play(game->sound->game);
+    game->animation->clock = sfClock_create();
+}
 
 void game_loop(game_t *game)
 {
-    sfSound_play(game->sound->game);
+    prepareGameScene(game);
     while (game->scene == GAME \
     && game->gameplay->life > 0)
     {

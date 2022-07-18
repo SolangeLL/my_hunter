@@ -11,8 +11,8 @@ void move_skeleton(game_t *game)
 {
     skeleton_t *skeleton = game->display->skeleton;
 
-    if (game->animation->seconds > 0.02 && skeleton->rect.top != 64)
-        sfSprite_move(skeleton->sp, (sfVector2f) {5, 0});
+    if (game->animation->secSkeleton > 0.025 && skeleton->rect.top != 64)
+        sfSprite_move(skeleton->sp, (sfVector2f) {2, 0});
 }
 
 void do_vanish_slime(slime_t *slime)
@@ -29,10 +29,10 @@ void move_slime(game_t *game)
 {
     slime_t *slime = game->display->slime;
 
-    if (game->animation->seconds > 0.02 && slime->shoot == 0) {
-        sfSprite_move(slime->sp, (sfVector2f) {5, sin(slime->wave) * 3});
-        slime->wave += 0.1;
-    } else if (game->animation->seconds > 0.02 && slime->shoot == 1) {
+    if (game->animation->sec_slime > 0.03 && slime->shoot == 0) {
+        sfSprite_move(slime->sp, (sfVector2f) {2, sin(slime->wave)});
+        slime->wave += 0.03;
+    } else if (game->animation->sec_slime > 0.03 && slime->shoot == 1) {
         slime->alpha -= 20;
         sfSprite_setColor(slime->sp, (sfColor) {200, 200, 255, slime->alpha});
         do_vanish_slime(slime);

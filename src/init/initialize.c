@@ -22,6 +22,7 @@ void init_struct(game_t *game)
     game->display->heart[3] = NULL;
     game->sound = malloc(sizeof(sound_t));
     game->menu = malloc(sizeof(menu_t));
+    game->enemies = malloc(sizeof(enemies_t));
 }
 
 void init_window(window_t *window)
@@ -29,7 +30,7 @@ void init_window(window_t *window)
     window->dimension = (sfVector2f) {1920, 1080};
     window->mode = (sfVideoMode) {1920, 1080, 32};
     window->win = sfRenderWindow_create(WINDOW_INFO);
-    sfRenderWindow_setFramerateLimit(window->win, 30);
+    sfRenderWindow_setFramerateLimit(window->win, 130);
 }
 
 void init_text(display_t *display)
@@ -52,12 +53,14 @@ void init_text(display_t *display)
 void init_values(game_t *game)
 {
     game->scene = MENU;
+    game->gameplay->isScoreBetter = false;
     game->gameplay->life = 3;
     game->gameplay->count = 0;
     game->display->slime->alpha = 255;
     game->display->slime->wave = 0;
     game->display->slime->shoot = 0;
     game->display->skeleton->shoot = 0;
+    game->enemies->spawnEnemies = 5;
 }
 
 void init_all(game_t *game)
