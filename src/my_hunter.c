@@ -18,9 +18,7 @@ void saveBestScore(game_t *game)
     FILE *file = NULL;
     const char *score = sfText_getString(game->display->sign->count);
 
-    printf("%s and best = %d\n", score, my_getnbr(game->display->sign->bestScore));
     if (my_getnbr(score) > my_getnbr(game->display->sign->bestScore)) {
-        printf("COUCOU\n");
         file = fopen("config/bestScore.txt", "w");
         fwrite(score, 1, strlen(score), file);
         fclose(file);
