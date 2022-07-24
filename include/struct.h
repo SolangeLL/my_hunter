@@ -32,6 +32,8 @@ typedef struct heart_s {
 
 typedef struct skeleton_s {
     int shoot;
+    float moveSec;
+    float animSec;
     sfTexture *texture;
     sfSprite *sp;
     sfVector2f pos;
@@ -56,6 +58,7 @@ typedef struct slime_s {
 } slime_t;
 
 typedef struct enemies_s {
+    int nbEnemies;
     float spawnEnemies;
     skeleton_t *skeletons;
     slime_t *slimes;
@@ -93,8 +96,11 @@ typedef struct animation_s {
     sfClock *clock;
     sfTime time;
     float seconds;
+    float spawnSec;
     float sec_slime;
     float secSkeleton;
+    float moveSlime;
+    float moveSkeleton;
 } animation_t;
 
 typedef struct window_s {

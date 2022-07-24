@@ -22,11 +22,15 @@ void analyse_events(game_t *game);
 
 void get_seconds(game_t *game);
 void do_slime_animation(game_t *game);
-void do_skeleton_animation(game_t *game);
+// void do_skeleton_animation(game_t *game);
+void browseSkeletonAnim(game_t *game);
 void move_skeleton(game_t *game);
 void move_slime(game_t *game);
+void spawn_enemy(enemies_t *enemies, animation_t *anim);
 void respawn_slime(game_t *game);
 void respawn_skeleton(game_t *game);
+skeleton_t *add_skeleton(skeleton_t *skeletons);
+slime_t *add_slime(slime_t *slimes);
 
 void set_TextRect_and_clear(game_t *game);
 void destroy_all(game_t *game);

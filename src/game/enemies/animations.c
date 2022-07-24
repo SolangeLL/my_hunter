@@ -7,11 +7,11 @@
 
 #include "../../../include/my_hunter.h"
 
-void move_skeleton_rect(game_t *game, int max_value, int increment)
+void move_skeleton_rect(skeleton_t *skeleton, int max_value, int increment)
 {
-    game->display->skeleton->rect.left += increment;
-    if (game->display->skeleton->rect.left >= max_value)
-        game->display->skeleton->rect.left = 0;
+    skeleton->rect.left += increment;
+    if (skeleton->rect.left >= max_value)
+        skeleton->rect.left = 0;
 }
 
 void move_slime_rect(slime_t *slime, int max, int increment)
@@ -24,42 +24,61 @@ void move_slime_rect(slime_t *slime, int max, int increment)
 void get_seconds(game_t *game)
 {
     animation_t *anim = game->animation;
+    skeleton_t *tmpSkelteton = game->enemies->skeletons;
 
     anim->time = sfClock_restart(anim->clock);
     anim->seconds = anim->time.microseconds / 1000000.0;
+    anim->spawnSec += anim->seconds;
     anim->sec_slime += anim->seconds;
     anim->secSkeleton += anim->seconds;
+    anim->moveSkeleton += anim->seconds;
+    anim->moveSlime += anim->seconds;
+    for (; tmpSkelteton != NULL; tmpSkelteton = tmpSkelteton->next) {
+        tmpSkelteton->animSec += anim->seconds;
+        tmpSkelteton->moveSec += anim->seconds;
+    }
 }
 
 void do_slime_animation(game_t *game)
 {
     int shoot = game->display->slime->shoot;
 
-    if (game->animation->sec_slime > 0.1 && shoot == 0) {
+    while (game->animation->sec_slime > 0.08) {
+        if (shoot == 0) {
             move_slime_rect(game->display->slime, 128, 32);
-            game->animation->sec_slime -= 0.1;
-    } else if (game->animation->sec_slime > 0.1 && shoot == 1) {
+            game->animation->sec_slime -= 0.08;
+        } else {
             move_slime_rect(game->display->slime, 288, 32);
-            game->animation->sec_slime -= 0.1;
+            game->animation->sec_slime -= 0.08;
+        }
     }
 }
 
-void do_skeleton_animation(game_t *game)
+void do_skeleton_animation(skeleton_t *skeleton)
 {
-    int *shoot = &game->display->skeleton->shoot;
-    sfSprite *skeleton_sprite = game->display->skeleton->sp;
-
-    if (game->animation->secSkeleton > 0.075 && *shoot == 0) {
-        move_skeleton_rect(game, 760, 64);
-        game->animation->secSkeleton -= 0.075;
-    } else if (game->animation->secSkeleton > 0.075 && *shoot == 1) {
-        game->animation->secSkeleton -= 0.075;
-        game->display->skeleton->rect.left += 64;
-        if (game->display->skeleton->rect.left > 832) {
-            *shoot = 0;
-            game->display->skeleton->rect.top = 128;
-            game->display->skeleton->rect.left = 0;
-            sfSprite_setPosition(skeleton_sprite, (sfVector2f) {-200, 795});
+    while (skeleton->animSec > 0.065) {
+        if (skeleton->shoot == 0) {
+            move_skeleton_rect(skeleton, 760, 64);
+            skeleton->animSec -= 0.065;
+        } else {
+            skeleton->animSec -= 0.065;
+            skeleton->rect.left += 64;
+            if (skeleton->rect.left > 832) {
+                skeleton->shoot = 0;
+                skeleton->rect.top = 128;
+                skeleton->rect.left = 0;
+                sfSprite_setPosition(skeleton->sp, (sfVector2f) {-200, 795});
+            }
         }
+    }
+    sfSprite_setTextureRect(skeleton->sp, skeleton->rect);
+}
+
+void browseSkeletonAnim(game_t *game)
+{
+    skeleton_t *tmp = game->enemies->skeletons;
+
+    for (int i = 1; tmp != NULL; tmp = tmp->next, i++) {
+        do_skeleton_animation(tmp);
     }
 }

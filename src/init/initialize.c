@@ -30,7 +30,7 @@ void init_window(window_t *window)
     window->dimension = (sfVector2f) {1920, 1080};
     window->mode = (sfVideoMode) {1920, 1080, 32};
     window->win = sfRenderWindow_create(WINDOW_INFO);
-    sfRenderWindow_setFramerateLimit(window->win, 130);
+    sfRenderWindow_setFramerateLimit(window->win, 60);
 }
 
 void init_text(display_t *display)
@@ -61,6 +61,7 @@ void init_values(game_t *game)
     game->display->slime->shoot = 0;
     game->display->skeleton->shoot = 0;
     game->enemies->spawnEnemies = 5;
+    game->enemies->nbEnemies = 1;
 }
 
 void init_all(game_t *game)
@@ -77,4 +78,5 @@ void init_all(game_t *game)
     init_menu_buttons(game->menu);
     init_buttons_callbacks(game);
     loadBestScore(game->display->sign);
+    game->enemies->skeletons = add_skeleton(game->enemies->skeletons);
 }

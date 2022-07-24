@@ -28,16 +28,21 @@ int shoot_skeleton(game_t *game)
 {
     skeleton_t *skeleton = game->display->skeleton;
 
-    skeleton->rect_scaled.top = sfSprite_getPosition(skeleton->sp).y;
-    skeleton->rect_scaled.left = sfSprite_getPosition(skeleton->sp).x;
-    if (CLICK_ON_SKELETON) {
-        skeleton->shoot = 1;
-        game->gameplay->count++;
-        refresh_count(game);
-        sfSound_play(game->sound->skel_death);
-        skeleton->rect.top = 64;
-        skeleton->rect.left = 0;
-        return (1);
+    skeleton_t *tmp = game->enemies->skeletons;
+
+    for (; tmp != NULL; tmp = tmp->next) {
+        tmp->rect_scaled.top = sfSprite_getPosition(tmp->sp).y;
+        tmp->rect_scaled.left = sfSprite_getPosition(tmp->sp).x;
+        printf("Enemy: %f;%f\tMouse: %f;%f\n", tmp->rect_scaled.left, tmp->rect_scaled.top, game->gameplay->mouse_rect.left, game->gameplay->mouse_rect.top);
+        if (CLICK_ON_SKELETON) {
+            skeleton->shoot = 1;
+            game->gameplay->count++;
+            refresh_count(game);
+            sfSound_play(game->sound->skel_death);
+            skeleton->rect.top = 64;
+            skeleton->rect.left = 0;
+            return (1);
+        }
     }
     return (0);
 }
@@ -57,6 +62,7 @@ void analyse_events(game_t *game)
     while (IS_EVENT) {
         if (game->gameplay->event.type == sfEvtClosed)
             sfRenderWindow_close(game->win->win);
+            // game->scene = QUIT;
         if (ESCAPE_IS_PRESSED)
             game->scene = MENU;
         if (game->gameplay->event.type == sfEvtMouseButtonReleased)

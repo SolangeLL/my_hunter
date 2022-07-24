@@ -21,8 +21,12 @@ void draw_all(game_t *game)
     sfRenderWindow *window = game->win->win;
     display_t *disp = game->display;
 
+    skeleton_t *tmp = game->enemies->skeletons;
+
     sfRenderWindow_drawSprite(window, disp->background->back_sp, NULL);
-    sfRenderWindow_drawSprite(window,disp->skeleton->sp, NULL);
+    // sfRenderWindow_drawSprite(window,disp->skeleton->sp, NULL);
+    for (; tmp != NULL; tmp = tmp->next)
+        sfRenderWindow_drawSprite(window, tmp->sp, NULL);
     sfRenderWindow_drawSprite(window, disp->slime->sp, NULL);
     sfRenderWindow_drawSprite(window, disp->sign->sp, NULL);
     for (int i = 0; i < game->gameplay->life; i++)
