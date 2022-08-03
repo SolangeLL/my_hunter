@@ -62,6 +62,10 @@ void init_values(game_t *game)
     game->display->skeleton->shoot = 0;
     game->enemies->spawnEnemies = 5;
     game->enemies->nbEnemies = 1;
+    game->enemies->coef = 0;
+    game->animation->spawnSec = 0;
+    game->enemies->kills = 0;
+    game->enemies->skeletons = NULL;
 }
 
 void init_all(game_t *game)
@@ -78,5 +82,5 @@ void init_all(game_t *game)
     init_menu_buttons(game->menu);
     init_buttons_callbacks(game);
     loadBestScore(game->display->sign);
-    game->enemies->skeletons = add_skeleton(game->enemies->skeletons);
+    game->enemies->skeletons = add_skeleton(game->enemies->skeletons, 0);
 }

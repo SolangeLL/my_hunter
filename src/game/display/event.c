@@ -24,6 +24,14 @@ int shoot_slime(game_t *game)
     return (0);
 }
 
+static void updateValues(game_t *game)
+{
+    game->enemies->nbEnemies--;
+    game->enemies->coef++;
+    game->enemies->kills++;
+    game->gameplay->count++;
+}
+
 int shoot_skeleton(game_t *game)
 {
     skeleton_t *skeleton = game->display->skeleton;
@@ -33,14 +41,13 @@ int shoot_skeleton(game_t *game)
     for (; tmp != NULL; tmp = tmp->next) {
         tmp->rect_scaled.top = sfSprite_getPosition(tmp->sp).y;
         tmp->rect_scaled.left = sfSprite_getPosition(tmp->sp).x;
-        printf("Enemy: %f;%f\tMouse: %f;%f\n", tmp->rect_scaled.left, tmp->rect_scaled.top, game->gameplay->mouse_rect.left, game->gameplay->mouse_rect.top);
         if (CLICK_ON_SKELETON) {
-            skeleton->shoot = 1;
-            game->gameplay->count++;
+            tmp->shoot = 1;
+            updateValues(game);
             refresh_count(game);
             sfSound_play(game->sound->skel_death);
-            skeleton->rect.top = 64;
-            skeleton->rect.left = 0;
+            tmp->rect.top = 64;
+            tmp->rect.left = 0;
             return (1);
         }
     }

@@ -14,7 +14,7 @@ void respawn_slime(game_t *game)
     if (sfSprite_getPosition(slime->sp).x > 2000) {
         slime->pos.x = -50;
         sfSprite_setPosition(slime->sp, slime->pos);
-        game->gameplay->life -= 1;
+        game->gameplay->life--;
     }
     if (game->gameplay->life == 0)
         game->scene = MENU;
@@ -26,10 +26,8 @@ void respawn_skeleton(game_t *game)
 
     for (; tmp != NULL; tmp = tmp->next)
         if (sfSprite_getPosition(tmp->sp).x > 1920) {
-            printf("Respawn\n");
-            tmp->pos.x = -100;
-            sfSprite_setPosition(tmp->sp, tmp->pos);
-            game->gameplay->life -= 1;
+            deleteNode(&game->enemies->skeletons, tmp->id);
+            game->gameplay->life--;
         }
     if (game->gameplay->life == 0)
         game->scene = MENU;

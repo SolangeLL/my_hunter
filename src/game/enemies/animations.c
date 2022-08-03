@@ -54,7 +54,7 @@ void do_slime_animation(game_t *game)
     }
 }
 
-void do_skeleton_animation(skeleton_t *skeleton)
+int do_skeleton_animation(skeleton_t *skeleton)
 {
     while (skeleton->animSec > 0.065) {
         if (skeleton->shoot == 0) {
@@ -64,14 +64,18 @@ void do_skeleton_animation(skeleton_t *skeleton)
             skeleton->animSec -= 0.065;
             skeleton->rect.left += 64;
             if (skeleton->rect.left > 832) {
-                skeleton->shoot = 0;
-                skeleton->rect.top = 128;
-                skeleton->rect.left = 0;
-                sfSprite_setPosition(skeleton->sp, (sfVector2f) {-200, 795});
+                //? Return 1 if can delete enemy
+                sfSprite_setTextureRect(skeleton->sp, skeleton->rect);
+                return 1;
+                // skeleton->shoot = 0;
+                // skeleton->rect.top = 128;
+                // skeleton->rect.left = 0;
+                // sfSprite_setPosition(skeleton->sp, (sfVector2f) {-200, 795});
             }
         }
     }
     sfSprite_setTextureRect(skeleton->sp, skeleton->rect);
+    return 0;
 }
 
 void browseSkeletonAnim(game_t *game)
@@ -79,6 +83,9 @@ void browseSkeletonAnim(game_t *game)
     skeleton_t *tmp = game->enemies->skeletons;
 
     for (int i = 1; tmp != NULL; tmp = tmp->next, i++) {
-        do_skeleton_animation(tmp);
+        if (do_skeleton_animation(tmp))
+            deleteNode(&(game->enemies->skeletons), tmp->id);
+        if (game->enemies->skeletons == NULL)
+            break;
     }
 }

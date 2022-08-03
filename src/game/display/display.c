@@ -11,7 +11,7 @@ void set_TextRect_and_clear(game_t *game)
 {
     display_t *disp = game->display;
 
-    sfSprite_setTextureRect(disp->skeleton->sp, disp->skeleton->rect);
+    // sfSprite_setTextureRect(disp->skeleton->sp, disp->skeleton->rect);
     sfSprite_setTextureRect(disp->slime->sp, disp->slime->rect);
     sfRenderWindow_clear(game->win->win, sfBlack);
 }

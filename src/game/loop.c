@@ -32,6 +32,5 @@ void game_loop(game_t *game)
         set_TextRect_and_clear(game);
         draw_all(game);
     }
-    printf("%d", game->scene);
     sfSound_pause(game->sound->game);
 }

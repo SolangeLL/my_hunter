@@ -29,8 +29,10 @@ void move_slime(game_t *game);
 void spawn_enemy(enemies_t *enemies, animation_t *anim);
 void respawn_slime(game_t *game);
 void respawn_skeleton(game_t *game);
-skeleton_t *add_skeleton(skeleton_t *skeletons);
+skeleton_t *add_skeleton(skeleton_t *skeletons, int id);
 slime_t *add_slime(slime_t *slimes);
+
+void deleteNode(skeleton_t **skeletons, int id);
 
 void set_TextRect_and_clear(game_t *game);
 void destroy_all(game_t *game);

@@ -26,4 +26,4 @@
     #define CLICK_IS_DETECTED game->gameplay->event.type == sfEvtMouseButtonReleased
     #define CLICK_IS_PRESSED game->gameplay->event.type == sfEvtMouseButtonPressed
 
-#endif /* !MACROS_H_ */
+#endif

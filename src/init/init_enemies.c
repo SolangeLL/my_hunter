@@ -13,21 +13,22 @@ static int random_x(int min, int max)
     return (rand() % (max - min + 1) + min);
 }
 
-//TODO Create hitbox (rect_scaled)
-skeleton_t *create_skeleton(void)
+skeleton_t *create_skeleton(int id)
 {
     skeleton_t *skeleton = malloc(sizeof(skeleton_t));
-    int randX = random_x(100, 300);
+    int randX = random_x(-300, -100);
 
-    skeleton->sp = sfSprite_create();
+    skeleton->id = id;
     skeleton->animSec = 0;
     skeleton->moveSec = 0;
     skeleton->shoot = 0;
-    skeleton->texture = CREATE_TEXTURE("res/img/Skeleton_enemy.png", NULL);
     skeleton->scale = SF2F {2.7, 2.7};
     skeleton->pos = SF2F {randX, 795};
     skeleton->rect = (sfIntRect) {0, 128, 64, 64};
-    skeleton->rect_scaled = (sfFloatRect) {randX, 795, 64 * skeleton->scale.x, 64 * skeleton->scale.y};
+    skeleton->rect_scaled = (sfFloatRect) {randX, 795, \
+    64 * skeleton->scale.x, 64 * skeleton->scale.y};
+    skeleton->sp = sfSprite_create();
+    skeleton->texture = CREATE_TEXTURE("res/img/Skeleton_enemy.png", NULL);
     sfSprite_setTextureRect(skeleton->sp, skeleton->rect);
     sfSprite_setTexture(skeleton->sp, skeleton->texture, 0);
     sfSprite_setScale(skeleton->sp, skeleton->scale);
@@ -53,9 +54,9 @@ slime_t *create_slime(void)
     return slime;
 }
 
-skeleton_t *add_skeleton(skeleton_t *skeletons)
+skeleton_t *add_skeleton(skeleton_t *skeletons, int id)
 {
-    skeleton_t *enemy = create_skeleton();
+    skeleton_t *enemy = create_skeleton(id);
 
     if (skeletons == NULL) {
         skeletons = enemy;
@@ -69,10 +70,15 @@ slime_t *add_slime(slime_t *slimes);
 
 void spawn_enemy(enemies_t *enemies, animation_t *anim)
 {
-    if ((int) anim->spawnSec == 5) {
+    if (enemies->coef == 5 && \
+    enemies->spawnEnemies - 0.2 >= 1) {
+        enemies->spawnEnemies -= 0.2;
+        enemies->coef = 0;
+    }
+    if (anim->spawnSec >= enemies->spawnEnemies) {
+        enemies->idSkeleton++;
         enemies->nbEnemies++;
-        printf("Enemies: %d\n", enemies->nbEnemies);
-        enemies->skeletons = add_skeleton(enemies->skeletons);
+        enemies->skeletons = add_skeleton(enemies->skeletons, enemies->idSkeleton);
         // enemies->slimes = add_slime();
         anim->spawnSec -= anim->spawnSec;
     }

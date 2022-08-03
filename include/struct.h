@@ -31,6 +31,7 @@ typedef struct heart_s {
 } heart_t;
 
 typedef struct skeleton_s {
+    int id;
     int shoot;
     float moveSec;
     float animSec;
@@ -58,7 +59,10 @@ typedef struct slime_s {
 } slime_t;
 
 typedef struct enemies_s {
+    int idSkeleton;
     int nbEnemies;
+    int kills;
+    int coef;
     float spawnEnemies;
     skeleton_t *skeletons;
     slime_t *slimes;
