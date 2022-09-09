@@ -64,23 +64,16 @@ static void init_scale_val(game_t *game)
 
 static void set_scales(game_t *game)
 {
-    // sfSprite_setScale(game->display->skeleton->sp, game->display->skeleton->scale);
     sfSprite_setScale(game->display->heart[0]->sp, game->display->heart[0]->scale);
     sfSprite_setScale(game->display->heart[1]->sp, game->display->heart[1]->scale);
     sfSprite_setScale(game->display->heart[2]->sp, game->display->heart[2]->scale);
-    // sfSprite_setScale(game->display->slime->sp, game->display->slime->scale);
     sfSprite_setScale(game->display->sign->sp, game->display->sign->scale);
     sfSprite_setScale(game->display->background->back_sp, game->display->background->back_scale);
     sfSprite_setScale(game->menu->back_sp, (sfVector2f) {1, 0.98});
-    // sfSprite_setColor(game->display->slime->sp, (sfColor) {200, 200, 255, 255});
 }
 
 static void init_pos_val(game_t *game)
 {
-    // game->display->skeleton->pos.x = 0;
-    // game->display->skeleton->pos.y = 795;
-    // game->display->slime->pos.x = 100;
-    // game->display->slime->pos.y = 280;
     game->display->background->back_pos.x = 0;
     game->display->background->back_pos.y = -335;
     game->display->sign->pos.x = 0;

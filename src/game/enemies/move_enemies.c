@@ -24,17 +24,7 @@ void moveSkeletons(game_t *game)
         moveOneSkeleton(skeleton);
 }
 
-void do_vanish_slime(slime_t *slime)
-{
-    if (slime->alpha <= 0) {
-        slime->shoot = 0;
-        slime->alpha = 255;
-        sfSprite_setPosition(slime->sp, (sfVector2f) {-100, 280});
-        sfSprite_setTexture(slime->sp, slime->texture, 0);
-    }
-}
-
-void moveOneSlime(slime_t *slime)
+int moveOneSlime(slime_t *slime)
 {
      while (slime->moveSec > 0.02) {
         if (slime->shoot == 0) {
@@ -44,11 +34,13 @@ void moveOneSlime(slime_t *slime)
         } else {
             slime->alpha -= 20;
             sfSprite_setColor(slime->sp, (sfColor) {200, 200, 255, slime->alpha});
-            //TODO! Not vanish but delete node in list
-            do_vanish_slime(slime);
+            // Return 1 if we can delete the slime
+            if (slime->alpha <= 0)
+                return (1);
             slime->moveSec -= 0.05;
         }
     }
+    return (0);
 }
 
 void moveSlimes(game_t *game)
@@ -56,5 +48,6 @@ void moveSlimes(game_t *game)
     slime_t *slime = game->enemies->slimes;
 
     for (; slime != NULL; slime = slime->next)
-        moveOneSlime(slime);
+        if (moveOneSlime(slime))
+            deleteSlime(&(game->enemies->slimes), slime->id);
 }
