@@ -29,8 +29,9 @@ void killMissedEnemies(game_t *game)
         if (sfSprite_getPosition(tmp->sp).x > 1920) {
             deleteSkeleton(&game->enemies->skeletons, tmp->id);
             game->gameplay->life--;
+            break;
+        }
     //TODO When the player looses, move to end scene (Do you want to restart / leave ?) + Display highscore
     if (game->gameplay->life == 0)
         game->scene = MENU;
-    }
 }

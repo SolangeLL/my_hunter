@@ -101,7 +101,7 @@ void spawn_enemy(enemies_t *enemies, animation_t *anim)
     if (anim->spawnSec >= enemies->spawnEnemies) {
         enemies->nbEnemies++;
         enemies->skeletons = addSkeleton(enemies->skeletons, ++enemies->idSkeleton);
-        enemies->slimes = addSlime(enemies->slimes, ++enemies->idSlime);
+        enemies->slimes = addSlime(enemies->slimes, enemies->idSlime++);
         anim->spawnSec -= anim->spawnSec;
     }
 }

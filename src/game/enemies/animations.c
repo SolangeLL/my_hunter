@@ -73,10 +73,10 @@ void browseSkeletonAnim(game_t *game)
     skeleton_t *tmp = game->enemies->skeletons;
 
     for (int i = 1; tmp != NULL; tmp = tmp->next, i++) {
-        if (doSkeletonAnim(tmp))
+        if (doSkeletonAnim(tmp)) {
             deleteSkeleton(&(game->enemies->skeletons), tmp->id);
-        if (game->enemies->skeletons == NULL)
             break;
+        }
     }
 }
 

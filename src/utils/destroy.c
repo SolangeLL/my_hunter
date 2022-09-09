@@ -9,8 +9,6 @@
 
 void destroy_sprites(game_t *game)
 {
-    // sfSprite_destroy(game->display->skeleton->sp);
-    sfSprite_destroy(game->display->slime->sp);
     sfSprite_destroy(game->display->sign->sp);
     sfSprite_destroy(game->display->background->back_sp);
     sfSprite_destroy(game->display->heart[0]->sp);
@@ -23,9 +21,6 @@ void destroy_textures(game_t *game)
 {
     sfTexture_destroy(game->display->background->back_texture);
     sfTexture_destroy(game->display->sign->texture);
-    // sfTexture_destroy(game->display->skeleton->texture);
-    sfTexture_destroy(game->display->slime->texture);
-    sfTexture_destroy(game->display->slime->death_texture);
     sfTexture_destroy(game->display->heart[0]->texture);
     sfTexture_destroy(game->display->heart[1]->texture);
     sfTexture_destroy(game->display->heart[2]->texture);
@@ -79,8 +74,6 @@ void destroy_structures(game_t *game)
 {
     free(game->win);
     free(game->display->background);
-    // free(game->display->skeleton);
-    free(game->display->slime);
     free(game->display->sign);
     free(game->display->heart[0]);
     free(game->display->heart[1]);
@@ -107,11 +100,26 @@ void destroySkeletonList(skeleton_t **list)
     }
 }
 
+void destroySlimeList(slime_t **list)
+{
+    slime_t *tmp = NULL;
+
+    while ((*list) != NULL) {
+        tmp = (*list)->next;
+        sfSprite_destroy((*list)->sp);
+        sfTexture_destroy((*list)->texture);
+        sfTexture_destroy((*list)->death_texture);
+        free((*list));
+        (*list) = tmp;
+    }
+}
+
 void destroy_all(game_t *game)
 {
     sfClock_destroy(game->animation->clock);
     sfRenderWindow_destroy(game->win->win);
-    destroySkeletonList(&game->enemies->skeletons);
+    destroySkeletonList(&(game->enemies->skeletons));
+    destroySlimeList(&(game->enemies->slimes));
     destroy_sprites(game);
     destroy_textures(game);
     destroy_texts(game->display);

@@ -25,34 +25,38 @@ static slime_t *freeNodeSlime(slime_t *node)
 
 void deleteSkeleton(skeleton_t **skeletons, int id)
 {
-    skeleton_t *tmp = *skeletons;
-    skeleton_t *save = NULL;
+    skeleton_t *temp = *skeletons, *prev;
 
-    if (tmp->next != NULL) {
-        for (; tmp->next->id != id; tmp = tmp->next);
-        if (tmp->next->next != NULL)
-            save = tmp->next->next;
-        tmp->next = freeNodeSkeleton(tmp->next);
-        tmp->next = save;
-    } else {
-        tmp = freeNodeSkeleton(tmp);
-        *skeletons = NULL;
+    if (temp != NULL && temp->id == id) {
+        *skeletons = temp->next;
+        freeNodeSkeleton(temp);
+        return;
     }
+    while (temp != NULL && temp->id != id) {
+        prev = temp;
+        temp = temp->next;
+    }
+    if (temp == NULL)
+        return;
+    prev->next = temp->next;
+    free(temp);
 }
 
 void deleteSlime(slime_t **slimes, int id)
 {
-    slime_t *tmp = *slimes;
-    slime_t *save = NULL;
+    slime_t *temp = *slimes, *prev;
 
-    if (tmp->next != NULL) {
-        for (; tmp->next->id != id; tmp = tmp->next);
-        if (tmp->next->next != NULL)
-            save = tmp->next->next;
-        tmp->next = freeNodeSlime(tmp->next);
-        tmp->next = save;
-    } else {
-        tmp = freeNodeSlime(tmp);
-        *slimes = NULL;
+    if (temp != NULL && temp->id == id) {
+        *slimes = temp->next;
+        freeNodeSlime(temp);
+        return;
     }
+    while (temp != NULL && temp->id != id) {
+        prev = temp;
+        temp = temp->next;
+    }
+    if (temp == NULL)
+        return;
+    prev->next = temp->next;
+    free(temp);
 }

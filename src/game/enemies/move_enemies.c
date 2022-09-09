@@ -48,6 +48,8 @@ void moveSlimes(game_t *game)
     slime_t *slime = game->enemies->slimes;
 
     for (; slime != NULL; slime = slime->next)
-        if (moveOneSlime(slime))
+        if (moveOneSlime(slime)) {
             deleteSlime(&(game->enemies->slimes), slime->id);
+            break;
+        }
 }

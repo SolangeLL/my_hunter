@@ -61,6 +61,8 @@ void init_values(game_t *game)
     game->enemies->kills = 0;
     game->enemies->skeletons = NULL;
     game->enemies->slimes = NULL;
+    game->enemies->idSkeleton = 0;
+    game->enemies->idSlime = 0;
 }
 
 void init_all(game_t *game)
