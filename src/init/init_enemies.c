@@ -7,7 +7,7 @@
 
 #include "../../include/my_hunter.h"
 
-static int random_x(int min, int max)
+static int randomValueInRange(int min, int max)
 {
     srand(time(0));
     return (rand() % (max - min + 1) + min);
@@ -16,7 +16,7 @@ static int random_x(int min, int max)
 static skeleton_t *create_skeleton(int id)
 {
     skeleton_t *skeleton = malloc(sizeof(skeleton_t));
-    int randX = random_x(-300, -100);
+    int randX = randomValueInRange(-300, -100);
 
     skeleton->id = id;
     skeleton->animSec = 0;
@@ -40,6 +40,8 @@ static skeleton_t *create_skeleton(int id)
 static slime_t *create_slime(int id)
 {
     slime_t *slime = malloc(sizeof(slime_t));
+    int randomX = randomValueInRange(-60, -20);
+    int randomY = randomValueInRange(200, 350);
 
     slime->id = id;
     slime->sp = sfSprite_create();
@@ -50,7 +52,7 @@ static slime_t *create_slime(int id)
     slime->alpha = 255;
     slime->animSec = 0;
     slime->moveSec = 0;
-    slime->pos = SF2F {random_x(-60, -20), 280};
+    slime->pos = SF2F {randomX, randomY};
     slime->rect = (sfIntRect) {0, 0, 32, 32};
     slime->rect_scaled = (sfFloatRect) {slime->pos.x, slime->pos.y, \
     32 * slime->scale.x, 32 * slime->scale.y};
