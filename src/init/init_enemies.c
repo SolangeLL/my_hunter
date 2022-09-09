@@ -13,7 +13,7 @@ static int random_x(int min, int max)
     return (rand() % (max - min + 1) + min);
 }
 
-skeleton_t *create_skeleton(int id)
+static skeleton_t *create_skeleton(int id)
 {
     skeleton_t *skeleton = malloc(sizeof(skeleton_t));
     int randX = random_x(-300, -100);
@@ -37,24 +37,33 @@ skeleton_t *create_skeleton(int id)
     return skeleton;
 }
 
-slime_t *create_slime(void)
+static slime_t *create_slime(int id)
 {
     slime_t *slime = malloc(sizeof(slime_t));
 
+    slime->id = id;
     slime->sp = sfSprite_create();
     slime->texture = CREATE_TEXTURE("res/img/Slime.png", NULL);
     slime->death_texture = CREATE_TEXTURE("res/img/Slime_death.png", NULL);
     slime->scale = SF2F {-3, 3};
+    slime->shoot = 0;
+    slime->alpha = 255;
+    slime->animSec = 0;
+    slime->moveSec = 0;
     slime->pos = SF2F {random_x(-60, -20), 280};
     slime->rect = (sfIntRect) {0, 0, 32, 32};
+    slime->rect_scaled = (sfFloatRect) {slime->pos.x, slime->pos.y, \
+    32 * slime->scale.x, 32 * slime->scale.y};
+    slime->wave = 0;
     sfSprite_setTextureRect(slime->sp, slime->rect);
     sfSprite_setTexture(slime->sp, slime->texture, 0);
     sfSprite_setScale(slime->sp, slime->scale);
     sfSprite_setPosition(slime->sp, slime->pos);
+    slime->next = NULL;
     return slime;
 }
 
-skeleton_t *add_skeleton(skeleton_t *skeletons, int id)
+skeleton_t *addSkeleton(skeleton_t *skeletons, int id)
 {
     skeleton_t *enemy = create_skeleton(id);
 
@@ -66,20 +75,31 @@ skeleton_t *add_skeleton(skeleton_t *skeletons, int id)
     skeletons = enemy;
     return skeletons;
 }
-slime_t *add_slime(slime_t *slimes);
+slime_t *addSlime(slime_t *slimes, int id)
+{
+    slime_t *enemy = create_slime(id);
+
+    if (slimes == NULL) {
+        slimes = enemy;
+        return enemy;
+    }
+    enemy->next = slimes;
+    slimes = enemy;
+    return slimes;
+}
 
 void spawn_enemy(enemies_t *enemies, animation_t *anim)
 {
+    //* Enimies initially spawn each 5 seconds
     if (enemies->coef == 5 && \
     enemies->spawnEnemies - 0.2 >= 1) {
         enemies->spawnEnemies -= 0.2;
         enemies->coef = 0;
     }
     if (anim->spawnSec >= enemies->spawnEnemies) {
-        enemies->idSkeleton++;
         enemies->nbEnemies++;
-        enemies->skeletons = add_skeleton(enemies->skeletons, enemies->idSkeleton);
-        // enemies->slimes = add_slime();
+        enemies->skeletons = addSkeleton(enemies->skeletons, ++enemies->idSkeleton);
+        enemies->slimes = addSlime(enemies->slimes, ++enemies->idSlime);
         anim->spawnSec -= anim->spawnSec;
     }
 }

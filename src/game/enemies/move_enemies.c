@@ -7,7 +7,7 @@
 
 #include "../../../include/my_hunter.h"
 
-void move(skeleton_t *skeleton)
+void moveOneSkeleton(skeleton_t *skeleton)
 {
     while (skeleton->moveSec > 0.015 \
     && skeleton->rect.top != 64) {
@@ -16,18 +16,12 @@ void move(skeleton_t *skeleton)
     }
 }
 
-void move_skeleton(game_t *game)
+void moveSkeletons(game_t *game)
 {
-    skeleton_t *skeleton = game->display->skeleton;
-    skeleton_t *tmp = game->enemies->skeletons;
+    skeleton_t *skeleton = game->enemies->skeletons;
 
-    // while (game->animation->moveSkeleton > 0.015 \
-    // && skeleton->rect.top != 64) {
-    //     sfSprite_move(skeleton->sp, (sfVector2f) {2, 0});
-    //     game->animation->moveSkeleton -= 0.015;
-    // }
-    for (; tmp != NULL; tmp = tmp->next)
-        move(tmp);
+    for (; skeleton != NULL; skeleton = skeleton->next)
+        moveOneSkeleton(skeleton);
 }
 
 void do_vanish_slime(slime_t *slime)
@@ -40,20 +34,27 @@ void do_vanish_slime(slime_t *slime)
     }
 }
 
-void move_slime(game_t *game)
+void moveOneSlime(slime_t *slime)
 {
-    slime_t *slime = game->display->slime;
-
-    while (game->animation->moveSlime > 0.02) {
+     while (slime->moveSec > 0.02) {
         if (slime->shoot == 0) {
             sfSprite_move(slime->sp, (sfVector2f) {2, sin(slime->wave)});
             slime->wave += 0.02;
-            game->animation->moveSlime -= 0.02;
+            slime->moveSec -= 0.02;
         } else {
             slime->alpha -= 20;
             sfSprite_setColor(slime->sp, (sfColor) {200, 200, 255, slime->alpha});
+            //TODO! Not vanish but delete node in list
             do_vanish_slime(slime);
-            game->animation->moveSlime -= 0.05;
+            slime->moveSec -= 0.05;
         }
     }
+}
+
+void moveSlimes(game_t *game)
+{
+    slime_t *slime = game->enemies->slimes;
+
+    for (; slime != NULL; slime = slime->next)
+        moveOneSlime(slime);
 }

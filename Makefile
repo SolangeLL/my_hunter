@@ -14,7 +14,6 @@ UTILS	=	src/utils
 SRC		=	src/main.c \
 			src/my_hunter.c \
 			src/init/initialize.c \
-			src/init/init_rect.c \
 			src/init/init_sprites.c \
 			src/init/init_enemies.c \
 			src/init/init_assets.c \

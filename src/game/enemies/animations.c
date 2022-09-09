@@ -7,58 +7,52 @@
 
 #include "../../../include/my_hunter.h"
 
-void move_skeleton_rect(skeleton_t *skeleton, int max_value, int increment)
-{
-    skeleton->rect.left += increment;
-    if (skeleton->rect.left >= max_value)
-        skeleton->rect.left = 0;
-}
-
-void move_slime_rect(slime_t *slime, int max, int increment)
-{
-    slime->rect.left += increment;
-    if (slime->rect.left >= max)
-        slime->rect.left = 0;
-}
-
 void get_seconds(game_t *game)
 {
     animation_t *anim = game->animation;
-    skeleton_t *tmpSkelteton = game->enemies->skeletons;
+    skeleton_t *tmpSkeleteton = game->enemies->skeletons;
+    slime_t *tmpSlime = game->enemies->slimes;
 
     anim->time = sfClock_restart(anim->clock);
     anim->seconds = anim->time.microseconds / 1000000.0;
     anim->spawnSec += anim->seconds;
     anim->sec_slime += anim->seconds;
-    anim->secSkeleton += anim->seconds;
-    anim->moveSkeleton += anim->seconds;
-    anim->moveSlime += anim->seconds;
-    for (; tmpSkelteton != NULL; tmpSkelteton = tmpSkelteton->next) {
-        tmpSkelteton->animSec += anim->seconds;
-        tmpSkelteton->moveSec += anim->seconds;
+    for (; tmpSkeleteton != NULL; tmpSkeleteton = tmpSkeleteton->next) {
+        tmpSkeleteton->animSec += anim->seconds;
+        tmpSkeleteton->moveSec += anim->seconds;
+    }
+    for (; tmpSlime != NULL; tmpSlime = tmpSlime->next) {
+        tmpSlime->animSec += anim->seconds;
+        tmpSlime->moveSec += anim->seconds;
     }
 }
 
-void do_slime_animation(game_t *game)
+static void moveRect(sfIntRect *rect, int max, int increment)
 {
-    int shoot = game->display->slime->shoot;
+    (*rect).left += increment;
+    if ((*rect).left >= max)
+        (*rect).left = 0;
+}
 
-    while (game->animation->sec_slime > 0.08) {
-        if (shoot == 0) {
-            move_slime_rect(game->display->slime, 128, 32);
-            game->animation->sec_slime -= 0.08;
+static void doSlimeAnim(slime_t *slime)
+{
+    while (slime->animSec > 0.09) {
+        if (slime->shoot == 0) {
+            moveRect(&(slime->rect), 128, 32);
+            slime->animSec -= 0.09;
         } else {
-            move_slime_rect(game->display->slime, 288, 32);
-            game->animation->sec_slime -= 0.08;
+            moveRect(&(slime->rect), 288, 32);
+            slime->animSec -= 0.09;
         }
     }
+    sfSprite_setTextureRect(slime->sp, slime->rect);
 }
 
-int do_skeleton_animation(skeleton_t *skeleton)
+static int doSkeletonAnim(skeleton_t *skeleton)
 {
     while (skeleton->animSec > 0.065) {
         if (skeleton->shoot == 0) {
-            move_skeleton_rect(skeleton, 760, 64);
+            moveRect(&(skeleton->rect), 760, 64);
             skeleton->animSec -= 0.065;
         } else {
             skeleton->animSec -= 0.065;
@@ -67,10 +61,6 @@ int do_skeleton_animation(skeleton_t *skeleton)
                 //? Return 1 if can delete enemy
                 sfSprite_setTextureRect(skeleton->sp, skeleton->rect);
                 return 1;
-                // skeleton->shoot = 0;
-                // skeleton->rect.top = 128;
-                // skeleton->rect.left = 0;
-                // sfSprite_setPosition(skeleton->sp, (sfVector2f) {-200, 795});
             }
         }
     }
@@ -83,9 +73,17 @@ void browseSkeletonAnim(game_t *game)
     skeleton_t *tmp = game->enemies->skeletons;
 
     for (int i = 1; tmp != NULL; tmp = tmp->next, i++) {
-        if (do_skeleton_animation(tmp))
-            deleteNode(&(game->enemies->skeletons), tmp->id);
+        if (doSkeletonAnim(tmp))
+            deleteSkeleton(&(game->enemies->skeletons), tmp->id);
         if (game->enemies->skeletons == NULL)
             break;
     }
+}
+
+void browseSlimesAnim(game_t *game)
+{
+    slime_t *tmp = game->enemies->slimes;
+
+    for (int i = 1; tmp != NULL; tmp = tmp->next, i++)
+        doSlimeAnim(tmp);
 }

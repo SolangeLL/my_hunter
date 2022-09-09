@@ -22,14 +22,12 @@ void game_loop(game_t *game)
         analyse_events(game);
         get_seconds(game);
         spawn_enemy(game->enemies, game->animation);
-        do_slime_animation(game);
-        // do_skeleton_animation(game);
+        browseSlimesAnim(game);
         browseSkeletonAnim(game);
-        move_skeleton(game);
-        // move_slime(game);
-        respawn_slime(game);
-        respawn_skeleton(game);
-        set_TextRect_and_clear(game);
+        moveSkeletons(game);
+        moveSlimes(game);
+        // respawn_slime(game);
+        killMissedEnemies(game);
         draw_all(game);
     }
     sfSound_pause(game->sound->game);

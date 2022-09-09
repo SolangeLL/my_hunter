@@ -21,20 +21,18 @@ void get_mouse_hitbox(game_t *game);
 void analyse_events(game_t *game);
 
 void get_seconds(game_t *game);
-void do_slime_animation(game_t *game);
-// void do_skeleton_animation(game_t *game);
+void browseSlimesAnim(game_t *game);
 void browseSkeletonAnim(game_t *game);
-void move_skeleton(game_t *game);
-void move_slime(game_t *game);
+void moveSkeletons(game_t *game);
+void moveSlimes(game_t *game);
 void spawn_enemy(enemies_t *enemies, animation_t *anim);
 void respawn_slime(game_t *game);
-void respawn_skeleton(game_t *game);
-skeleton_t *add_skeleton(skeleton_t *skeletons, int id);
-slime_t *add_slime(slime_t *slimes);
+void killMissedEnemies(game_t *game);
+skeleton_t *addSkeleton(skeleton_t *skeletons, int id);
+slime_t *add_slime(slime_t *slimes, int id);
 
-void deleteNode(skeleton_t **skeletons, int id);
-
-void set_TextRect_and_clear(game_t *game);
+void deleteSkeleton(skeleton_t **skeletons, int id);
+void deleteSlime(slime_t **slimes, int id);
 void destroy_all(game_t *game);
 
 void draw_all(game_t *game);

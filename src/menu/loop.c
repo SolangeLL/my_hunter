@@ -20,7 +20,7 @@ void manage_events(game_t *game)
         if (game->gameplay->event.type == sfEvtClosed)
             sfRenderWindow_close(game->win->win);
         if (ESCAPE_IS_PRESSED)
-            game->scene = GAME;
+            game->scene = QUIT;
         if (CLICK_IS_PRESSED)
             darken_button(game->menu->btn, game->gameplay->mouse_rect);
         if (CLICK_IS_DETECTED)

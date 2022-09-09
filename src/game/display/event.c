@@ -7,22 +7,22 @@
 
 #include "../../../include/my_hunter.h"
 
-int shoot_slime(game_t *game)
-{
-    slime_t *slime = game->display->slime;
+// int shoot_slime(game_t *game)
+// {
+//     slime_t *slime = game->display->slime;
 
-    slime->rect_scaled.top = sfSprite_getPosition(slime->sp).y;
-    slime->rect_scaled.left = sfSprite_getPosition(slime->sp).x - 64;
-    if (CLICK_ON_SLIME) {
-        game->display->slime->shoot = 1;
-        game->gameplay->count++;
-        refresh_count(game);
-        sfSound_play(game->sound->slime_death);
-        sfSprite_setTexture(slime->sp, slime->death_texture, 0);
-        return (1);
-    }
-    return (0);
-}
+//     slime->rect_scaled.top = sfSprite_getPosition(slime->sp).y;
+//     slime->rect_scaled.left = sfSprite_getPosition(slime->sp).x - 64;
+//     if (CLICK_ON_SLIME) {
+//         game->display->slime->shoot = 1;
+//         game->gameplay->count++;
+//         refresh_count(game);
+//         sfSound_play(game->sound->slime_death);
+//         sfSprite_setTexture(slime->sp, slime->death_texture, 0);
+//         return (1);
+//     }
+//     return (0);
+// }
 
 static void updateValues(game_t *game)
 {
@@ -34,8 +34,6 @@ static void updateValues(game_t *game)
 
 int shoot_skeleton(game_t *game)
 {
-    skeleton_t *skeleton = game->display->skeleton;
-
     skeleton_t *tmp = game->enemies->skeletons;
 
     for (; tmp != NULL; tmp = tmp->next) {
@@ -56,7 +54,12 @@ int shoot_skeleton(game_t *game)
 
 void shoot(game_t *game)
 {
-    if (shoot_slime(game) == 0 && shoot_skeleton(game) == 0) {
+    // if (shoot_slime(game) == 0 && shoot_skeleton(game) == 0) {
+    //     game->gameplay->life--;
+    //     sfSound_play(game->sound->miss);
+    // }
+    //TODO! Replace this condition with shoot slime
+    if (shoot_skeleton(game) == 0) {
         game->gameplay->life--;
         sfSound_play(game->sound->miss);
     }

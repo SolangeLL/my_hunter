@@ -1,0 +1,5 @@
+*.o
+my_hunter
+vgcore.*
+lib/my/libmy.a
+config/bestScore.txt

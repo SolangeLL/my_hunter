@@ -45,9 +45,12 @@ typedef struct skeleton_s {
 } skeleton_t;
 
 typedef struct slime_s {
+    int id;
     int shoot;
     int alpha;
     float wave;
+    float moveSec;
+    float animSec;
     sfTexture *texture;
     sfTexture *death_texture;
     sfSprite *sp;
@@ -60,6 +63,7 @@ typedef struct slime_s {
 
 typedef struct enemies_s {
     int idSkeleton;
+    int idSlime;
     int nbEnemies;
     int kills;
     int coef;
@@ -89,10 +93,8 @@ typedef struct background_s {
 } background_t;
 
 typedef struct display_s {
-    skeleton_t *skeleton;
     heart_t **heart;
     sign_t *sign;
-    slime_t *slime;
     background_t *background;
 } display_t;
 
@@ -102,9 +104,6 @@ typedef struct animation_s {
     float seconds;
     float spawnSec;
     float sec_slime;
-    float secSkeleton;
-    float moveSlime;
-    float moveSkeleton;
 } animation_t;
 
 typedef struct window_s {

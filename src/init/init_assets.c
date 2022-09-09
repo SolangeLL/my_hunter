@@ -11,7 +11,6 @@ void init_animation(animation_t *animation)
 {
     animation->seconds = 0;
     animation->sec_slime = 0;
-    animation->secSkeleton = 0;
 }
 
 void loadBestScore(sign_t *sign)
