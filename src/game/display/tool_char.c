@@ -45,6 +45,7 @@ void refreshCount(game_t *game)
     counter = malloc(sizeof(char) * (len + 1));
     counter = createString(game->gameplay->count, counter);
     sfText_setString(game->display->sign->count, strdup(counter));
+    //* Color text in green if the player improve his highscore
     if (game->gameplay->count > my_getnbr(game->display->sign->bestScore) \
     && game->gameplay->isScoreBetter == false) {
         sfText_setColor(game->display->sign->count, sfGreen);

@@ -7,7 +7,7 @@
 
 #include "../../../include/my_hunter.h"
 
-int shoot_slime(game_t *game)
+static int shootSlime(game_t *game)
 {
     slime_t *slime = game->enemies->slimes;
 
@@ -34,7 +34,7 @@ static void updateValues(game_t *game)
     game->gameplay->count++;
 }
 
-int shoot_skeleton(game_t *game)
+static int shootSkeleton(game_t *game)
 {
     skeleton_t *tmp = game->enemies->skeletons;
 
@@ -54,9 +54,9 @@ int shoot_skeleton(game_t *game)
     return (0);
 }
 
-void shoot(game_t *game)
+static void shoot(game_t *game)
 {
-    if (shoot_slime(game) == 0 && shoot_skeleton(game) == 0) {
+    if (shootSlime(game) == 0 && shootSkeleton(game) == 0) {
         game->gameplay->life--;
         sfSound_play(game->sound->miss);
     }
@@ -67,9 +67,10 @@ void shoot(game_t *game)
 void analyzeGameEvents(game_t *game)
 {
     while (IS_EVENT) {
-        if (game->gameplay->event.type == sfEvtClosed)
+        if (game->gameplay->event.type == sfEvtClosed) {
             sfRenderWindow_close(game->win->win);
             game->scene = QUIT;
+        }
         if (ESCAPE_IS_PRESSED)
             game->scene = MENU;
         if (game->gameplay->event.type == sfEvtMouseButtonReleased)

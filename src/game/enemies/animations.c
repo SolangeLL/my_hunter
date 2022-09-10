@@ -7,25 +7,6 @@
 
 #include "../../../include/my_hunter.h"
 
-void getSeconds(game_t *game)
-{
-    animation_t *anim = game->animation;
-    skeleton_t *tmpSkeleteton = game->enemies->skeletons;
-    slime_t *tmpSlime = game->enemies->slimes;
-
-    anim->time = sfClock_restart(anim->clock);
-    anim->seconds = anim->time.microseconds / 1000000.0;
-    anim->spawnSec += anim->seconds;
-    for (; tmpSkeleteton != NULL; tmpSkeleteton = tmpSkeleteton->next) {
-        tmpSkeleteton->animSec += anim->seconds;
-        tmpSkeleteton->moveSec += anim->seconds;
-    }
-    for (; tmpSlime != NULL; tmpSlime = tmpSlime->next) {
-        tmpSlime->animSec += anim->seconds;
-        tmpSlime->moveSec += anim->seconds;
-    }
-}
-
 static void moveRect(sfIntRect *rect, int max, int increment)
 {
     (*rect).left += increment;
@@ -67,7 +48,7 @@ static int doSkeletonAnim(skeleton_t *skeleton)
     return 0;
 }
 
-void browseSkeletonAnim(game_t *game)
+static void browseSkeletonAnim(game_t *game)
 {
     skeleton_t *tmp = game->enemies->skeletons;
 
@@ -79,10 +60,16 @@ void browseSkeletonAnim(game_t *game)
     }
 }
 
-void browseSlimesAnim(game_t *game)
+static void browseSlimesAnim(game_t *game)
 {
     slime_t *tmp = game->enemies->slimes;
 
     for (int i = 1; tmp != NULL; tmp = tmp->next, i++)
         doSlimeAnim(tmp);
+}
+
+void browseEnemiesAnim(game_t *game)
+{
+    browseSkeletonAnim(game);
+    browseSlimesAnim(game);
 }

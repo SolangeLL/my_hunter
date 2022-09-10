@@ -37,6 +37,7 @@ SRC_MENU	=	$(MENU)/loop.c \
 SRC_UTILS	=	$(UTILS)/deleteNode.c \
 				$(UTILS)/destroy.c \
 				$(UTILS)/mouse.c \
+				$(UTILS)/seconds.c \
 
 
 OBJ		=	$(SRC:.c=.o)
@@ -66,6 +67,7 @@ clean:
 	rm -f $(OBJ)
 	rm -f $(OBJ_GAME)
 	rm -f $(OBJ_MENU)
+	rm -f $(OBJ_UTILS)
 	rm -f $(NAME)
 	rm -f *.o
 	rm -f *~

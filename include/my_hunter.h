@@ -21,10 +21,8 @@ void getMouseHitbox(game_t *game);
 void analyzeGameEvents(game_t *game);
 
 void getSeconds(game_t *game);
-void browseSlimesAnim(game_t *game);
-void browseSkeletonAnim(game_t *game);
-void moveSkeletons(game_t *game);
-void moveSlimes(game_t *game);
+void browseEnemiesAnim(game_t *game);
+void moveEnemies(game_t *game);
 void spawnEnemies(enemies_t *enemies, animation_t *anim);
 void killMissedEnemies(game_t *game);
 skeleton_t *addSkeleton(skeleton_t *skeletons, int id);

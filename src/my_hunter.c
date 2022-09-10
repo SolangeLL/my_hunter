@@ -9,8 +9,8 @@
 
 void init_scenes_tab(void (*scene_loop[]) (game_t *))
 {
-    scene_loop[MENU] = &menu_loop;
-    scene_loop[GAME] = &game_loop;
+    scene_loop[MENU] = &menuLoop;
+    scene_loop[GAME] = &gameLoop;
 }
 
 void saveBestScore(game_t *game)

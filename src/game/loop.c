@@ -22,10 +22,8 @@ void gameLoop(game_t *game)
         analyzeGameEvents(game);
         getSeconds(game);
         spawnEnemies(game->enemies, game->animation);
-        browseSlimesAnim(game);
-        browseSkeletonAnim(game);
-        moveSkeletons(game);
-        moveSlimes(game);
+        browseEnemiesAnim(game);
+        moveEnemies(game);
         killMissedEnemies(game);
         drawGame(game);
     }
