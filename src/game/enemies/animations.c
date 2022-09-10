@@ -7,7 +7,7 @@
 
 #include "../../../include/my_hunter.h"
 
-void get_seconds(game_t *game)
+void getSeconds(game_t *game)
 {
     animation_t *anim = game->animation;
     skeleton_t *tmpSkeleteton = game->enemies->skeletons;
@@ -16,7 +16,6 @@ void get_seconds(game_t *game)
     anim->time = sfClock_restart(anim->clock);
     anim->seconds = anim->time.microseconds / 1000000.0;
     anim->spawnSec += anim->seconds;
-    anim->sec_slime += anim->seconds;
     for (; tmpSkeleteton != NULL; tmpSkeleteton = tmpSkeleteton->next) {
         tmpSkeleteton->animSec += anim->seconds;
         tmpSkeleteton->moveSec += anim->seconds;

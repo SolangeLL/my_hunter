@@ -22,20 +22,20 @@ void manage_events(game_t *game)
         if (ESCAPE_IS_PRESSED)
             game->scene = QUIT;
         if (CLICK_IS_PRESSED)
-            darken_button(game->menu->btn, game->gameplay->mouse_rect);
+            darkenButton(game->menu->btn, game->gameplay->mouse_rect);
         if (CLICK_IS_DETECTED)
             manage_buttons(game->menu->btn, game);
     }
-    enlarge_buttons(game->menu->btn, game->gameplay->mouse_rect);
-    set_normal_buttons(game->menu->btn, game->gameplay->mouse_rect);
+    enlargeButton(game->menu->btn, game->gameplay->mouse_rect);
+    setNormalButton(game->menu->btn, game->gameplay->mouse_rect);
 }
 
-void menu_loop(game_t *game)
+void menuLoop(game_t *game)
 {
     while (game->scene == MENU)
     {
-        get_mouse_hitbox(game);
+        getMouseHitbox(game);
         manage_events(game);
-        draw_menu(game);
+        drawMenu(game);
     }
 }

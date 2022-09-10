@@ -24,7 +24,6 @@ SRC		=	src/main.c \
 
 SRC_GAME	=	$(GAME)/display/display.c \
 				$(GAME)/display/event.c \
-				$(GAME)/display/mouse.c \
 				$(GAME)/display/tool_char.c \
 				$(GAME)/enemies/animations.c \
 				$(GAME)/enemies/move_enemies.c \
@@ -36,7 +35,9 @@ SRC_MENU	=	$(MENU)/loop.c \
 				$(MENU)/display/buttons_effect.c
 
 SRC_UTILS	=	$(UTILS)/deleteNode.c \
-				$(UTILS)/destroy.c
+				$(UTILS)/destroy.c \
+				$(UTILS)/mouse.c \
+
 
 OBJ		=	$(SRC:.c=.o)
 

@@ -7,7 +7,7 @@
 
 #include "../../include/my_hunter.h"
 
-void init_struct(game_t *game)
+static void init_struct(game_t *game)
 {
     game->win = malloc(sizeof(window_t));
     game->display = malloc(sizeof(display_t));
@@ -23,7 +23,7 @@ void init_struct(game_t *game)
     game->enemies = malloc(sizeof(enemies_t));
 }
 
-void init_window(window_t *window)
+static void init_window(window_t *window)
 {
     window->dimension = (sfVector2f) {1920, 1080};
     window->mode = (sfVideoMode) {1920, 1080, 32};
@@ -31,7 +31,7 @@ void init_window(window_t *window)
     sfRenderWindow_setFramerateLimit(window->win, 60);
 }
 
-void init_text(display_t *display)
+static void init_text(display_t *display)
 {
     display->sign->text_pos.x = 100;
     display->sign->text_pos.y = 30;
@@ -48,7 +48,7 @@ void init_text(display_t *display)
     sfText_setOutlineThickness(display->sign->count, 3);
 }
 
-void init_values(game_t *game)
+static void init_values(game_t *game)
 {
     game->scene = MENU;
     game->gameplay->isScoreBetter = false;
@@ -58,6 +58,7 @@ void init_values(game_t *game)
     game->enemies->nbEnemies = 1;
     game->enemies->coef = 0;
     game->animation->spawnSec = 0;
+    game->animation->seconds = 0;
     game->enemies->kills = 0;
     game->enemies->skeletons = NULL;
     game->enemies->slimes = NULL;
@@ -65,17 +66,16 @@ void init_values(game_t *game)
     game->enemies->idSlime = 0;
 }
 
-void init_all(game_t *game)
+void initAll(game_t *game)
 {
     init_struct(game);
     init_window(game->win);
-    init_animation(game->animation);
-    init_sound(game->sound);
-    init_sprites(game);
+    initSounds(game->sound);
+    initSprites(game);
     init_text(game->display);
     init_values(game);
-    init_menu_buttons(game->menu);
-    init_buttons_callbacks(game);
+    initMenuButtons(game->menu);
+    initButtonsCallbacks(game);
     loadBestScore(game->display->sign);
     game->enemies->skeletons = addSkeleton(game->enemies->skeletons, 0);
 }

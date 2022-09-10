@@ -8,14 +8,10 @@
 #ifndef INIT_H_
     #define INIT_H_
 
-void init_all(game_t *game);
-void initialize(game_t *game);
-void init_window(window_t *window);
-void init_animation(animation_t *animation);
-void init_sprites(game_t *game);
-void init_sound(sound_t *sound);
-void init_text(display_t *display);
-void init_buttons_callbacks(game_t *game);
-void init_menu_buttons(menu_t *menu);
+void initAll(game_t *game);
+void initSprites(game_t *game);
+void initSounds(sound_t *sound);
+void initButtonsCallbacks(game_t *game);
+void initMenuButtons(menu_t *menu);
 
 #endif /* !INIT_H_ */

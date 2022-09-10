@@ -30,10 +30,10 @@ void my_hunter(void)
     game_t *game = malloc(sizeof(game_t));
     void (*scene_loop[2]) (game_t *);
 
-    init_all(game);
+    initAll(game);
     init_scenes_tab(scene_loop);
     while (game->scene != QUIT)
         scene_loop[game->scene](game);
     saveBestScore(game);
-    destroy_all(game);
+    destroyAll(game);
 }

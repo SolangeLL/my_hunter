@@ -37,7 +37,7 @@ static void setSounds(sound_t *sound)
     sfSound_setBuffer(sound->highScore, sound->highScoreBuf);
 }
 
-void init_sound(sound_t *sound)
+void initSounds(sound_t *sound)
 {
     create_sounds(sound);
     createSoundBuffers(sound);

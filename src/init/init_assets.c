@@ -7,12 +7,6 @@
 
 #include "../../include/my_hunter.h"
 
-void init_animation(animation_t *animation)
-{
-    animation->seconds = 0;
-    animation->sec_slime = 0;
-}
-
 void loadBestScore(sign_t *sign)
 {
     FILE *file = NULL;

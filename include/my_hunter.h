@@ -13,47 +13,42 @@
     #include "macros.h"
     #include "my.h"
 
-void game_loop(game_t *game);
-void menu_loop(game_t *game);
-
 void my_hunter(void);
-void get_mouse_hitbox(game_t *game);
-void analyse_events(game_t *game);
+void gameLoop(game_t *game);
+void menuLoop(game_t *game);
 
-void get_seconds(game_t *game);
+void getMouseHitbox(game_t *game);
+void analyzeGameEvents(game_t *game);
+
+void getSeconds(game_t *game);
 void browseSlimesAnim(game_t *game);
 void browseSkeletonAnim(game_t *game);
 void moveSkeletons(game_t *game);
 void moveSlimes(game_t *game);
-void spawn_enemy(enemies_t *enemies, animation_t *anim);
-void respawn_slime(game_t *game);
+void spawnEnemies(enemies_t *enemies, animation_t *anim);
 void killMissedEnemies(game_t *game);
 skeleton_t *addSkeleton(skeleton_t *skeletons, int id);
-slime_t *add_slime(slime_t *slimes, int id);
 
 void deleteSkeleton(skeleton_t **skeletons, int id);
 void deleteSlime(slime_t **slimes, int id);
-void destroy_all(game_t *game);
+void destroyAll(game_t *game);
 
-void draw_all(game_t *game);
-void draw_menu(game_t *game);
+void drawGame(game_t *game);
+void drawMenu(game_t *game);
 
-void refresh_count(game_t *game);
-char *create_str(int nb, char *str);
-char *my_revstr(char *str);
-int get_length_nb(int nb);
+void refreshCount(game_t *game);
 
-void go_to_game(button_t *btn, sfSound *sound, int *status);
-void go_to_settings(button_t *btn, sfSound *sound, int *status);
-void go_to_menu(button_t *btn, sfSound *sound, int *status);
-void go_to_quit(button_t *btn, sfSound *sound, int *status);
+void goToGame(button_t *btn, sfSound *sound, int *status);
+void goToSettings(button_t *btn, sfSound *sound, int *status);
+void goToMenu(button_t *btn, sfSound *sound, int *status);
+void goToQuit(button_t *btn, sfSound *sound, int *status);
 
-void darken_button(button_t **btn, sfFloatRect mouse);
-void enlarge_buttons(button_t **btn, sfFloatRect mouse);
-void set_normal_buttons(button_t **btn, sfFloatRect mouse);
-void set_dark_button(button_t *button, float scale);
-void set_large_button(button_t *button, float scale, int gap);
-void reset_button(button_t *button, float scale);
+void darkenButton(button_t **btn, sfFloatRect mouse);
+void enlargeButton(button_t **btn, sfFloatRect mouse);
+void setNormalButton(button_t **btn, sfFloatRect mouse);
+void setDarkButton(button_t *button, float scale);
+void setLargeButton(button_t *button, float scale, int gap);
+void resetButton(button_t *button, float scale);
 
 void loadBestScore(sign_t *sign);
 

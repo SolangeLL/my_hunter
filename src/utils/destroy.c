@@ -114,7 +114,7 @@ void destroySlimeList(slime_t **list)
     }
 }
 
-void destroy_all(game_t *game)
+void destroyAll(game_t *game)
 {
     sfClock_destroy(game->animation->clock);
     sfRenderWindow_destroy(game->win->win);

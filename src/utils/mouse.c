@@ -5,9 +5,9 @@
 ** mouse
 */
 
-#include "../../../include/my_hunter.h"
+#include "../../include/my_hunter.h"
 
-void get_mouse_hitbox(game_t *game)
+void getMouseHitbox(game_t *game)
 {
     game->gameplay->mouse_rect.top = \
     sfMouse_getPositionRenderWindow(game->win->win).y;
