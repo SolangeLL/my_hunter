@@ -28,6 +28,7 @@ make re
 - Bonuses when you have kill streaks
 - Leaderboard of all highscores
 - Win / Lose game
+- Statistic view
 
 ## Why do I keep on working on this project ?
 In the beginning of my first year at Epitech, I discovered that I really like making video games, especially with the CSFML library.
