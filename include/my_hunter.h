@@ -47,6 +47,8 @@ void setNormalButton(button_t **btn, sfFloatRect mouse);
 void setDarkButton(button_t *button, float scale);
 void setLargeButton(button_t *button, float scale, int gap);
 void resetButton(button_t *button, float scale);
+void resizeButton(button_t *button, sfVector2f scale);
+void colorButton(button_t *button, int modify);
 
 void loadBestScore(sign_t *sign);
 

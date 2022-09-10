@@ -7,7 +7,7 @@
 
 #include "../../include/my_hunter.h"
 
-static void create_sprites(game_t *game)
+static void createSprites(game_t *game)
 {
     game->display->heart[0]->sp = sfSprite_create();
     game->display->heart[1]->sp = sfSprite_create();
@@ -17,7 +17,7 @@ static void create_sprites(game_t *game)
     game->menu->back_sp = sfSprite_create();
 }
 
-static void create_textures(game_t *game)
+static void createTextures(game_t *game)
 {
     game->display->background->back_texture = CREATE_TEXTURE("res/img/Background.png", NULL);
     game->display->sign->texture = CREATE_TEXTURE("res/img/sign.png", NULL);
@@ -27,7 +27,7 @@ static void create_textures(game_t *game)
     game->menu->back_texture = CREATE_TEXTURE("res/img/menu_back.jpg", NULL);
 }
 
-static void init_textures(game_t *game)
+static void initTextures(game_t *game)
 {
     background_t *back = game->display->background;
 
@@ -39,7 +39,7 @@ static void init_textures(game_t *game)
     sfSprite_setTexture(game->menu->back_sp, game->menu->back_texture, 0);
 }
 
-static void init_scale_val(game_t *game)
+static void initScaleValues(game_t *game)
 {
     game->display->sign->scale.x = 0.06;
     game->display->sign->scale.y = 0.05;
@@ -51,7 +51,7 @@ static void init_scale_val(game_t *game)
 
 }
 
-static void set_scales(game_t *game)
+static void setScales(game_t *game)
 {
     sfSprite_setScale(game->display->heart[0]->sp, game->display->heart[0]->scale);
     sfSprite_setScale(game->display->heart[1]->sp, game->display->heart[1]->scale);
@@ -61,7 +61,7 @@ static void set_scales(game_t *game)
     sfSprite_setScale(game->menu->back_sp, (sfVector2f) {1, 0.98});
 }
 
-static void init_pos_val(game_t *game)
+static void initPosValues(game_t *game)
 {
     game->display->background->back_pos.x = 0;
     game->display->background->back_pos.y = -335;
@@ -72,7 +72,7 @@ static void init_pos_val(game_t *game)
     game->display->heart[2]->pos = (sfVector2f) {147, 965};
 }
 
-static void set_positions(game_t *game)
+static void setPositions(game_t *game)
 {
     sfSprite_setPosition(game->display->background->back_sp, game->display->background->back_pos);
     sfSprite_setPosition(game->display->heart[0]->sp, game->display->heart[0]->pos);
@@ -83,12 +83,12 @@ static void set_positions(game_t *game)
 
 void initSprites(game_t *game)
 {
-    create_sprites(game);
-    create_textures(game);
-    init_textures(game);
-    init_scale_val(game);
-    init_pos_val(game);
-    set_scales(game);
-    set_positions(game);
+    createSprites(game);
+    createTextures(game);
+    initTextures(game);
+    initScaleValues(game);
+    initPosValues(game);
+    setScales(game);
+    setPositions(game);
 }
 

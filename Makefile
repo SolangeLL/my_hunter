@@ -27,7 +27,7 @@ SRC_GAME	=	$(GAME)/display/display.c \
 				$(GAME)/display/tool_char.c \
 				$(GAME)/enemies/animations.c \
 				$(GAME)/enemies/move_enemies.c \
-				$(GAME)/enemies/spawn.c \
+				$(GAME)/enemies/miss_enemies.c \
 				$(GAME)/loop.c \
 
 SRC_MENU	=	$(MENU)/loop.c \
@@ -38,6 +38,7 @@ SRC_UTILS	=	$(UTILS)/deleteNode.c \
 				$(UTILS)/destroy.c \
 				$(UTILS)/mouse.c \
 				$(UTILS)/seconds.c \
+				$(UTILS)/tools_buttons.c \
 
 
 OBJ		=	$(SRC:.c=.o)

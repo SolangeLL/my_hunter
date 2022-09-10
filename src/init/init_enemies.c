@@ -13,7 +13,7 @@ static int randomValueInRange(int min, int max)
     return (rand() % (max - min + 1) + min);
 }
 
-static skeleton_t *create_skeleton(int id)
+static skeleton_t *createSkeleton(int id)
 {
     skeleton_t *skeleton = malloc(sizeof(skeleton_t));
     int randX = randomValueInRange(-350, -100);
@@ -37,7 +37,7 @@ static skeleton_t *create_skeleton(int id)
     return skeleton;
 }
 
-static slime_t *create_slime(int id)
+static slime_t *createSlime(int id)
 {
     slime_t *slime = malloc(sizeof(slime_t));
     int randomX = randomValueInRange(-200, -20);
@@ -67,7 +67,7 @@ static slime_t *create_slime(int id)
 
 skeleton_t *addSkeleton(skeleton_t *skeletons, int id)
 {
-    skeleton_t *enemy = create_skeleton(id);
+    skeleton_t *enemy = createSkeleton(id);
 
     if (skeletons == NULL) {
         skeletons = enemy;
@@ -80,7 +80,7 @@ skeleton_t *addSkeleton(skeleton_t *skeletons, int id)
 
 static slime_t *addSlime(slime_t *slimes, int id)
 {
-    slime_t *enemy = create_slime(id);
+    slime_t *enemy = createSlime(id);
 
     if (slimes == NULL) {
         slimes = enemy;
