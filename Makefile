@@ -16,7 +16,6 @@ SRC		=	src/main.c \
 			src/init/initialize.c \
 			src/init/init_sprites.c \
 			src/init/init_enemies.c \
-			src/init/init_assets.c \
 			src/init/init_sounds.c \
 			src/init/init_buttons.c \
 			src/init/callbacks_function.c \
@@ -24,19 +23,23 @@ SRC		=	src/main.c \
 
 SRC_GAME	=	$(GAME)/display/display.c \
 				$(GAME)/display/event.c \
-				$(GAME)/display/mouse.c \
 				$(GAME)/display/tool_char.c \
 				$(GAME)/enemies/animations.c \
 				$(GAME)/enemies/move_enemies.c \
-				$(GAME)/enemies/spawn.c \
+				$(GAME)/enemies/miss_enemies.c \
 				$(GAME)/loop.c \
 
 SRC_MENU	=	$(MENU)/loop.c \
+				$(MENU)//display/event.c \
 				$(MENU)/display/display.c \
-				$(MENU)/display/buttons_effect.c
 
 SRC_UTILS	=	$(UTILS)/deleteNode.c \
-				$(UTILS)/destroy.c
+				$(UTILS)/destroy.c \
+				$(UTILS)/mouse.c \
+				$(UTILS)/score.c \
+				$(UTILS)/seconds.c \
+				$(UTILS)/tools_buttons.c \
+
 
 OBJ		=	$(SRC:.c=.o)
 
@@ -65,6 +68,7 @@ clean:
 	rm -f $(OBJ)
 	rm -f $(OBJ_GAME)
 	rm -f $(OBJ_MENU)
+	rm -f $(OBJ_UTILS)
 	rm -f $(NAME)
 	rm -f *.o
 	rm -f *~

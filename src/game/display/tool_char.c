@@ -8,7 +8,7 @@
 #include "../../../include/my_hunter.h"
 #include <string.h>
 
-int get_length_nb(int nb)
+static int getNumberLength(int nb)
 {
     int len = 0;
 
@@ -17,7 +17,7 @@ int get_length_nb(int nb)
     return (len + 1);
 }
 
-char *create_str(int nb, char *str)
+static char *createString(int nb, char *str)
 {
     int unit = 0;
     int i = 0;
@@ -37,14 +37,15 @@ char *create_str(int nb, char *str)
     return (str);
 }
 
-void refresh_count(game_t *game)
+void refreshCount(game_t *game)
 {
     char *counter = game->display->sign->char_count;
 
-    int len = get_length_nb(game->gameplay->count);
+    int len = getNumberLength(game->gameplay->count);
     counter = malloc(sizeof(char) * (len + 1));
-    counter = create_str(game->gameplay->count, counter);
+    counter = createString(game->gameplay->count, counter);
     sfText_setString(game->display->sign->count, strdup(counter));
+    //* Color text in green if the player improve his highscore
     if (game->gameplay->count > my_getnbr(game->display->sign->bestScore) \
     && game->gameplay->isScoreBetter == false) {
         sfText_setColor(game->display->sign->count, sfGreen);

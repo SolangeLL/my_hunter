@@ -6,29 +6,27 @@
 */
 
 #include "../../include/my_hunter.h"
+
 static void prepareGameScene(game_t *game)
 {
     sfSound_play(game->sound->game);
     game->animation->clock = sfClock_create();
 }
 
-void game_loop(game_t *game)
+void gameLoop(game_t *game)
 {
     prepareGameScene(game);
     while (game->scene == GAME \
     && game->gameplay->life > 0)
     {
-        get_mouse_hitbox(game);
-        analyse_events(game);
-        get_seconds(game);
-        spawn_enemy(game->enemies, game->animation);
-        browseSlimesAnim(game);
-        browseSkeletonAnim(game);
-        moveSkeletons(game);
-        moveSlimes(game);
-        // respawn_slime(game);
+        getMouseHitbox(game);
+        analyzeGameEvents(game);
+        getSeconds(game);
+        spawnEnemies(game->enemies, game->animation);
+        browseEnemiesAnim(game);
+        moveEnemies(game);
         killMissedEnemies(game);
-        draw_all(game);
+        drawGame(game);
     }
     sfSound_pause(game->sound->game);
 }

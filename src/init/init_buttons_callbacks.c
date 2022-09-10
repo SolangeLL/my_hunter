@@ -9,12 +9,12 @@
 
 static void init_menu_callbacks(button_t **btn)
 {
-    btn[0]->change_scene = &go_to_game;
-    btn[1]->change_scene = &go_to_settings;
-    btn[2]->change_scene = &go_to_quit;
+    btn[0]->change_scene = &goToGame;
+    btn[1]->change_scene = &goToSettings;
+    btn[2]->change_scene = &goToQuit;
 }
 
-void init_buttons_callbacks(game_t *game)
+void initButtonsCallbacks(game_t *game)
 {
     init_menu_callbacks(game->menu->btn);
 }

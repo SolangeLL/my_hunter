@@ -13,10 +13,10 @@ static int randomValueInRange(int min, int max)
     return (rand() % (max - min + 1) + min);
 }
 
-static skeleton_t *create_skeleton(int id)
+static skeleton_t *createSkeleton(int id)
 {
     skeleton_t *skeleton = malloc(sizeof(skeleton_t));
-    int randX = randomValueInRange(-300, -100);
+    int randX = randomValueInRange(-350, -100);
 
     skeleton->id = id;
     skeleton->animSec = 0;
@@ -37,11 +37,11 @@ static skeleton_t *create_skeleton(int id)
     return skeleton;
 }
 
-static slime_t *create_slime(int id)
+static slime_t *createSlime(int id)
 {
     slime_t *slime = malloc(sizeof(slime_t));
-    int randomX = randomValueInRange(-60, -20);
-    int randomY = randomValueInRange(200, 350);
+    int randomX = randomValueInRange(-200, -20);
+    int randomY = randomValueInRange(130, 350);
 
     slime->id = id;
     slime->sp = sfSprite_create();
@@ -67,7 +67,7 @@ static slime_t *create_slime(int id)
 
 skeleton_t *addSkeleton(skeleton_t *skeletons, int id)
 {
-    skeleton_t *enemy = create_skeleton(id);
+    skeleton_t *enemy = createSkeleton(id);
 
     if (skeletons == NULL) {
         skeletons = enemy;
@@ -77,9 +77,10 @@ skeleton_t *addSkeleton(skeleton_t *skeletons, int id)
     skeletons = enemy;
     return skeletons;
 }
-slime_t *addSlime(slime_t *slimes, int id)
+
+static slime_t *addSlime(slime_t *slimes, int id)
 {
-    slime_t *enemy = create_slime(id);
+    slime_t *enemy = createSlime(id);
 
     if (slimes == NULL) {
         slimes = enemy;
@@ -90,14 +91,15 @@ slime_t *addSlime(slime_t *slimes, int id)
     return slimes;
 }
 
-void spawn_enemy(enemies_t *enemies, animation_t *anim)
+void spawnEnemies(enemies_t *enemies, animation_t *anim)
 {
-    //* Enimies initially spawn each 5 seconds
+    //* Each 5 kills, enemies spawn faster
     if (enemies->coef == 5 && \
     enemies->spawnEnemies - 0.2 >= 1) {
         enemies->spawnEnemies -= 0.2;
         enemies->coef = 0;
     }
+    //* Enimies initially spawn each 5 seconds
     if (anim->spawnSec >= enemies->spawnEnemies) {
         enemies->nbEnemies++;
         enemies->skeletons = addSkeleton(enemies->skeletons, ++enemies->idSkeleton);

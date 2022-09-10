@@ -7,7 +7,7 @@
 
 #include "../../../include/my_hunter.h"
 
-void draw_all(game_t *game)
+void drawGame(game_t *game)
 {
     sfRenderWindow *window = game->win->win;
     display_t *disp = game->display;

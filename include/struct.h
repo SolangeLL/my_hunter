@@ -103,7 +103,6 @@ typedef struct animation_s {
     sfTime time;
     float seconds;
     float spawnSec;
-    float sec_slime;
 } animation_t;
 
 typedef struct window_s {

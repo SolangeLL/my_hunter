@@ -7,7 +7,7 @@
 
 #include "../../../include/my_hunter.h"
 
-void draw_menu(game_t *game)
+void drawMenu(game_t *game)
 {
     sfRenderWindow_clear(game->win->win, (sfColor) sfBlack);
     sfRenderWindow_drawSprite(game->win->win, game->menu->back_sp, NULL);
