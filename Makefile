@@ -36,6 +36,7 @@ SRC_MENU	=	$(MENU)/loop.c \
 SRC_UTILS	=	$(UTILS)/deleteNode.c \
 				$(UTILS)/destroy.c \
 				$(UTILS)/mouse.c \
+				$(UTILS)/score.c \
 				$(UTILS)/seconds.c \
 				$(UTILS)/tools_buttons.c \
 
