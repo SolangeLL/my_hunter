@@ -1,5 +1,7 @@
+.vscode
 *.o
 my_hunter
 vgcore.*
 lib/my/libmy.a
-config/bestScore.txt
+config/
+build_csfml.sh
