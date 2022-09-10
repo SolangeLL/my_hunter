@@ -31,7 +31,10 @@ typedef struct heart_s {
 } heart_t;
 
 typedef struct skeleton_s {
+    int id;
     int shoot;
+    float moveSec;
+    float animSec;
     sfTexture *texture;
     sfSprite *sp;
     sfVector2f pos;
@@ -42,9 +45,12 @@ typedef struct skeleton_s {
 } skeleton_t;
 
 typedef struct slime_s {
+    int id;
     int shoot;
     int alpha;
     float wave;
+    float moveSec;
+    float animSec;
     sfTexture *texture;
     sfTexture *death_texture;
     sfSprite *sp;
@@ -54,6 +60,17 @@ typedef struct slime_s {
     sfVector2f scale;
     struct slime_s *next;
 } slime_t;
+
+typedef struct enemies_s {
+    int idSkeleton;
+    int idSlime;
+    int nbEnemies;
+    int kills;
+    int coef;
+    float spawnEnemies;
+    skeleton_t *skeletons;
+    slime_t *slimes;
+} enemies_t;
 
 typedef struct sign_s {
     char *char_count;
@@ -76,10 +93,8 @@ typedef struct background_s {
 } background_t;
 
 typedef struct display_s {
-    skeleton_t *skeleton;
     heart_t **heart;
     sign_t *sign;
-    slime_t *slime;
     background_t *background;
 } display_t;
 
@@ -87,8 +102,7 @@ typedef struct animation_s {
     sfClock *clock;
     sfTime time;
     float seconds;
-    sfClock *slime_clk;
-    sfTime slime_time;
+    float spawnSec;
     float sec_slime;
 } animation_t;
 
@@ -99,6 +113,7 @@ typedef struct window_s {
 } window_t;
 
 typedef struct gameplay_s {
+    bool isScoreBetter;
     int count;
     int life;
     sfFloatRect mouse_rect;
@@ -112,11 +127,13 @@ typedef struct sound_s {
     sfSoundBuffer *game_buf;
     sfSoundBuffer *click_buf;
     sfSoundBuffer *miss_buf;
+    sfSoundBuffer *highScoreBuf;
     sfSound *slime_death;
     sfSound *skel_death;
     sfSound *game;
     sfSound *click;
     sfSound *miss;
+    sfSound *highScore;
 } sound_t;
 
 typedef struct menu_s {
@@ -131,6 +148,7 @@ typedef struct game_s {
     sound_t *sound;
     display_t *display;
     gameplay_t *gameplay;
+    enemies_t *enemies;
     animation_t *animation;
     menu_t *menu;
 } game_t;

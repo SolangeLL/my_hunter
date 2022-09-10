@@ -13,8 +13,6 @@ void init_struct(game_t *game)
     game->display = malloc(sizeof(display_t));
     game->gameplay = malloc(sizeof(gameplay_t));
     game->animation = malloc(sizeof(animation_t));
-    game->display->skeleton = malloc(sizeof(skeleton_t));
-    game->display->slime = malloc(sizeof(slime_t));
     game->display->background = malloc(sizeof(background_t));
     game->display->sign = malloc(sizeof(sign_t));
     game->display->heart = malloc(sizeof(heart_t *) * 4);
@@ -22,6 +20,7 @@ void init_struct(game_t *game)
     game->display->heart[3] = NULL;
     game->sound = malloc(sizeof(sound_t));
     game->menu = malloc(sizeof(menu_t));
+    game->enemies = malloc(sizeof(enemies_t));
 }
 
 void init_window(window_t *window)
@@ -29,7 +28,7 @@ void init_window(window_t *window)
     window->dimension = (sfVector2f) {1920, 1080};
     window->mode = (sfVideoMode) {1920, 1080, 32};
     window->win = sfRenderWindow_create(WINDOW_INFO);
-    sfRenderWindow_setFramerateLimit(window->win, 30);
+    sfRenderWindow_setFramerateLimit(window->win, 60);
 }
 
 void init_text(display_t *display)
@@ -52,26 +51,31 @@ void init_text(display_t *display)
 void init_values(game_t *game)
 {
     game->scene = MENU;
+    game->gameplay->isScoreBetter = false;
     game->gameplay->life = 3;
     game->gameplay->count = 0;
-    game->display->slime->alpha = 255;
-    game->display->slime->wave = 0;
-    game->display->slime->shoot = 0;
-    game->display->skeleton->shoot = 0;
+    game->enemies->spawnEnemies = 5;
+    game->enemies->nbEnemies = 1;
+    game->enemies->coef = 0;
+    game->animation->spawnSec = 0;
+    game->enemies->kills = 0;
+    game->enemies->skeletons = NULL;
+    game->enemies->slimes = NULL;
+    game->enemies->idSkeleton = 0;
+    game->enemies->idSlime = 0;
 }
 
 void init_all(game_t *game)
 {
     init_struct(game);
     init_window(game->win);
-    init_rect(game->display);
     init_animation(game->animation);
     init_sound(game->sound);
     init_sprites(game);
-    init_rect_scaled(game->display);
     init_text(game->display);
     init_values(game);
     init_menu_buttons(game->menu);
     init_buttons_callbacks(game);
     loadBestScore(game->display->sign);
+    game->enemies->skeletons = addSkeleton(game->enemies->skeletons, 0);
 }

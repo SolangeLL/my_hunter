@@ -45,7 +45,11 @@ void refresh_count(game_t *game)
     counter = malloc(sizeof(char) * (len + 1));
     counter = create_str(game->gameplay->count, counter);
     sfText_setString(game->display->sign->count, strdup(counter));
-    if (game->gameplay->count > my_getnbr(game->display->sign->bestScore))
+    if (game->gameplay->count > my_getnbr(game->display->sign->bestScore) \
+    && game->gameplay->isScoreBetter == false) {
         sfText_setColor(game->display->sign->count, sfGreen);
+        sfSound_play(game->sound->highScore);
+        game->gameplay->isScoreBetter = true;
+    }
     free(counter);
 }

@@ -9,13 +9,15 @@ GAME	=	src/game
 
 MENU	=	src/menu
 
-SRC		=	src/destroy.c \
-			src/main.c \
+UTILS	=	src/utils
+
+SRC		=	src/main.c \
 			src/my_hunter.c \
 			src/init/initialize.c \
-			src/init/init_rect.c \
 			src/init/init_sprites.c \
+			src/init/init_enemies.c \
 			src/init/init_assets.c \
+			src/init/init_sounds.c \
 			src/init/init_buttons.c \
 			src/init/callbacks_function.c \
 			src/init/init_buttons_callbacks.c
@@ -33,11 +35,16 @@ SRC_MENU	=	$(MENU)/loop.c \
 				$(MENU)/display/display.c \
 				$(MENU)/display/buttons_effect.c
 
+SRC_UTILS	=	$(UTILS)/deleteNode.c \
+				$(UTILS)/destroy.c
+
 OBJ		=	$(SRC:.c=.o)
 
 OBJ_GAME	=	$(SRC_GAME:.c=.o)
 
 OBJ_MENU	=	$(SRC_MENU:.c=.o)
+
+OBJ_UTILS	=	$(SRC_UTILS:.c=.o)
 
 NAME	=		my_hunter
 
@@ -50,8 +57,8 @@ all: libs $(NAME)
 libs:
 	make -C lib/my
 
-$(NAME): $(OBJ) $(OBJ_GAME) $(OBJ_MENU)
-	gcc $(OBJ) $(OBJ_GAME) $(OBJ_MENU) -o $(NAME) $(LFLAGS) $(CFLAGS)
+$(NAME): $(OBJ) $(OBJ_GAME) $(OBJ_MENU) $(OBJ_UTILS)
+	gcc $(OBJ) $(OBJ_GAME) $(OBJ_MENU) $(OBJ_UTILS) -o $(NAME) $(LFLAGS) $(CFLAGS)
 
 clean:
 	make clean -C lib/my

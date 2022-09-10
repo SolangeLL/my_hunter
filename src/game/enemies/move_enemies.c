@@ -7,34 +7,49 @@
 
 #include "../../../include/my_hunter.h"
 
-void move_skeleton(game_t *game)
+void moveOneSkeleton(skeleton_t *skeleton)
 {
-    skeleton_t *skeleton = game->display->skeleton;
-
-    if (game->animation->seconds > 0.02 && skeleton->rect.top != 64)
-        sfSprite_move(skeleton->sp, (sfVector2f) {5, 0});
-}
-
-void do_vanish_slime(slime_t *slime)
-{
-    if (slime->alpha <= 0) {
-        slime->shoot = 0;
-        slime->alpha = 255;
-        sfSprite_setPosition(slime->sp, (sfVector2f) {-100, 280});
-        sfSprite_setTexture(slime->sp, slime->texture, 0);
+    while (skeleton->moveSec > 0.015 \
+    && skeleton->rect.top != 64) {
+        sfSprite_move(skeleton->sp, (sfVector2f) {2, 0});
+        skeleton->moveSec -= 0.015;
     }
 }
 
-void move_slime(game_t *game)
+void moveSkeletons(game_t *game)
 {
-    slime_t *slime = game->display->slime;
+    skeleton_t *skeleton = game->enemies->skeletons;
 
-    if (game->animation->seconds > 0.02 && slime->shoot == 0) {
-        sfSprite_move(slime->sp, (sfVector2f) {5, sin(slime->wave) * 3});
-        slime->wave += 0.1;
-    } else if (game->animation->seconds > 0.02 && slime->shoot == 1) {
-        slime->alpha -= 20;
-        sfSprite_setColor(slime->sp, (sfColor) {200, 200, 255, slime->alpha});
-        do_vanish_slime(slime);
+    for (; skeleton != NULL; skeleton = skeleton->next)
+        moveOneSkeleton(skeleton);
+}
+
+int moveOneSlime(slime_t *slime)
+{
+     while (slime->moveSec > 0.02) {
+        if (slime->shoot == 0) {
+            sfSprite_move(slime->sp, (sfVector2f) {2, sin(slime->wave)});
+            slime->wave += 0.02;
+            slime->moveSec -= 0.02;
+        } else {
+            slime->alpha -= 20;
+            sfSprite_setColor(slime->sp, (sfColor) {200, 200, 255, slime->alpha});
+            // Return 1 if we can delete the slime
+            if (slime->alpha <= 0)
+                return (1);
+            slime->moveSec -= 0.05;
+        }
     }
+    return (0);
+}
+
+void moveSlimes(game_t *game)
+{
+    slime_t *slime = game->enemies->slimes;
+
+    for (; slime != NULL; slime = slime->next)
+        if (moveOneSlime(slime)) {
+            deleteSlime(&(game->enemies->slimes), slime->id);
+            break;
+        }
 }

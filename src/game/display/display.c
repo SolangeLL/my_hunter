@@ -7,23 +7,19 @@
 
 #include "../../../include/my_hunter.h"
 
-void set_TextRect_and_clear(game_t *game)
-{
-    display_t *disp = game->display;
-
-    sfSprite_setTextureRect(disp->skeleton->sp, disp->skeleton->rect);
-    sfSprite_setTextureRect(disp->slime->sp, disp->slime->rect);
-    sfRenderWindow_clear(game->win->win, sfBlack);
-}
-
 void draw_all(game_t *game)
 {
     sfRenderWindow *window = game->win->win;
     display_t *disp = game->display;
+    skeleton_t *skeletons = game->enemies->skeletons;
+    slime_t *slimes = game->enemies->slimes;
 
+    sfRenderWindow_clear(game->win->win, sfBlack);
     sfRenderWindow_drawSprite(window, disp->background->back_sp, NULL);
-    sfRenderWindow_drawSprite(window,disp->skeleton->sp, NULL);
-    sfRenderWindow_drawSprite(window, disp->slime->sp, NULL);
+    for (; skeletons != NULL; skeletons = skeletons->next)
+        sfRenderWindow_drawSprite(window, skeletons->sp, NULL);
+    for (; slimes != NULL; slimes = slimes->next)
+        sfRenderWindow_drawSprite(window, slimes->sp, NULL);
     sfRenderWindow_drawSprite(window, disp->sign->sp, NULL);
     for (int i = 0; i < game->gameplay->life; i++)
         sfRenderWindow_drawSprite(window, disp->heart[i]->sp, NULL);
