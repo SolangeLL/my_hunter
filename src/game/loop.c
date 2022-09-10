@@ -6,6 +6,7 @@
 */
 
 #include "../../include/my_hunter.h"
+
 static void prepareGameScene(game_t *game)
 {
     sfSound_play(game->sound->game);

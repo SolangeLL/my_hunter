@@ -13,18 +13,6 @@ void init_scenes_tab(void (*scene_loop[]) (game_t *))
     scene_loop[GAME] = &gameLoop;
 }
 
-void saveBestScore(game_t *game)
-{
-    FILE *file = NULL;
-    const char *score = sfText_getString(game->display->sign->count);
-
-    if (my_getnbr(score) > my_getnbr(game->display->sign->bestScore)) {
-        file = fopen("config/bestScore.txt", "w");
-        fwrite(score, 1, strlen(score), file);
-        fclose(file);
-    }
-}
-
 void my_hunter(void)
 {
     game_t *game = malloc(sizeof(game_t));

@@ -33,6 +33,7 @@ void destroyAll(game_t *game);
 
 void drawGame(game_t *game);
 void drawMenu(game_t *game);
+void manageMenuEvents(game_t *game);
 
 void refreshCount(game_t *game);
 
@@ -43,13 +44,10 @@ void goToQuit(button_t *btn, sfSound *sound, int *status);
 
 void darkenButton(button_t **btn, sfFloatRect mouse);
 void enlargeButton(button_t **btn, sfFloatRect mouse);
-void setNormalButton(button_t **btn, sfFloatRect mouse);
-void setDarkButton(button_t *button, float scale);
-void setLargeButton(button_t *button, float scale, int gap);
-void resetButton(button_t *button, float scale);
+void resetButton(button_t **btn, sfFloatRect mouse);
 void resizeButton(button_t *button, sfVector2f scale);
-void colorButton(button_t *button, int modify);
 
 void loadBestScore(sign_t *sign);
+void saveBestScore(game_t *game);
 
 #endif

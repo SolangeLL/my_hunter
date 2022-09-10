@@ -30,6 +30,6 @@ make re
 - Win / Lose game
 
 ## Why do I keep on working on this project ?
-In the beginning of my first year at Epitech, I discovered that I really like making video games, especially with the CSFML library. 
+In the beginning of my first year at Epitech, I discovered that I really like making video games, especially with the CSFML library.
 But during the duration of the project, I feel restrained and I couldn't explore as deeply as I wanted this library.
 So now, I use my free time to discover new functions and possible features.

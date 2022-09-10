@@ -16,7 +16,6 @@ SRC		=	src/main.c \
 			src/init/initialize.c \
 			src/init/init_sprites.c \
 			src/init/init_enemies.c \
-			src/init/init_assets.c \
 			src/init/init_sounds.c \
 			src/init/init_buttons.c \
 			src/init/callbacks_function.c \
@@ -31,8 +30,8 @@ SRC_GAME	=	$(GAME)/display/display.c \
 				$(GAME)/loop.c \
 
 SRC_MENU	=	$(MENU)/loop.c \
+				$(MENU)//display/event.c \
 				$(MENU)/display/display.c \
-				$(MENU)/display/buttons_effect.c
 
 SRC_UTILS	=	$(UTILS)/deleteNode.c \
 				$(UTILS)/destroy.c \

@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2021
-** initialize3
+** score
 ** File description:
-** Other functions to initialize
+** score
 */
 
 #include "../../include/my_hunter.h"
@@ -29,4 +29,16 @@ void loadBestScore(sign_t *sign)
     bounds = sfText_getGlobalBounds(sign->bestScoreTxt);
     sfText_setPosition(sign->bestScoreTxt, SF2F {120 - (bounds.width / 2), 90});
     fclose(file);
+}
+
+void saveBestScore(game_t *game)
+{
+    FILE *file = NULL;
+    const char *score = sfText_getString(game->display->sign->count);
+
+    if (my_getnbr(score) > my_getnbr(game->display->sign->bestScore)) {
+        file = fopen("config/bestScore.txt", "w");
+        fwrite(score, 1, strlen(score), file);
+        fclose(file);
+    }
 }
