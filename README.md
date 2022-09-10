@@ -27,7 +27,7 @@ make re
 - Infinite mode
 - Bonuses when you have kill streaks
 - Leaderboard of all highscores
-- Win / Lose game
+- Win / Lose screen
 - Statistic view
 
 ## Why do I keep on working on this project ?
