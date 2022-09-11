@@ -35,12 +35,14 @@ void destroy_sounds(sound_t *sound)
     sfSound_destroy(sound->click);
     sfSound_destroy(sound->miss);
     sfSound_destroy(sound->highScore);
+    sfSound_destroy(sound->levelUp);
     sfSoundBuffer_destroy(sound->game_buf);
     sfSoundBuffer_destroy(sound->skel_death_buf);
     sfSoundBuffer_destroy(sound->slime_buf);
     sfSoundBuffer_destroy(sound->click_buf);
     sfSoundBuffer_destroy(sound->miss_buf);
     sfSoundBuffer_destroy(sound->highScoreBuf);
+    sfSoundBuffer_destroy(sound->levelUpBuf);
 }
 
 void destroy_texts(display_t *display)

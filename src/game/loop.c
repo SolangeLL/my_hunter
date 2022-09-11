@@ -22,7 +22,7 @@ void gameLoop(game_t *game)
         getMouseHitbox(game);
         analyzeGameEvents(game);
         getSeconds(game);
-        spawnEnemies(game->enemies, game->animation);
+        spawnEnemies(game->enemies, game->animation, game->sound->levelUp);
         browseEnemiesAnim(game);
         moveEnemies(game);
         killMissedEnemies(game);

@@ -127,12 +127,14 @@ typedef struct sound_s {
     sfSoundBuffer *click_buf;
     sfSoundBuffer *miss_buf;
     sfSoundBuffer *highScoreBuf;
+    sfSoundBuffer *levelUpBuf;
     sfSound *slime_death;
     sfSound *skel_death;
     sfSound *game;
     sfSound *click;
     sfSound *miss;
     sfSound *highScore;
+    sfSound *levelUp;
 } sound_t;
 
 typedef struct menu_s {

@@ -15,6 +15,7 @@ static void create_sounds(sound_t *sound)
     sound->click = sfSound_create();
     sound->miss = sfSound_create();
     sound->highScore = sfSound_create();
+    sound->levelUp = sfSound_create();
 }
 
 static void createSoundBuffers(sound_t *sound)
@@ -25,6 +26,7 @@ static void createSoundBuffers(sound_t *sound)
     sound->click_buf = CREATE_SOUND_BUF("res/sound/click.ogg");
     sound->miss_buf = CREATE_SOUND_BUF("res/sound/missclick.ogg");
     sound->highScoreBuf = CREATE_SOUND_BUF("res/sound/highScore.ogg");
+    sound->levelUpBuf = CREATE_SOUND_BUF("res/sound/level_up.ogg");
 }
 
 static void setSounds(sound_t *sound)
@@ -35,6 +37,7 @@ static void setSounds(sound_t *sound)
     sfSound_setBuffer(sound->click, sound->click_buf);
     sfSound_setBuffer(sound->miss, sound->miss_buf);
     sfSound_setBuffer(sound->highScore, sound->highScoreBuf);
+    sfSound_setBuffer(sound->levelUp, sound->levelUpBuf);
 }
 
 void initSounds(sound_t *sound)

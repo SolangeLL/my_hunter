@@ -91,13 +91,14 @@ static slime_t *addSlime(slime_t *slimes, int id)
     return slimes;
 }
 
-void spawnEnemies(enemies_t *enemies, animation_t *anim)
+void spawnEnemies(enemies_t *enemies, animation_t *anim, sfSound *levelUpSound)
 {
     //* Each 5 kills, enemies spawn faster
     if (enemies->coef == 5 && \
     enemies->spawnEnemies - 0.2 >= 1) {
         enemies->spawnEnemies -= 0.2;
         enemies->coef = 0;
+        sfSound_play(levelUpSound);
     }
     //* Enimies initially spawn each 5 seconds
     if (anim->spawnSec >= enemies->spawnEnemies) {
