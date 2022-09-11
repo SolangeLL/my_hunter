@@ -7,6 +7,14 @@
 
 #include "../../../include/my_hunter.h"
 
+static void updateValues(game_t *game)
+{
+    game->enemies->nbEnemies--;
+    game->enemies->coef++;
+    game->enemies->kills++;
+    game->gameplay->count++;
+}
+
 static int shootSlime(game_t *game)
 {
     slime_t *slime = game->enemies->slimes;
@@ -16,7 +24,7 @@ static int shootSlime(game_t *game)
         slime->rect_scaled.left = sfSprite_getPosition(slime->sp).x - 32;
         if (CLICK_ON_SLIME) {
             slime->shoot = 1;
-            game->gameplay->count++;
+            updateValues(game);
             refreshCount(game);
             sfSound_play(game->sound->slime_death);
             sfSprite_setTexture(slime->sp, slime->death_texture, 0);
@@ -24,14 +32,6 @@ static int shootSlime(game_t *game)
         }
     }
     return (0);
-}
-
-static void updateValues(game_t *game)
-{
-    game->enemies->nbEnemies--;
-    game->enemies->coef++;
-    game->enemies->kills++;
-    game->gameplay->count++;
 }
 
 static int shootSkeleton(game_t *game)

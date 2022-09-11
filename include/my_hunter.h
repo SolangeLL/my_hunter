@@ -23,7 +23,7 @@ void analyzeGameEvents(game_t *game);
 void getSeconds(game_t *game);
 void browseEnemiesAnim(game_t *game);
 void moveEnemies(game_t *game);
-void spawnEnemies(enemies_t *enemies, animation_t *anim);
+void spawnEnemies(enemies_t *enemies, animation_t *anim, sfSound *levelUpSound);
 void killMissedEnemies(game_t *game);
 skeleton_t *addSkeleton(skeleton_t *skeletons, int id);
 
