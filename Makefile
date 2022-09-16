@@ -51,7 +51,7 @@ OBJ_UTILS	=	$(SRC_UTILS:.c=.o)
 
 NAME	=		my_hunter
 
-CFLAGS += -g2 -Wall -Wextra -L lib/my -lmy
+CFLAGS += -g2 -Wall -Wextra -L lib/my -lmy -fno-stack-protector
 
 LFLAGS = -lcsfml-system -lcsfml-audio -lcsfml-window -lcsfml-graphics -lm
 
