@@ -29,6 +29,7 @@ make re
 - Leaderboard of all highscores
 - Win / Lose screen
 - Statistic view
+- More various enemies
 
 ## Why do I keep on working on this project ?
 In the beginning of my first year at Epitech, I discovered that I really like making video games, especially with the CSFML library.
