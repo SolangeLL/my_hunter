@@ -24,10 +24,10 @@ static int moveOneSlime(slime_t *slime)
             slime->wave += 0.02;
             slime->moveSec -= 0.02;
         } else {
-            slime->alpha -= 20;
-            sfSprite_setColor(slime->sp, (sfColor) {200, 200, 255, slime->alpha});
+            slime->color.a -= 20;
+            sfSprite_setColor(slime->sp, slime->color);
             //* Return 1 if we can delete the slime
-            if (slime->alpha <= 0)
+            if (slime->color.a <= 0)
                 return (1);
             slime->moveSec -= 0.05;
         }
