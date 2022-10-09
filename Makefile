@@ -11,6 +11,8 @@ MENU	=	src/menu
 
 UTILS	=	src/utils
 
+SETTINGS = src/settings
+
 SRC		=	src/main.c \
 			src/my_hunter.c \
 			src/init/initialize.c \
@@ -33,6 +35,10 @@ SRC_MENU	=	$(MENU)/loop.c \
 				$(MENU)//display/event.c \
 				$(MENU)/display/display.c \
 
+SRC_SETTINGS =	$(SETTINGS)/loop.c \
+				$(SETTINGS)/display/display.c \
+				$(SETTINGS)/display/event.c \
+
 SRC_UTILS	=	$(UTILS)/deleteNode.c \
 				$(UTILS)/destroy.c \
 				$(UTILS)/mouse.c \
@@ -47,11 +53,13 @@ OBJ_GAME	=	$(SRC_GAME:.c=.o)
 
 OBJ_MENU	=	$(SRC_MENU:.c=.o)
 
+OBJ_SETTINGS =	$(SRC_SETTINGS:.c=.o)
+
 OBJ_UTILS	=	$(SRC_UTILS:.c=.o)
 
 NAME	=		my_hunter
 
-CFLAGS += -g2 -Wall -Wextra -L lib/my -lmy
+CFLAGS += -g2 -Wall -Wextra -L lib/my -lmy -fno-stack-protector
 
 LFLAGS = -lcsfml-system -lcsfml-audio -lcsfml-window -lcsfml-graphics -lm
 
@@ -60,8 +68,8 @@ all: libs $(NAME)
 libs:
 	make -C lib/my
 
-$(NAME): $(OBJ) $(OBJ_GAME) $(OBJ_MENU) $(OBJ_UTILS)
-	gcc $(OBJ) $(OBJ_GAME) $(OBJ_MENU) $(OBJ_UTILS) -o $(NAME) $(LFLAGS) $(CFLAGS)
+$(NAME): $(OBJ) $(OBJ_GAME) $(OBJ_MENU) $(OBJ_UTILS) $(OBJ_SETTINGS)
+	gcc $(OBJ) $(OBJ_GAME) $(OBJ_MENU) $(OBJ_UTILS) $(OBJ_SETTINGS) -o $(NAME) $(LFLAGS) $(CFLAGS)
 
 clean:
 	make clean -C lib/my

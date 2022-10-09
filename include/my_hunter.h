@@ -6,16 +6,17 @@
 */
 
 #ifndef MY_HUNTER_H_
-    #define MY_HUNTER_H_
-    #include "includes.h"
-    #include "struct.h"
-    #include "init.h"
-    #include "macros.h"
-    #include "my.h"
+#define MY_HUNTER_H_
+#include "includes.h"
+#include "struct.h"
+#include "init.h"
+#include "macros.h"
+#include "my.h"
 
 void my_hunter(void);
 void gameLoop(game_t *game);
 void menuLoop(game_t *game);
+void settingsLoop(game_t *game);
 
 void getMouseHitbox(game_t *game);
 void analyzeGameEvents(game_t *game);
@@ -33,8 +34,9 @@ void destroyAll(game_t *game);
 
 void drawGame(game_t *game);
 void drawMenu(game_t *game);
+void drawSettings(game_t *game);
 void manageMenuEvents(game_t *game);
-
+void manageSettingsEvents(game_t *game);
 void refreshCount(game_t *game);
 
 void goToGame(button_t *btn, sfSound *sound, int *status);

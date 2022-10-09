@@ -87,13 +87,16 @@ void destroy_structures(game_t *game)
     free(game->sound);
     free(game->animation);
     free(game->menu);
+    free(game->settings);
+    free(game);
 }
 
 void destroySkeletonList(skeleton_t **list)
 {
     skeleton_t *tmp = NULL;
 
-    while ((*list) != NULL) {
+    while ((*list) != NULL)
+    {
         tmp = (*list)->next;
         sfSprite_destroy((*list)->sp);
         sfTexture_destroy((*list)->texture);
@@ -106,7 +109,8 @@ void destroySlimeList(slime_t **list)
 {
     slime_t *tmp = NULL;
 
-    while ((*list) != NULL) {
+    while ((*list) != NULL)
+    {
         tmp = (*list)->next;
         sfSprite_destroy((*list)->sp);
         sfTexture_destroy((*list)->texture);

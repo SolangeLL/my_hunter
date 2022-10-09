@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2022
-** event
-** File description:
-** Manage menu event
-*/
-
 #include "../../../include/my_hunter.h"
 
 static void manageButtons(button_t **btn, game_t *game)
@@ -14,7 +7,7 @@ static void manageButtons(button_t **btn, game_t *game)
             btn[i]->change_scene(btn[i], game->sound->click, &game->scene);
 }
 
-void manageMenuEvents(game_t *game)
+void manageSettingsEvents(game_t *game)
 {
     while (IS_EVENT)
     {
@@ -25,8 +18,7 @@ void manageMenuEvents(game_t *game)
         }
         if (ESCAPE_IS_PRESSED)
         {
-            sfRenderWindow_close(game->win->win);
-            game->scene = QUIT;
+            game->scene = MENU;
         }
         if (CLICK_IS_PRESSED)
             darkenButton(game->menu->btn, game->gameplay->mouse_rect);

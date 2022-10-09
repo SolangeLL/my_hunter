@@ -6,7 +6,8 @@
 */
 
 #ifndef STRUCT_H_
-#define STRUCT_H_
+    #define STRUCT_H_
+    #include "includes.h"
 
 enum SCENES
 {
@@ -160,6 +161,13 @@ typedef struct menu_s
     button_t **btn;
 } menu_t;
 
+typedef struct settings_s
+{
+    sfSprite *back_sp;
+    sfTexture *back_texture;
+    button_t **btn;
+} settings_t;
+
 typedef struct game_s
 {
     int scene;
@@ -170,6 +178,7 @@ typedef struct game_s
     enemies_t *enemies;
     animation_t *animation;
     menu_t *menu;
+    settings_t *settings;
 } game_t;
 
 #endif /* !STRUCT_H_ */

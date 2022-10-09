@@ -11,6 +11,7 @@ void init_scenes_tab(void (*scene_loop[]) (game_t *))
 {
     scene_loop[MENU] = &menuLoop;
     scene_loop[GAME] = &gameLoop;
+    scene_loop[SETTINGS] = &settingsLoop;
 }
 
 void my_hunter(void)
