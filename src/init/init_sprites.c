@@ -65,12 +65,12 @@ static void setScales(game_t *game)
 static void initPosValues(game_t *game)
 {
     game->display->background->back_pos.x = 0;
-    game->display->background->back_pos.y = -335;
+    game->display->background->back_pos.y = -292;
     game->display->sign->pos.x = 0;
     game->display->sign->pos.y = -20;
-    game->display->heart[0]->pos = (sfVector2f){35, 965};
-    game->display->heart[1]->pos = (sfVector2f){91, 965};
-    game->display->heart[2]->pos = (sfVector2f){147, 965};
+    game->display->heart[0]->pos = (sfVector2f){35, 1008};
+    game->display->heart[1]->pos = (sfVector2f){91, 1008};
+    game->display->heart[2]->pos = (sfVector2f){147, 1008};
 }
 
 static void setPositions(game_t *game)

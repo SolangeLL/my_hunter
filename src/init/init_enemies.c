@@ -29,7 +29,7 @@ static skeleton_t *createSkeleton(int id)
     skeleton->moveSec = 0;
     skeleton->shoot = 0;
     skeleton->scale = SF2F{2.7, 2.7};
-    skeleton->pos = SF2F{randX, 795};
+    skeleton->pos = SF2F{randX, 838};
     skeleton->rect = (sfIntRect){0, 128, 64, 64};
     skeleton->rect_scaled = (sfFloatRect){randX, 795,
                                           64 * skeleton->scale.x, 64 * skeleton->scale.y};

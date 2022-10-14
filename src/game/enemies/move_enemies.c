@@ -26,10 +26,10 @@ static int moveOneSlime(slime_t *slime)
         } else {
             slime->color.a -= 20;
             sfSprite_setColor(slime->sp, slime->color);
-            //* Return 1 if we can delete the slime
-            if (slime->color.a <= 0)
-                return (1);
             slime->moveSec -= 0.05;
+            //* Return 1 if we can delete the slime
+            if (slime->color.a <= 20)
+                return (1);
         }
     }
     return (0);
@@ -49,6 +49,7 @@ static void moveSlimes(game_t *game)
 
     for (; slime != NULL; slime = slime->next)
         if (moveOneSlime(slime)) {
+            printf("delete silme\n");
             deleteSlime(&(game->enemies->slimes), slime->id);
             break;
         }
