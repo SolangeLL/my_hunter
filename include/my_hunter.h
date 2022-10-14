@@ -39,10 +39,11 @@ void manageMenuEvents(game_t *game);
 void manageSettingsEvents(game_t *game);
 void refreshCount(game_t *game);
 
-void goToGame(button_t *btn, sfSound *sound, int *status);
-void goToSettings(button_t *btn, sfSound *sound, int *status);
-void goToMenu(button_t *btn, sfSound *sound, int *status);
-void goToQuit(button_t *btn, sfSound *sound, int *status);
+void goToGame(game_t *game, button_t *btn);
+void goToSettings(game_t *game, button_t *btn);
+void goToMenu(game_t *game, button_t *btn);
+void goToQuit(game_t *game, button_t *btn);
+void turnOnOrOffVolume(game_t *game, button_t *btn);
 
 void darkenButton(button_t **btn, sfFloatRect mouse);
 void enlargeButton(button_t **btn, sfFloatRect mouse);

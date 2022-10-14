@@ -7,7 +7,7 @@
 
 #ifndef MACROS_H_
     #define MACROS_H_
-    #define WINDOW_INFO window->mode, "MY HUNTER", sfResize | sfClose, NULL
+    #define WINDOW_INFO window->mode, "MY HUNTER", sfFullscreen, NULL
     #define CREATE_SOUND_BUF sfSoundBuffer_createFromFile
     #define CREATE_TEXTURE sfTexture_createFromFile
     #define IS_EVENT \

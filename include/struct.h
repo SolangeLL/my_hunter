@@ -6,8 +6,10 @@
 */
 
 #ifndef STRUCT_H_
-    #define STRUCT_H_
-    #include "includes.h"
+#define STRUCT_H_
+#include "includes.h"
+
+struct game_s;
 
 enum SCENES
 {
@@ -25,8 +27,7 @@ typedef struct button_s
     sfFloatRect btn_rect;
     sfVector2f pos;
     sfColor color;
-    void (*change_scene)(struct button_s *, sfSound *, int *);
-    // void (*modify)(struct global_s *, int);
+    void (*callback)(struct game_s *game, struct button_s *btn);
 } button_t;
 
 typedef struct heart_s
@@ -138,6 +139,7 @@ typedef struct gameplay_s
 
 typedef struct sound_s
 {
+    bool isMute;
     sfSoundBuffer *skel_death_buf;
     sfSoundBuffer *slime_buf;
     sfSoundBuffer *game_buf;

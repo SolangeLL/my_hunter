@@ -16,17 +16,19 @@ static void initStructures(game_t *game)
     game->display->background = malloc(sizeof(background_t));
     game->display->sign = malloc(sizeof(sign_t));
     game->display->heart = malloc(sizeof(heart_t *) * 4);
-    for (int i = 0; i < 3; game->display->heart[i] = malloc(sizeof(heart_t)), i++);
+    for (int i = 0; i < 3; game->display->heart[i] = malloc(sizeof(heart_t)), i++)
+        ;
     game->display->heart[3] = NULL;
     game->sound = malloc(sizeof(sound_t));
     game->menu = malloc(sizeof(menu_t));
     game->enemies = malloc(sizeof(enemies_t));
+    game->settings = malloc(sizeof(settings_t));
 }
 
 static void initWindow(window_t *window)
 {
-    window->dimension = (sfVector2f) {1920, 1080};
-    window->mode = (sfVideoMode) {1920, 1080, 32};
+    window->dimension = (sfVector2f){1920, 1080};
+    window->mode = (sfVideoMode){1920, 1080, 32};
     window->win = sfRenderWindow_create(WINDOW_INFO);
     sfRenderWindow_setFramerateLimit(window->win, 60);
 }
@@ -35,15 +37,15 @@ static void initTexts(display_t *display)
 {
     display->sign->text_pos.x = 100;
     display->sign->text_pos.y = 30;
-    display->sign->font = \
-    sfFont_createFromFile("res/txt/cream-DEMO.ttf");
+    display->sign->font =
+        sfFont_createFromFile("res/txt/cream-DEMO.ttf");
     display->sign->count = sfText_create();
     display->sign->char_count = "0";
     sfText_setFont(display->sign->count, display->sign->font);
     sfText_setString(display->sign->count, display->sign->char_count);
     sfText_setCharacterSize(display->sign->count, 45);
     sfText_setPosition(display->sign->count, display->sign->text_pos);
-    sfText_setColor(display->sign->count, (sfColor) {200, 200, 200, 255});
+    sfText_setColor(display->sign->count, (sfColor){200, 200, 200, 255});
     sfText_setOutlineColor(display->sign->count, sfBlack);
     sfText_setOutlineThickness(display->sign->count, 3);
 }
@@ -54,6 +56,7 @@ static void initValues(game_t *game)
     game->gameplay->isScoreBetter = false;
     game->gameplay->life = 3;
     game->gameplay->count = 0;
+    game->sound->isMute = false;
     game->enemies->spawnEnemies = 5;
     game->enemies->nbEnemies = 1;
     game->enemies->coef = 0;
@@ -74,7 +77,7 @@ void initAll(game_t *game)
     initSprites(game);
     initTexts(game->display);
     initValues(game);
-    initMenuButtons(game->menu);
+    initScenesButtons(game);
     initButtonsCallbacks(game);
     loadBestScore(game->display->sign);
     game->enemies->skeletons = addSkeleton(game->enemies->skeletons, 0);

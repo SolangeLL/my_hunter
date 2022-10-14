@@ -7,30 +7,46 @@
 
 #include "../../include/my_hunter.h"
 
-void goToGame(button_t *btn, sfSound *sound, int *status)
+// TODO! Make goToX generic in one function
+void goToGame(game_t *game, button_t *btn)
 {
-    *status = GAME;
+    game->scene = GAME;
     btn->pressed = 0;
-    sfSound_play(sound);
+    sfSound_play(game->sound->click);
 }
 
-void goToSettings(button_t *btn, sfSound *sound, int *status)
+void goToSettings(game_t *game, button_t *btn)
 {
-    *status = SETTINGS;
+    game->scene = SETTINGS;
     btn->pressed = 0;
-    sfSound_play(sound);
+    sfSound_play(game->sound->click);
 }
 
-void goToMenu(button_t *btn, sfSound *sound, int *status)
+void goToMenu(game_t *game, button_t *btn)
 {
-    *status = MENU;
+    game->scene = MENU;
     btn->pressed = 0;
-    sfSound_play(sound);
+    sfSound_play(game->sound->click);
 }
 
-void goToQuit(button_t *btn, sfSound *sound, int *status)
+void goToQuit(game_t *game, button_t *btn)
 {
-    *status = QUIT;
+    game->scene = QUIT;
     btn->pressed = 0;
-    sfSound_play(sound);
+    sfSound_play(game->sound->click);
+}
+
+void turnOnOrOffVolume(game_t *game, button_t *btn)
+{
+    if (game->sound->isMute)
+        sfSound_setVolume(game->sound->game, 100);
+    else
+        sfSound_setVolume(game->sound->game, 0);
+    game->sound->isMute = !game->sound->isMute;
+    if (game->sound->isMute == true)
+    {
+        printf("this is true\n");
+    }
+    else
+        printf("false it is\n");
 }

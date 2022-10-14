@@ -4,7 +4,7 @@ static void manageButtons(button_t **btn, game_t *game)
 {
     for (int i = 0; btn[i] != NULL; i++)
         if (CLICK_ON_BUTTON)
-            btn[i]->change_scene(btn[i], game->sound->click, &game->scene);
+            btn[i]->callback(game, btn[i]);
 }
 
 void manageSettingsEvents(game_t *game)

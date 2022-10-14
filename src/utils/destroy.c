@@ -15,6 +15,7 @@ void destroy_sprites(game_t *game)
     sfSprite_destroy(game->display->heart[1]->sp);
     sfSprite_destroy(game->display->heart[2]->sp);
     sfSprite_destroy(game->menu->back_sp);
+    sfSprite_destroy(game->settings->back_sp);
 }
 
 void destroy_textures(game_t *game)
@@ -25,6 +26,7 @@ void destroy_textures(game_t *game)
     sfTexture_destroy(game->display->heart[1]->texture);
     sfTexture_destroy(game->display->heart[2]->texture);
     sfTexture_destroy(game->menu->back_texture);
+    sfTexture_destroy(game->settings->back_texture);
 }
 
 void destroy_sounds(sound_t *sound)
