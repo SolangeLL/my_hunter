@@ -16,6 +16,7 @@ static void createSprites(game_t *game)
     game->display->background->back_sp = sfSprite_create();
     game->menu->back_sp = sfSprite_create();
     game->settings->back_sp = sfSprite_create();
+    game->settings->frame_sp = sfSprite_create();
 }
 
 static void createTextures(game_t *game)
@@ -27,6 +28,7 @@ static void createTextures(game_t *game)
     game->display->heart[2]->texture = CREATE_TEXTURE("res/img/heart.png", NULL);
     game->menu->back_texture = CREATE_TEXTURE("res/img/menu_back.jpg", NULL);
     game->settings->back_texture = CREATE_TEXTURE("res/img/menu_back.jpg", NULL);
+    game->settings->frame_texture = CREATE_TEXTURE("res/img/settings_back.png", NULL);
 }
 
 static void initTextures(game_t *game)
@@ -40,6 +42,7 @@ static void initTextures(game_t *game)
     sfSprite_setTexture(game->display->heart[2]->sp, game->display->heart[2]->texture, 0);
     sfSprite_setTexture(game->menu->back_sp, game->menu->back_texture, 0);
     sfSprite_setTexture(game->settings->back_sp, game->settings->back_texture, 0);
+    sfSprite_setTexture(game->settings->frame_sp, game->settings->frame_texture, 0);
 }
 
 static void initScaleValues(game_t *game)
@@ -60,6 +63,7 @@ static void setScales(game_t *game)
     sfSprite_setScale(game->display->heart[2]->sp, game->display->heart[2]->scale);
     sfSprite_setScale(game->display->sign->sp, game->display->sign->scale);
     sfSprite_setScale(game->display->background->back_sp, game->display->background->back_scale);
+    sfSprite_setScale(game->settings->frame_sp, SF2F{3, 2});
 }
 
 static void initPosValues(game_t *game)

@@ -167,6 +167,8 @@ typedef struct settings_s
 {
     sfSprite *back_sp;
     sfTexture *back_texture;
+    sfSprite *frame_sp;
+    sfTexture *frame_texture;
     button_t **btn;
 } settings_t;
 
