@@ -11,7 +11,7 @@ void loadBestScore(sign_t *sign)
 {
     FILE *file = NULL;
     struct stat info;
-    char best[6] = "Best ";
+    char best[10] = "Best ";
     sfFloatRect bounds = {0, 0, 0, 0};
 
     file = fopen("config/bestScore.txt", "r");

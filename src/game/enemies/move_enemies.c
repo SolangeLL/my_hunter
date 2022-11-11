@@ -49,7 +49,6 @@ static void moveSlimes(game_t *game)
 
     for (; slime != NULL; slime = slime->next)
         if (moveOneSlime(slime)) {
-            printf("delete silme\n");
             deleteSlime(&(game->enemies->slimes), slime->id);
             break;
         }

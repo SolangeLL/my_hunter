@@ -16,7 +16,8 @@ void destroy_sprites(game_t *game)
     sfSprite_destroy(game->display->heart[2]->sp);
     sfSprite_destroy(game->menu->back_sp);
     sfSprite_destroy(game->settings->back_sp);
-    sfSprite_destroy(game->settings->frame_sp);
+    sfSprite_destroy(game->settings->titles_sp);
+    sfSprite_destroy(game->settings->content_sp);
 }
 
 void destroy_textures(game_t *game)
@@ -28,7 +29,8 @@ void destroy_textures(game_t *game)
     sfTexture_destroy(game->display->heart[2]->texture);
     sfTexture_destroy(game->menu->back_texture);
     sfTexture_destroy(game->settings->back_texture);
-    sfTexture_destroy(game->settings->frame_texture);
+    sfTexture_destroy(game->settings->titles_texture);
+    sfTexture_destroy(game->settings->content_texture);
 }
 
 void destroy_sounds(sound_t *sound)
@@ -74,6 +76,7 @@ void destroy_btn_tab(button_t **button_tab)
 void destroy_btn_tabs(game_t *game)
 {
     destroy_btn_tab(game->menu->btn);
+    destroy_btn_tab(game->settings->btn);
 }
 
 void destroy_structures(game_t *game)
