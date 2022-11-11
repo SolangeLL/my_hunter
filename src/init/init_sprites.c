@@ -54,6 +54,7 @@ static void initScaleValues(game_t *game)
     game->display->heart[0]->scale = (sfVector2f){0.1, 0.1};
     game->display->heart[1]->scale = (sfVector2f){0.1, 0.1};
     game->display->heart[2]->scale = (sfVector2f){0.1, 0.1};
+    game->settings->fram_scale = SF2F {35, 20};
 }
 
 static void setScales(game_t *game)
@@ -63,7 +64,7 @@ static void setScales(game_t *game)
     sfSprite_setScale(game->display->heart[2]->sp, game->display->heart[2]->scale);
     sfSprite_setScale(game->display->sign->sp, game->display->sign->scale);
     sfSprite_setScale(game->display->background->back_sp, game->display->background->back_scale);
-    sfSprite_setScale(game->settings->frame_sp, SF2F{3, 2});
+    sfSprite_setScale(game->settings->frame_sp, game->settings->fram_scale);
 }
 
 static void initPosValues(game_t *game)
@@ -75,6 +76,7 @@ static void initPosValues(game_t *game)
     game->display->heart[0]->pos = (sfVector2f){35, 1008};
     game->display->heart[1]->pos = (sfVector2f){91, 1008};
     game->display->heart[2]->pos = (sfVector2f){147, 1008};
+    game->settings->frame_pos  = SF2F {190, 100};
 }
 
 static void setPositions(game_t *game)
@@ -84,6 +86,7 @@ static void setPositions(game_t *game)
     sfSprite_setPosition(game->display->heart[1]->sp, game->display->heart[1]->pos);
     sfSprite_setPosition(game->display->heart[2]->sp, game->display->heart[2]->pos);
     sfSprite_setPosition(game->display->sign->sp, game->display->sign->pos);
+    sfSprite_setPosition(game->settings->frame_sp, game->settings->frame_pos);
 }
 
 void initSprites(game_t *game)

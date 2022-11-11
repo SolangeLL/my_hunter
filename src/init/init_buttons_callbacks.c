@@ -23,4 +23,5 @@ static void initSettingsCallbacks(button_t **btn)
 void initButtonsCallbacks(game_t *game)
 {
     init_menu_callbacks(game->menu->btn);
+    initSettingsCallbacks(game->settings->btn);
 }

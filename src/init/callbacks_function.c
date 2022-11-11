@@ -49,4 +49,5 @@ void turnOnOrOffVolume(game_t *game, button_t *btn)
     }
     else
         printf("false it is\n");
+    btn->pressed = 0;
 }

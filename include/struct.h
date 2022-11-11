@@ -169,6 +169,8 @@ typedef struct settings_s
     sfTexture *back_texture;
     sfSprite *frame_sp;
     sfTexture *frame_texture;
+    sfVector2f fram_scale;
+    sfVector2f frame_pos;
     button_t **btn;
 } settings_t;
 
