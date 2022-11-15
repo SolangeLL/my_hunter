@@ -78,6 +78,7 @@ void initAll(game_t *game)
     initTexts(game->display);
     initValues(game);
     initScenesButtons(game);
+    initScenesTextButtons(game);
     initButtonsCallbacks(game);
     loadBestScore(game->display->sign);
     game->enemies->skeletons = addSkeleton(game->enemies->skeletons, 0);

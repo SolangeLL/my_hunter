@@ -30,6 +30,17 @@ typedef struct button_s
     void (*callback)(struct game_s *game, struct button_s *btn);
 } button_t;
 
+typedef struct text_button_s
+{
+    int pressed;
+    sfText *text;
+    sfFont *font;
+    sfFloatRect btn_rect;
+    sfVector2f pos;
+    sfColor color;
+    void (*callback)(struct game_s *game, struct text_button_s *btn);
+} text_button_t;
+
 typedef struct heart_s
 {
     sfSprite *sp;
@@ -176,6 +187,7 @@ typedef struct settings_s
     sfVector2f content_pos;
     sfVector2f content_scale;
     button_t **btn;
+    text_button_t **text_btn;
 } settings_t;
 
 typedef struct game_s

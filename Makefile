@@ -20,6 +20,7 @@ SRC		=	src/main.c \
 			src/init/init_enemies.c \
 			src/init/init_sounds.c \
 			src/init/init_buttons.c \
+			src/init/init_text_buttons.c \
 			src/init/callbacks_function.c \
 			src/init/init_buttons_callbacks.c
 

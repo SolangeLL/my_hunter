@@ -40,8 +40,8 @@ static void initMenuButtons(menu_t *menu)
 static void initSettingsButtons(settings_t *settings)
 {
     settings->btn = malloc(sizeof(button_t *) * 3);
-    settings->btn[0] = init_button("res/img/buttons/sound_off.png", SF2F{200, 200});
-    settings->btn[1] = init_button("res/img/buttons/sound_on.png", SF2F{500, 200});
+    settings->btn[0] = init_button("res/img/buttons/sound_off.png", SF2F{1000, 200});
+    settings->btn[1] = init_button("res/img/buttons/sound_on.png", SF2F{1300, 200});
     settings->btn[2] = NULL;
     resizeButton(settings->btn[0], SF2F{10, 10});
     resizeButton(settings->btn[1], SF2F{10, 10});
