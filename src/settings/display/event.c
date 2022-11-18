@@ -10,7 +10,7 @@ static void manageButtons(game_t *game)
             txt_btn[i]->callback(game, txt_btn[i]);
     for (int i = 0; btn[i] != NULL; i++)
         if (CLICK_ON_BUTTON)
-            btn[i]->callback(game, btn[i]);
+            btn[i]->modifSound(game, btn[i], btn[i]->modifValue);
 }
 
 void manageSettingsEvents(game_t *game)
@@ -26,10 +26,15 @@ void manageSettingsEvents(game_t *game)
         if (ESCAPE_IS_PRESSED)
             game->scene = MENU;
         if (CLICK_IS_PRESSED)
+        {
             darkenButton(btn, game->gameplay->mouse_rect);
+            darkenText(game->settings->text_btn, game->gameplay->mouse_rect);
+        }
         if (CLICK_IS_DETECTED)
             manageButtons(game);
     }
     enlargeButton(btn, game->gameplay->mouse_rect);
+    enlargeText(game->settings->text_btn, game->gameplay->mouse_rect);
     resetButton(btn, game->gameplay->mouse_rect);
+    resetText(game->settings->text_btn, game->gameplay->mouse_rect);
 }

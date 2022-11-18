@@ -29,6 +29,7 @@ enum TEMPLATES
 typedef struct button_s
 {
     int pressed;
+    int modifValue;
     sfSprite *sprite;
     sfTexture *texture;
     sfFloatRect btn_rect;
@@ -36,6 +37,7 @@ typedef struct button_s
     sfVector2f pos;
     sfColor color;
     void (*callback)(struct game_s *game, struct button_s *btn);
+    void (*modifSound)(struct game_s *game, struct button_s *btn, int val);
 } button_t;
 
 typedef struct text_button_s
@@ -160,10 +162,12 @@ typedef struct gameplay_s
 typedef struct sound_s
 {
     bool isMute;
+    int master_volume;
     sfSoundBuffer *skel_death_buf;
     sfSoundBuffer *slime_buf;
     sfSoundBuffer *game_buf;
     sfSoundBuffer *click_buf;
+    sfSoundBuffer *click2_buf;
     sfSoundBuffer *miss_buf;
     sfSoundBuffer *highScoreBuf;
     sfSoundBuffer *levelUpBuf;
@@ -172,6 +176,7 @@ typedef struct sound_s
     sfSound *skel_death;
     sfSound *game;
     sfSound *click;
+    sfSound *click2;
     sfSound *miss;
     sfSound *highScore;
     sfSound *levelUp;

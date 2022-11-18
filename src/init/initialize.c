@@ -56,6 +56,7 @@ static void initValues(game_t *game)
     game->gameplay->isScoreBetter = false;
     game->gameplay->life = 3;
     game->gameplay->count = 0;
+    game->sound->master_volume = 100;
     game->sound->isMute = false;
     game->enemies->spawnEnemies = 5;
     game->enemies->nbEnemies = 1;

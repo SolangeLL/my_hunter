@@ -49,6 +49,7 @@ SRC_UTILS	=	$(UTILS)/deleteNode.c \
 				$(UTILS)/score.c \
 				$(UTILS)/seconds.c \
 				$(UTILS)/tools_buttons.c \
+				$(UTILS)/tools_text.c \
 
 
 OBJ		=	$(SRC:.c=.o) \

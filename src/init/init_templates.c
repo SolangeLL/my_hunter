@@ -45,12 +45,18 @@ static template_t *initAudioTemplate()
     resizeButton(template->btn[3], SF2F{4, 4});
     resizeButton(template->btn[4], SF2F{-4, 4});
     resizeButton(template->btn[5], SF2F{4, 4});
-    template->btn[0]->callback = &muteVolume;
-    template->btn[1]->callback = &muteVolume;
+    template->btn[0]->modifSound = &updateMasterVolume;
+    template->btn[1]->modifSound = &updateMasterVolume;
     template->btn[2]->callback = &muteVolume;
     template->btn[3]->callback = &muteVolume;
     template->btn[4]->callback = &muteVolume;
     template->btn[5]->callback = &muteVolume;
+    template->btn[0]->modifValue = -10;
+    template->btn[1]->modifValue = 10;
+    template->btn[2]->modifValue = -10;
+    template->btn[3]->modifValue = 10;
+    template->btn[4]->modifValue = -10;
+    template->btn[5]->modifValue = 10;
 
     template->texts = malloc(sizeof(sfText *) * 7);
     template->texts[0] = createText("Master", SF2F{1256, 200}, (sfColor) {12, 133, 9, 255}, font, 70);

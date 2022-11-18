@@ -36,6 +36,26 @@ void goToQuit(game_t *game, button_t *btn)
     sfSound_play(game->sound->click);
 }
 
+void updateMasterVolume(game_t *game, button_t *button, int val)
+{
+    sfSound_play(game->sound->click2);
+    game->sound->master_volume += val;
+    if (game->sound->master_volume > 100)
+        game->sound->master_volume = 100;
+    if (game->sound->master_volume < 0)
+        game->sound->master_volume = 0;
+    sfSound_setVolume(game->sound->click, game->sound->master_volume);
+    sfSound_setVolume(game->sound->click2, game->sound->master_volume);
+    sfSound_setVolume(game->sound->slime_death, game->sound->master_volume);
+    sfSound_setVolume(game->sound->skel_death, game->sound->master_volume);
+    sfSound_setVolume(game->sound->game, game->sound->master_volume);
+    sfSound_setVolume(game->sound->miss, game->sound->master_volume);
+    sfSound_setVolume(game->sound->highScore, game->sound->master_volume);
+    sfSound_setVolume(game->sound->levelUp, game->sound->master_volume);
+    sfSound_setVolume(game->sound->menu, game->sound->master_volume);
+    button->pressed = 0;
+}
+
 void muteVolume(game_t *game, button_t *btn)
 {
     if (game->sound->isMute)
@@ -49,6 +69,7 @@ void muteVolume(game_t *game, button_t *btn)
 
 void changeSettingsTemplate(game_t *game, text_button_t *btn)
 {
+    sfSound_play(game->sound->click);
     game->settings->templateIndex = btn->template;
     btn->pressed = 0;
 }
