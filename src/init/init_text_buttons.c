@@ -12,7 +12,7 @@ void initTextButton(text_button_t *btn, char *str, sfVector2f pos, sfColor color
     sfText_setCharacterSize(btn->text, 50);
     sfText_setPosition(btn->text, btn->pos);
     sfText_setColor(btn->text, btn->color);
-    btn->btn_rect = (sfFloatRect){pos.x, pos.y, 0, 0};
+    btn->rect = sfText_getGlobalBounds(btn->text);
 }
 
 void initSettingsTextButtons(settings_t *settings)
@@ -25,7 +25,9 @@ void initSettingsTextButtons(settings_t *settings)
     initTextButton(settings->text_btn[0], "General", SF2F{190, 150}, sfWhite);
     initTextButton(settings->text_btn[1], "Sound", SF2F{190, 300}, sfWhite);
     initTextButton(settings->text_btn[2], "Graphics", SF2F{190, 450}, sfWhite);
-}
+    settings->text_btn[0]->template = GENERAL;
+    settings->text_btn[1]->template = AUDIO;
+    settings->text_btn[2]->template = GRAPHICS;}
 
 void initScenesTextButtons(game_t *game)
 {

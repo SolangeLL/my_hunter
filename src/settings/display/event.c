@@ -1,10 +1,16 @@
 #include "../../../include/my_hunter.h"
 
-static void manageButtons(button_t **btn, game_t *game)
+static void manageButtons(game_t *game)
 {
-    for (int i = 0; btn[i] != NULL; i++)
+    button_t **btn = game->settings->btn;
+    text_button_t **txt_btn = game->settings->text_btn;
+
+    for (int i = 0; game->settings->btn[i] != NULL; i++)
         if (CLICK_ON_BUTTON)
-            btn[i]->callback(game, btn[i]);
+            game->settings->btn[i]->callback(game, game->settings->btn[i]);
+    for (int i = 0; game->settings->text_btn[i] != NULL; i++)
+        if (CLICK_ON_TXT_BUTTON)
+            txt_btn[i]->callback(game, txt_btn[i]);
 }
 
 void manageSettingsEvents(game_t *game)
@@ -17,13 +23,11 @@ void manageSettingsEvents(game_t *game)
             game->scene = QUIT;
         }
         if (ESCAPE_IS_PRESSED)
-        {
             game->scene = MENU;
-        }
         if (CLICK_IS_PRESSED)
             darkenButton(game->menu->btn, game->gameplay->mouse_rect);
         if (CLICK_IS_DETECTED)
-            manageButtons(game->menu->btn, game);
+            manageButtons(game);
     }
     enlargeButton(game->menu->btn, game->gameplay->mouse_rect);
     resetButton(game->menu->btn, game->gameplay->mouse_rect);

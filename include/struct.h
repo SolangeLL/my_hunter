@@ -19,6 +19,13 @@ enum SCENES
     QUIT
 };
 
+enum TEMPLATES
+{
+    GENERAL,
+    AUDIO,
+    GRAPHICS
+};
+
 typedef struct button_s
 {
     int pressed;
@@ -33,9 +40,10 @@ typedef struct button_s
 typedef struct text_button_s
 {
     int pressed;
+    int template;
     sfText *text;
     sfFont *font;
-    sfFloatRect btn_rect;
+    sfFloatRect rect;
     sfVector2f pos;
     sfColor color;
     void (*callback)(struct game_s *game, struct text_button_s *btn);
@@ -174,8 +182,13 @@ typedef struct menu_s
     button_t **btn;
 } menu_t;
 
+typedef struct template_s
+{
+} template_t;
+
 typedef struct settings_s
 {
+    int template;
     sfSprite *back_sp;
     sfTexture *back_texture;
     sfSprite *titles_sp;

@@ -66,6 +66,13 @@ void destroy_btn(button_t *btn)
     free(btn);
 }
 
+void destroy_txt_btn(text_button_t *btn)
+{
+    sfFont_destroy(btn->font);
+    sfText_destroy(btn->text);
+    free(btn);
+}
+
 void destroy_btn_tab(button_t **button_tab)
 {
     for (int i = 0; button_tab[i] != NULL; i++)
@@ -73,10 +80,22 @@ void destroy_btn_tab(button_t **button_tab)
     free(button_tab);
 }
 
+void destroy_txt_btn_tab(text_button_t **tab)
+{
+    for (int i = 0; tab[i] != NULL; i++)
+        destroy_txt_btn(tab[i]);
+    free(tab);
+}
+
 void destroy_btn_tabs(game_t *game)
 {
     destroy_btn_tab(game->menu->btn);
     destroy_btn_tab(game->settings->btn);
+}
+
+void destroy_txt_btn_tabs(game_t *game)
+{
+    destroy_txt_btn_tab(game->settings->text_btn);
 }
 
 void destroy_structures(game_t *game)
@@ -138,5 +157,6 @@ void destroyAll(game_t *game)
     destroy_texts(game->display);
     destroy_sounds(game->sound);
     destroy_btn_tabs(game);
+    destroy_txt_btn_tabs(game);
     destroy_structures(game);
 }

@@ -36,18 +36,18 @@ void goToQuit(game_t *game, button_t *btn)
     sfSound_play(game->sound->click);
 }
 
-void turnOnOrOffVolume(game_t *game, button_t *btn)
+void muteVolume(game_t *game, button_t *btn)
 {
     if (game->sound->isMute)
         sfSound_setVolume(game->sound->game, 100);
     else
         sfSound_setVolume(game->sound->game, 0);
     game->sound->isMute = !game->sound->isMute;
-    if (game->sound->isMute == true)
-    {
-        printf("this is true\n");
-    }
-    else
-        printf("false it is\n");
+    btn->pressed = 0;
+}
+
+void changeSettingsTemplate(game_t *game, text_button_t *btn)
+{
+    game->settings->template = btn->template;
     btn->pressed = 0;
 }

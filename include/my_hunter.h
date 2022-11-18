@@ -43,7 +43,8 @@ void goToGame(game_t *game, button_t *btn);
 void goToSettings(game_t *game, button_t *btn);
 void goToMenu(game_t *game, button_t *btn);
 void goToQuit(game_t *game, button_t *btn);
-void turnOnOrOffVolume(game_t *game, button_t *btn);
+void muteVolume(game_t *game, button_t *btn);
+void changeSettingsTemplate(game_t *game, text_button_t *btn);
 
 void darkenButton(button_t **btn, sfFloatRect mouse);
 void enlargeButton(button_t **btn, sfFloatRect mouse);

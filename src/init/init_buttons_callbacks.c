@@ -16,12 +16,20 @@ static void init_menu_callbacks(button_t **btn)
 
 static void initSettingsCallbacks(button_t **btn)
 {
-    btn[0]->callback = &goToMenu;
-    btn[1]->callback = &goToMenu;
+    btn[0]->callback = &muteVolume;
+    btn[1]->callback = &muteVolume;
+}
+
+static void initSettingsTemplateCallbacks(text_button_t **txt_btn)
+{
+    txt_btn[0]->callback = &changeSettingsTemplate;
+    txt_btn[1]->callback = &changeSettingsTemplate;
+    txt_btn[2]->callback = &changeSettingsTemplate;
 }
 
 void initButtonsCallbacks(game_t *game)
 {
     init_menu_callbacks(game->menu->btn);
     initSettingsCallbacks(game->settings->btn);
+    initSettingsTemplateCallbacks(game->settings->text_btn);
 }
