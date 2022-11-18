@@ -7,7 +7,7 @@
 
 #include "../../include/my_hunter.h"
 
-static button_t *init_button(char *texture_path, sfVector2f pos)
+button_t *initButton(char *texture_path, sfVector2f pos)
 {
     sfVector2u size = (sfVector2u){0, 0};
     button_t *btn = NULL;
@@ -28,27 +28,16 @@ static button_t *init_button(char *texture_path, sfVector2f pos)
 static void initMenuButtons(menu_t *menu)
 {
     menu->btn = malloc(sizeof(button_t *) * 4);
-    menu->btn[0] = init_button("res/img/buttons/play.png", SF2F{100, 780});
-    menu->btn[1] = init_button("res/img/buttons/settings.png", SF2F{880, 780});
-    menu->btn[2] = init_button("res/img/buttons/no.png", SF2F{1660, 780});
+    menu->btn[0] = initButton("res/img/buttons/play.png", SF2F{100, 780});
+    menu->btn[1] = initButton("res/img/buttons/settings.png", SF2F{880, 780});
+    menu->btn[2] = initButton("res/img/buttons/no.png", SF2F{1660, 780});
     menu->btn[3] = NULL;
     resizeButton(menu->btn[0], SF2F{10, 10});
     resizeButton(menu->btn[1], SF2F{10, 10});
     resizeButton(menu->btn[2], SF2F{10, 10});
 }
 
-static void initSettingsButtons(settings_t *settings)
-{
-    settings->btn = malloc(sizeof(button_t *) * 3);
-    settings->btn[0] = init_button("res/img/buttons/sound_off.png", SF2F{1000, 200});
-    settings->btn[1] = init_button("res/img/buttons/sound_on.png", SF2F{1300, 200});
-    settings->btn[2] = NULL;
-    resizeButton(settings->btn[0], SF2F{10, 10});
-    resizeButton(settings->btn[1], SF2F{10, 10});
-}
-
 void initScenesButtons(game_t *game)
 {
     initMenuButtons(game->menu);
-    initSettingsButtons(game->settings);
 }

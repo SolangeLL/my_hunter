@@ -2,12 +2,8 @@
 
 static void manageButtons(game_t *game)
 {
-    button_t **btn = game->settings->btn;
     text_button_t **txt_btn = game->settings->text_btn;
 
-    for (int i = 0; game->settings->btn[i] != NULL; i++)
-        if (CLICK_ON_BUTTON)
-            game->settings->btn[i]->callback(game, game->settings->btn[i]);
     for (int i = 0; game->settings->text_btn[i] != NULL; i++)
         if (CLICK_ON_TXT_BUTTON)
             txt_btn[i]->callback(game, txt_btn[i]);

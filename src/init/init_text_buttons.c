@@ -3,7 +3,7 @@
 void initTextButton(text_button_t *btn, char *str, sfVector2f pos, sfColor color)
 {
     btn->text = sfText_create();
-    btn->font = sfFont_createFromFile("res/txt/Minercraftory.ttf");
+    btn->font = sfFont_createFromFile("res/fonts/Minercraftory.ttf");
     btn->pos = pos;
     btn->color = color;
     btn->pressed = 0;

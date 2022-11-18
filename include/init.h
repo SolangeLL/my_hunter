@@ -15,5 +15,8 @@ void initSounds(sound_t *sound);
 void initButtonsCallbacks(game_t *game);
 void initScenesButtons(game_t *game);
 void initScenesTextButtons(game_t *game);
+void initTemplates(game_t *game);
+
+button_t *initButton(char *texture_path, sfVector2f pos);
 
 #endif /* !INIT_H_ */

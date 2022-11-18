@@ -38,7 +38,7 @@ static void initTexts(display_t *display)
     display->sign->text_pos.x = 100;
     display->sign->text_pos.y = 30;
     display->sign->font =
-        sfFont_createFromFile("res/txt/cream-DEMO.ttf");
+        sfFont_createFromFile("res/fonts/cream-DEMO.ttf");
     display->sign->count = sfText_create();
     display->sign->char_count = "0";
     sfText_setFont(display->sign->count, display->sign->font);
@@ -67,6 +67,7 @@ static void initValues(game_t *game)
     game->enemies->slimes = NULL;
     game->enemies->idSkeleton = 0;
     game->enemies->idSlime = 0;
+    game->settings->template = GENERAL;
 }
 
 void initAll(game_t *game)
@@ -80,6 +81,7 @@ void initAll(game_t *game)
     initScenesButtons(game);
     initScenesTextButtons(game);
     initButtonsCallbacks(game);
+    initTemplates(game);
     loadBestScore(game->display->sign);
     game->enemies->skeletons = addSkeleton(game->enemies->skeletons, 0);
 }

@@ -184,6 +184,9 @@ typedef struct menu_s
 
 typedef struct template_s
 {
+    sfText **texts;
+    button_t **btn;
+    text_button_t **text_btn;
 } template_t;
 
 typedef struct settings_s
@@ -199,8 +202,8 @@ typedef struct settings_s
     sfTexture *content_texture;
     sfVector2f content_pos;
     sfVector2f content_scale;
-    button_t **btn;
     text_button_t **text_btn;
+    template_t **templates;
 } settings_t;
 
 typedef struct game_s

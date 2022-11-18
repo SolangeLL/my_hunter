@@ -90,7 +90,6 @@ void destroy_txt_btn_tab(text_button_t **tab)
 void destroy_btn_tabs(game_t *game)
 {
     destroy_btn_tab(game->menu->btn);
-    destroy_btn_tab(game->settings->btn);
 }
 
 void destroy_txt_btn_tabs(game_t *game)
