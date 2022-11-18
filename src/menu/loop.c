@@ -9,6 +9,8 @@
 
 void menuLoop(game_t *game)
 {
+    if (sfSound_getStatus(game->sound->menu) != sfPlaying)
+        sfSound_play(game->sound->menu);
     while (game->scene == MENU)
     {
         getMouseHitbox(game);

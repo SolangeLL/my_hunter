@@ -67,7 +67,7 @@ static void initValues(game_t *game)
     game->enemies->slimes = NULL;
     game->enemies->idSkeleton = 0;
     game->enemies->idSlime = 0;
-    game->settings->template = GENERAL;
+    game->settings->templateIndex = GENERAL;
 }
 
 void initAll(game_t *game)

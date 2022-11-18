@@ -16,6 +16,7 @@ button_t *initButton(char *texture_path, sfVector2f pos)
     btn->sprite = sfSprite_create();
     btn->texture = CREATE_TEXTURE(texture_path, NULL);
     size = sfTexture_getSize(btn->texture);
+    btn->scale = SF2F {1, 1};
     btn->pos = pos;
     btn->color = sfSprite_getColor(btn->sprite);
     sfSprite_setTexture(btn->sprite, btn->texture, 0);

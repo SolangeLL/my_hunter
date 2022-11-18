@@ -44,10 +44,11 @@ void muteVolume(game_t *game, button_t *btn)
         sfSound_setVolume(game->sound->game, 0);
     game->sound->isMute = !game->sound->isMute;
     btn->pressed = 0;
+    sfSprite_setColor(btn->sprite, sfWhite);
 }
 
 void changeSettingsTemplate(game_t *game, text_button_t *btn)
 {
-    game->settings->template = btn->template;
+    game->settings->templateIndex = btn->template;
     btn->pressed = 0;
 }

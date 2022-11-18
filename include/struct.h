@@ -32,6 +32,7 @@ typedef struct button_s
     sfSprite *sprite;
     sfTexture *texture;
     sfFloatRect btn_rect;
+    sfVector2f scale;
     sfVector2f pos;
     sfColor color;
     void (*callback)(struct game_s *game, struct button_s *btn);
@@ -166,6 +167,7 @@ typedef struct sound_s
     sfSoundBuffer *miss_buf;
     sfSoundBuffer *highScoreBuf;
     sfSoundBuffer *levelUpBuf;
+    sfSoundBuffer *menuBuf;
     sfSound *slime_death;
     sfSound *skel_death;
     sfSound *game;
@@ -173,6 +175,7 @@ typedef struct sound_s
     sfSound *miss;
     sfSound *highScore;
     sfSound *levelUp;
+    sfSound *menu;
 } sound_t;
 
 typedef struct menu_s
@@ -191,7 +194,7 @@ typedef struct template_s
 
 typedef struct settings_s
 {
-    int template;
+    int templateIndex;
     sfSprite *back_sp;
     sfTexture *back_texture;
     sfSprite *titles_sp;

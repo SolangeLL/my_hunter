@@ -9,6 +9,7 @@
 
 static void prepareGameScene(game_t *game)
 {
+    sfSound_stop(game->sound->menu);
     sfSound_play(game->sound->game);
     game->animation->clock = sfClock_create();
 }
