@@ -40,9 +40,8 @@ static void initTexts(display_t *display)
     display->sign->font =
         sfFont_createFromFile("res/fonts/cream-DEMO.ttf");
     display->sign->count = sfText_create();
-    display->sign->char_count = "0";
     sfText_setFont(display->sign->count, display->sign->font);
-    sfText_setString(display->sign->count, display->sign->char_count);
+    sfText_setString(display->sign->count, "0");
     sfText_setCharacterSize(display->sign->count, 45);
     sfText_setPosition(display->sign->count, display->sign->text_pos);
     sfText_setColor(display->sign->count, (sfColor){200, 200, 200, 255});
@@ -57,6 +56,8 @@ static void initValues(game_t *game)
     game->gameplay->life = 3;
     game->gameplay->count = 0;
     game->sound->master_volume = 100;
+    game->sound->music_volume = 100;
+    game->sound->effects_volume = 100;
     game->sound->isMute = false;
     game->enemies->spawnEnemies = 5;
     game->enemies->nbEnemies = 1;

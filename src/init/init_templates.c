@@ -47,10 +47,11 @@ static template_t *initAudioTemplate()
     resizeButton(template->btn[5], SF2F{4, 4});
     template->btn[0]->modifSound = &updateMasterVolume;
     template->btn[1]->modifSound = &updateMasterVolume;
-    template->btn[2]->callback = &muteVolume;
-    template->btn[3]->callback = &muteVolume;
-    template->btn[4]->callback = &muteVolume;
-    template->btn[5]->callback = &muteVolume;
+    template->btn[2]->modifSound = &updateMusicVolume;
+    template->btn[3]->modifSound = &updateMusicVolume;
+    template->btn[4]->modifSound = &updateEffectsVolume;
+    template->btn[5]->modifSound = &updateEffectsVolume;
+
     template->btn[0]->modifValue = -10;
     template->btn[1]->modifValue = 10;
     template->btn[2]->modifValue = -10;
@@ -58,12 +59,19 @@ static template_t *initAudioTemplate()
     template->btn[4]->modifValue = -10;
     template->btn[5]->modifValue = 10;
 
+    template->btn[0]->linkedText = 1;
+    template->btn[1]->linkedText = 1;
+    template->btn[2]->linkedText = 3;
+    template->btn[3]->linkedText = 3;
+    template->btn[4]->linkedText = 5;
+    template->btn[5]->linkedText = 5;
+
     template->texts = malloc(sizeof(sfText *) * 7);
     template->texts[0] = createText("Master", SF2F{1256, 200}, (sfColor) {12, 133, 9, 255}, font, 70);
     template->texts[1] = createText("100", SF2F{1256, 290}, sfWhite, font, 60);
     template->texts[2] = createText("Music", SF2F{1256, 450}, (sfColor) {12, 133, 9, 255}, font, 70);
     template->texts[3] = createText("100", SF2F{1256, 540}, sfWhite, font, 60);
-    template->texts[4] = createText("Sound", SF2F{1256, 700}, (sfColor) {12, 133, 9, 255}, font, 70);
+    template->texts[4] = createText("Effects", SF2F{1256, 700}, (sfColor) {12, 133, 9, 255}, font, 70);
     template->texts[5] = createText("100", SF2F{1256, 790}, sfWhite, font, 60);
     template->texts[6] = NULL;
 

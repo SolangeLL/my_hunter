@@ -19,9 +19,10 @@
     #define CLICK_ON_SKELETON sfFloatRect_intersects(&tmp->rect_scaled, \
     &game->gameplay->mouse_rect, NULL) == sfTrue && tmp->shoot == 0
     #define SF2F (sfVector2f)
-    #define CLICK_ON_TXT_BUTTON sfFloatRect_intersects(&txt_btn[i]->rect, &game->gameplay->mouse_rect, NULL)
+    #define CLICK_ON_TXT_BUTTON sfFloatRect_intersects(&txt_btn[i]->hitbox, &game->gameplay->mouse_rect, NULL)
     #define CLICK_ON_BUTTON sfFloatRect_intersects(&btn[i]->btn_rect, &game->gameplay->mouse_rect, NULL)
     #define MOUSE_OVER_BUTTON sfFloatRect_intersects(&btn[i]->btn_rect, &mouse, NULL)
+    #define MOUSE_OVER_TEXT sfFloatRect_intersects(&text[i]->hitbox, &mouse, NULL)
     #define CLICK_IS_DETECTED game->gameplay->event.type == sfEvtMouseButtonReleased
     #define CLICK_IS_PRESSED game->gameplay->event.type == sfEvtMouseButtonPressed
 

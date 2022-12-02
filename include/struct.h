@@ -30,6 +30,7 @@ typedef struct button_s
 {
     int pressed;
     int modifValue;
+    int linkedText;
     sfSprite *sprite;
     sfTexture *texture;
     sfFloatRect btn_rect;
@@ -46,7 +47,7 @@ typedef struct text_button_s
     int template;
     sfText *text;
     sfFont *font;
-    sfFloatRect rect;
+    sfFloatRect hitbox;
     sfVector2f pos;
     sfColor color;
     void (*callback)(struct game_s *game, struct text_button_s *btn);
@@ -107,7 +108,6 @@ typedef struct enemies_s
 
 typedef struct sign_s
 {
-    char *char_count;
     char *bestScore;
     sfSprite *sp;
     sfTexture *texture;
@@ -163,6 +163,8 @@ typedef struct sound_s
 {
     bool isMute;
     int master_volume;
+    int music_volume;
+    int effects_volume;
     sfSoundBuffer *skel_death_buf;
     sfSoundBuffer *slime_buf;
     sfSoundBuffer *game_buf;

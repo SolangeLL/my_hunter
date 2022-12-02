@@ -29,7 +29,6 @@ SRC		=	src/main.c \
 
 SRC_GAME	=	$(GAME)/display/display.c \
 				$(GAME)/display/event.c \
-				$(GAME)/display/tool_char.c \
 				$(GAME)/enemies/animations.c \
 				$(GAME)/enemies/move_enemies.c \
 				$(GAME)/enemies/miss_enemies.c \
@@ -50,6 +49,8 @@ SRC_UTILS	=	$(UTILS)/deleteNode.c \
 				$(UTILS)/seconds.c \
 				$(UTILS)/tools_buttons.c \
 				$(UTILS)/tools_text.c \
+				$(UTILS)/tools_sound.c \
+				$(UTILS)/tool_char.c \
 
 
 OBJ		=	$(SRC:.c=.o) \

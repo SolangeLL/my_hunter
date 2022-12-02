@@ -2,8 +2,8 @@
 
 void resizeText(text_button_t *text, sfVector2f scale)
 {
-    text->rect.height *= scale.y;
-    text->rect.width *= scale.x;
+    text->hitbox.height *= scale.y;
+    text->hitbox.width *= scale.x;
     text->pos = SF2F{text->pos.x * scale.x, text->pos.y * scale.y};
     sfText_setScale(text->text, (sfVector2f){scale.x, scale.y});
 }
@@ -33,7 +33,7 @@ static void setLargeText(text_button_t *text)
                                         text->pos.y - scale.y * 0.8});
 }
 
-static void setNormalText(text_button_t *text)
+void setNormalText(text_button_t *text)
 {
     sfText_setColor(text->text, sfWhite);
     sfText_setScale(text->text, SF2F{1, 1});
@@ -52,14 +52,13 @@ void darkenText(text_button_t **text, sfFloatRect mouse)
 void enlargeText(text_button_t **text, sfFloatRect mouse)
 {
     for (int i = 0; text[i] != NULL; i++)
-        if (MOUSE_OVER_TEXT &&
-            text[i]->pressed == 0)
+        if (MOUSE_OVER_TEXT && text[i]->pressed == 0)
             setLargeText(text[i]);
 }
 
 void resetText(text_button_t **text, sfFloatRect mouse)
 {
     for (int i = 0; text[i] != NULL; i++)
-        if (text[i]->pressed == 1)
+        if (!MOUSE_OVER_TEXT && text[i]->pressed == 0)
             setNormalText(text[i]);
 }

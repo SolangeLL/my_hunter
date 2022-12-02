@@ -38,14 +38,19 @@ void drawSettings(game_t *game);
 void manageMenuEvents(game_t *game);
 void manageSettingsEvents(game_t *game);
 void refreshCount(game_t *game);
+char *createString(int nb);
 
 void goToGame(game_t *game, button_t *btn);
 void goToSettings(game_t *game, button_t *btn);
 void goToMenu(game_t *game, button_t *btn);
 void goToQuit(game_t *game, button_t *btn);
 void updateMasterVolume(game_t *game, button_t *button, int val);
+void updateMusicVolume(game_t *game, button_t *button, int val);
+void updateEffectsVolume(game_t *game, button_t *button, int val);
 void muteVolume(game_t *game, button_t *btn);
 void changeSettingsTemplate(game_t *game, text_button_t *btn);
+
+void modifVolume(sfSound *sound, int volume);
 
 void darkenButton(button_t **btn, sfFloatRect mouse);
 void enlargeButton(button_t **btn, sfFloatRect mouse);
@@ -56,6 +61,7 @@ void darkenText(text_button_t **btn, sfFloatRect mouse);
 void enlargeText(text_button_t **btn, sfFloatRect mouse);
 void resetText(text_button_t **btn, sfFloatRect mouse);
 void resizeText(text_button_t *button, sfVector2f scale);
+void setNormalText(text_button_t *text);
 
 void loadBestScore(sign_t *sign);
 void saveBestScore(game_t *game);

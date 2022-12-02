@@ -13,7 +13,7 @@ void initTextButton(text_button_t *btn, char *str, sfVector2f pos, sfColor color
     sfText_setPosition(btn->text, btn->pos);
     sfText_setColor(btn->text, btn->color);
     sfText_setOrigin(btn->text, (sfVector2f){sfText_getGlobalBounds(btn->text).width / 2, sfText_getGlobalBounds(btn->text).height / 2});
-    btn->rect = sfText_getGlobalBounds(btn->text);
+    btn->hitbox = sfText_getGlobalBounds(btn->text);
 }
 
 void initSettingsTextButtons(settings_t *settings)

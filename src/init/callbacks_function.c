@@ -38,21 +38,59 @@ void goToQuit(game_t *game, button_t *btn)
 
 void updateMasterVolume(game_t *game, button_t *button, int val)
 {
+    char *newValue = NULL;
     sfSound_play(game->sound->click2);
-    game->sound->master_volume += val;
-    if (game->sound->master_volume > 100)
-        game->sound->master_volume = 100;
-    if (game->sound->master_volume < 0)
-        game->sound->master_volume = 0;
-    sfSound_setVolume(game->sound->click, game->sound->master_volume);
-    sfSound_setVolume(game->sound->click2, game->sound->master_volume);
-    sfSound_setVolume(game->sound->slime_death, game->sound->master_volume);
-    sfSound_setVolume(game->sound->skel_death, game->sound->master_volume);
-    sfSound_setVolume(game->sound->game, game->sound->master_volume);
-    sfSound_setVolume(game->sound->miss, game->sound->master_volume);
-    sfSound_setVolume(game->sound->highScore, game->sound->master_volume);
-    sfSound_setVolume(game->sound->levelUp, game->sound->master_volume);
-    sfSound_setVolume(game->sound->menu, game->sound->master_volume);
+    if (game->sound->master_volume + val <= 100 && game->sound->master_volume + val >= 0) {
+        game->sound->master_volume += val;
+        newValue = createString(game->sound->master_volume);
+        sfText_setString(game->settings->templates[AUDIO]->texts[button->linkedText], newValue);
+        modifVolume(game->sound->click, val);
+        modifVolume(game->sound->click2, val);
+        modifVolume(game->sound->slime_death, val);
+        modifVolume(game->sound->skel_death, val);
+        modifVolume(game->sound->game, val);
+        modifVolume(game->sound->miss, val);
+        modifVolume(game->sound->highScore, val);
+        modifVolume(game->sound->levelUp, val);
+        modifVolume(game->sound->menu, val);
+        button->pressed = 0;
+    }
+}
+
+void updateMusicVolume(game_t *game, button_t *button, int val)
+{
+    char *newValue = NULL;
+    sfSound_play(game->sound->click2);
+    game->sound->music_volume += val;
+    if (game->sound->music_volume > 100)
+        game->sound->music_volume = 100;
+    if (game->sound->music_volume < 0)
+        game->sound->music_volume = 0;
+    newValue = createString(game->sound->music_volume);
+    sfText_setString(game->settings->templates[AUDIO]->texts[button->linkedText], newValue);
+    modifVolume(game->sound->game, val);
+    modifVolume(game->sound->menu, val);
+    button->pressed = 0;
+}
+
+void updateEffectsVolume(game_t *game, button_t *button, int val)
+{
+    char *newValue = NULL;
+    sfSound_play(game->sound->click2);
+    game->sound->effects_volume += val;
+    if (game->sound->effects_volume > 100)
+        game->sound->effects_volume = 100;
+    if (game->sound->effects_volume < 0)
+        game->sound->effects_volume = 0;
+    newValue = createString(game->sound->effects_volume);
+    sfText_setString(game->settings->templates[AUDIO]->texts[button->linkedText], newValue);
+    modifVolume(game->sound->click, val);
+    modifVolume(game->sound->click2, val);
+    modifVolume(game->sound->slime_death, val);
+    modifVolume(game->sound->skel_death, val);
+    modifVolume(game->sound->miss, val);
+    modifVolume(game->sound->highScore, val);
+    modifVolume(game->sound->levelUp, val);
     button->pressed = 0;
 }
 
@@ -71,5 +109,6 @@ void changeSettingsTemplate(game_t *game, text_button_t *btn)
 {
     sfSound_play(game->sound->click);
     game->settings->templateIndex = btn->template;
+    setNormalText(btn);
     btn->pressed = 0;
 }
