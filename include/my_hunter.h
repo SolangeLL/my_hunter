@@ -40,6 +40,7 @@ void manageSettingsEvents(game_t *game);
 void refreshCount(game_t *game);
 char *createString(int nb);
 
+//* Callbacks
 void goToGame(game_t *game, button_t *btn);
 void goToSettings(game_t *game, button_t *btn);
 void goToMenu(game_t *game, button_t *btn);
@@ -49,8 +50,9 @@ void updateMusicVolume(game_t *game, button_t *button, int val);
 void updateEffectsVolume(game_t *game, button_t *button, int val);
 void muteVolume(game_t *game, button_t *btn);
 void changeSettingsTemplate(game_t *game, text_button_t *btn);
-
+void changeWindow(game_t *game, text_button_t *btn);
 void modifVolume(sfSound *sound, int volume);
+void setFullscreen(game_t *game, text_button_t *btn);
 
 void darkenButton(button_t **btn, sfFloatRect mouse);
 void enlargeButton(button_t **btn, sfFloatRect mouse);

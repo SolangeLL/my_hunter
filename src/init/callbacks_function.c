@@ -40,7 +40,8 @@ void updateMasterVolume(game_t *game, button_t *button, int val)
 {
     char *newValue = NULL;
     sfSound_play(game->sound->click2);
-    if (game->sound->master_volume + val <= 100 && game->sound->master_volume + val >= 0) {
+    if (game->sound->master_volume + val <= 100 && game->sound->master_volume + val >= 0)
+    {
         game->sound->master_volume += val;
         newValue = createString(game->sound->master_volume);
         sfText_setString(game->settings->templates[AUDIO]->texts[button->linkedText], newValue);
@@ -94,6 +95,7 @@ void updateEffectsVolume(game_t *game, button_t *button, int val)
     button->pressed = 0;
 }
 
+//* To keep or not ?
 void muteVolume(game_t *game, button_t *btn)
 {
     if (game->sound->isMute)
@@ -104,11 +106,35 @@ void muteVolume(game_t *game, button_t *btn)
     btn->pressed = 0;
     sfSprite_setColor(btn->sprite, sfWhite);
 }
+//* To keep or not ?
 
 void changeSettingsTemplate(game_t *game, text_button_t *btn)
 {
     sfSound_play(game->sound->click);
     game->settings->templateIndex = btn->template;
+    setNormalText(btn);
+    btn->pressed = 0;
+}
+
+void changeWindow(game_t *game, text_button_t *btn)
+{
+    sfRenderWindow_destroy(game->win->win);
+    game->win->win = sfRenderWindow_create(game->win->mode, "MY HUNTER", sfDefaultStyle, NULL);
+    sfRenderWindow_setSize(game->win->win, (sfVector2u){btn->resolution.width, btn->resolution.height});
+    setNormalText(btn);
+    btn->pressed = 0;
+    game->win->isFullscreen = 0;
+}
+
+void setFullscreen(game_t *game, text_button_t *btn)
+{
+    sfRenderWindow_destroy(game->win->win);
+    if (game->win->isFullscreen) {
+        game->win->win = sfRenderWindow_create(game->win->mode, "MY HUNTER", sfDefaultStyle, NULL);
+        sfRenderWindow_setSize(game->win->win, (sfVector2u){game->win->mode.width, game->win->mode.height});
+    } else
+        game->win->win = sfRenderWindow_create(game->win->mode, "MY HUNTER", sfFullscreen, NULL);
+    game->win->isFullscreen = !game->win->isFullscreen;
     setNormalText(btn);
     btn->pressed = 0;
 }

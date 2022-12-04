@@ -27,6 +27,7 @@ static void initStructures(game_t *game)
 
 static void initWindow(window_t *window)
 {
+    window->isFullscreen = 0;
     window->dimension = (sfVector2f){1920, 1080};
     window->mode = (sfVideoMode){1920, 1080, 32};
     window->win = sfRenderWindow_create(WINDOW_INFO);

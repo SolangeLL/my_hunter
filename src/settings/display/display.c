@@ -4,8 +4,8 @@ void drawTemplate(template_t *template, sfRenderWindow *window)
 {
     for (int i = 0; template->btn[i] != NULL; i++)
         sfRenderWindow_drawSprite(window, template->btn[i]->sprite, NULL);
-    // for (int i = 0; template->text_btn[i] != NULL; i++)
-    //     sfRenderWindow_drawText(window, template->text_btn[i]->text, NULL);
+    for (int i = 0; template->text_btn[i] != NULL; i++)
+        sfRenderWindow_drawText(window, template->text_btn[i]->text, NULL);
     if (template->texts != NULL)
         for (int i = 0; template->texts[i] != NULL; i++)
             sfRenderWindow_drawText(window, template->texts[i], NULL);

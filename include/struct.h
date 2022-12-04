@@ -26,6 +26,12 @@ enum TEMPLATES
     GRAPHICS
 };
 
+typedef struct resolution_s {
+    int width;
+    int height;
+    sfUint32 style;
+} resolution_t;
+
 typedef struct button_s
 {
     int pressed;
@@ -50,6 +56,7 @@ typedef struct text_button_s
     sfFloatRect hitbox;
     sfVector2f pos;
     sfColor color;
+    resolution_t resolution;
     void (*callback)(struct game_s *game, struct text_button_s *btn);
 } text_button_t;
 
@@ -147,6 +154,7 @@ typedef struct window_s
     sfVector2f dimension;
     sfRenderWindow *win;
     sfVideoMode mode;
+    int isFullscreen;
 } window_t;
 
 typedef struct gameplay_s
