@@ -118,8 +118,11 @@ void changeSettingsTemplate(game_t *game, text_button_t *btn)
 
 void changeWindow(game_t *game, text_button_t *btn)
 {
+    // Change the resolution of the window
+    sfSound_play(game->sound->click);
     sfRenderWindow_destroy(game->win->win);
-    game->win->win = sfRenderWindow_create(game->win->mode, "MY HUNTER", sfDefaultStyle, NULL);
+    game->win->win = sfRenderWindow_create(game->win->mode, "MY HUNTER", sfClose, NULL);
+    printf("Resolution : %d x %d\n", btn->resolution.width, btn->resolution.height);
     sfRenderWindow_setSize(game->win->win, (sfVector2u){btn->resolution.width, btn->resolution.height});
     setNormalText(btn);
     btn->pressed = 0;

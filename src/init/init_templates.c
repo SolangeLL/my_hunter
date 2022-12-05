@@ -99,9 +99,10 @@ static template_t *initGraphicsTemplate(sfFont *font)
     template->text_btn[1]->callback = &changeWindow;
     template->text_btn[2]->callback = &setFullscreen;
 
-    template->texts = malloc(sizeof(sfText *) * 2);
+    template->texts = malloc(sizeof(sfText *) * 3);
     template->texts[0] = createText("Resolution", SF2F{1256, 200}, (sfColor){12, 133, 9, 255}, font, 70);
-    template->texts[1] = NULL;
+    template->texts[1] = createText("Framerate", SF2F{1256, 400}, (sfColor){12, 133, 9, 255}, font, 70);
+    template->texts[2] = NULL;
     return template;
 }
 
