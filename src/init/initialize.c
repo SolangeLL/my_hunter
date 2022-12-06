@@ -28,18 +28,22 @@ static void initStructures(game_t *game)
 static void initWindow(window_t *window)
 {
     window->isFullscreen = 0;
+    window->framerate = 60;
     window->dimension = (sfVector2f){1920, 1080};
     window->mode = (sfVideoMode){1920, 1080, 32};
     window->win = sfRenderWindow_create(WINDOW_INFO);
-    sfRenderWindow_setFramerateLimit(window->win, 60);
+    sfRenderWindow_setFramerateLimit(window->win, window->framerate);
 }
 
 static void initTexts(display_t *display)
 {
+    display->fonts[PIXELED] = sfFont_createFromFile("res/fonts/Pixeled.ttf");
+    display->fonts[GOLDEN_AGE] = sfFont_createFromFile("res/fonts/Golden Age.ttf");
+    display->fonts[CREAM] = sfFont_createFromFile("res/fonts/cream-DEMO.ttf");
+    display->fonts[END] = NULL;
     display->sign->text_pos.x = 100;
     display->sign->text_pos.y = 30;
-    display->sign->font =
-        sfFont_createFromFile("res/fonts/cream-DEMO.ttf");
+    display->sign->font = display->fonts[CREAM];
     display->sign->count = sfText_create();
     sfText_setFont(display->sign->count, display->sign->font);
     sfText_setString(display->sign->count, "0");

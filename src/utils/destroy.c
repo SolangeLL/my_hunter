@@ -58,7 +58,9 @@ void destroy_sounds(sound_t *sound)
 void destroy_texts(display_t *display)
 {
     free(display->sign->bestScore);
-    sfFont_destroy(display->sign->font);
+    sfFont_destroy(display->fonts[PIXELED]);
+    sfFont_destroy(display->fonts[GOLDEN_AGE]);
+    sfFont_destroy(display->fonts[CREAM]);
     sfText_destroy(display->sign->count);
     sfText_destroy(display->sign->bestScoreTxt);
 }
@@ -72,7 +74,6 @@ void destroy_btn(button_t *btn)
 
 void destroy_txt_btn(text_button_t *btn)
 {
-    sfFont_destroy(btn->font);
     sfText_destroy(btn->text);
     free(btn);
 }

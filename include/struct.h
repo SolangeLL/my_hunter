@@ -26,7 +26,16 @@ enum TEMPLATES
     GRAPHICS
 };
 
-typedef struct resolution_s {
+enum FONTS
+{
+    PIXELED,
+    GOLDEN_AGE,
+    CREAM,
+    END,
+};
+
+typedef struct resolution_s
+{
     int width;
     int height;
     sfUint32 style;
@@ -51,6 +60,7 @@ typedef struct text_button_s
 {
     int pressed;
     int template;
+    int framerate;
     sfText *text;
     sfFont *font;
     sfFloatRect hitbox;
@@ -139,6 +149,7 @@ typedef struct display_s
     heart_t **heart;
     sign_t *sign;
     background_t *background;
+    sfFont *fonts[4];
 } display_t;
 
 typedef struct animation_s
@@ -155,6 +166,7 @@ typedef struct window_s
     sfRenderWindow *win;
     sfVideoMode mode;
     int isFullscreen;
+    int framerate;
 } window_t;
 
 typedef struct gameplay_s

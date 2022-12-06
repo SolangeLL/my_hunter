@@ -53,6 +53,7 @@ void changeSettingsTemplate(game_t *game, text_button_t *btn);
 void changeWindow(game_t *game, text_button_t *btn);
 void modifVolume(sfSound *sound, int volume);
 void setFullscreen(game_t *game, text_button_t *btn);
+void setFramerate(game_t *game, text_button_t *btn);
 
 void darkenButton(button_t **btn, sfFloatRect mouse);
 void enlargeButton(button_t **btn, sfFloatRect mouse);
