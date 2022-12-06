@@ -11,19 +11,24 @@ MENU	=	src/menu
 
 UTILS	=	src/utils
 
+SETTINGS = src/settings
+
+INIT = src/init
+
 SRC		=	src/main.c \
 			src/my_hunter.c \
-			src/init/initialize.c \
-			src/init/init_sprites.c \
-			src/init/init_enemies.c \
-			src/init/init_sounds.c \
-			src/init/init_buttons.c \
-			src/init/callbacks_function.c \
-			src/init/init_buttons_callbacks.c
+			$(INIT)/initialize.c \
+			$(INIT)/init_sprites.c \
+			$(INIT)/init_enemies.c \
+			$(INIT)/init_sounds.c \
+			$(INIT)/init_buttons.c \
+			$(INIT)/init_text_buttons.c \
+			$(INIT)/callbacks_function.c \
+			$(INIT)/init_buttons_callbacks.c \
+			$(INIT)/init_templates.c
 
 SRC_GAME	=	$(GAME)/display/display.c \
 				$(GAME)/display/event.c \
-				$(GAME)/display/tool_char.c \
 				$(GAME)/enemies/animations.c \
 				$(GAME)/enemies/move_enemies.c \
 				$(GAME)/enemies/miss_enemies.c \
@@ -33,21 +38,27 @@ SRC_MENU	=	$(MENU)/loop.c \
 				$(MENU)//display/event.c \
 				$(MENU)/display/display.c \
 
+SRC_SETTINGS =	$(SETTINGS)/loop.c \
+				$(SETTINGS)/display/display.c \
+				$(SETTINGS)/display/event.c \
+
 SRC_UTILS	=	$(UTILS)/deleteNode.c \
 				$(UTILS)/destroy.c \
+				$(UTILS)/destroy_assets.c \
 				$(UTILS)/mouse.c \
 				$(UTILS)/score.c \
 				$(UTILS)/seconds.c \
 				$(UTILS)/tools_buttons.c \
+				$(UTILS)/tools_text.c \
+				$(UTILS)/tools_sound.c \
+				$(UTILS)/tool_char.c \
 
 
-OBJ		=	$(SRC:.c=.o)
-
-OBJ_GAME	=	$(SRC_GAME:.c=.o)
-
-OBJ_MENU	=	$(SRC_MENU:.c=.o)
-
-OBJ_UTILS	=	$(SRC_UTILS:.c=.o)
+OBJ		=	$(SRC:.c=.o) \
+			$(SRC_GAME:.c=.o) \
+			$(SRC_MENU:.c=.o) \
+			$(SRC_SETTINGS:.c=.o) \
+			$(SRC_UTILS:.c=.o)
 
 NAME	=		my_hunter
 
@@ -60,8 +71,8 @@ all: libs $(NAME)
 libs:
 	make -C lib/my
 
-$(NAME): $(OBJ) $(OBJ_GAME) $(OBJ_MENU) $(OBJ_UTILS)
-	gcc $(OBJ) $(OBJ_GAME) $(OBJ_MENU) $(OBJ_UTILS) -o $(NAME) $(LFLAGS) $(CFLAGS)
+$(NAME): $(OBJ)
+	gcc $(OBJ) -o $(NAME) $(LFLAGS) $(CFLAGS)
 
 clean:
 	make clean -C lib/my

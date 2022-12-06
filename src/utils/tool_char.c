@@ -5,8 +5,7 @@
 ** Functions to create a char *
 */
 
-#include "../../../include/my_hunter.h"
-#include <string.h>
+#include "../../include/my_hunter.h"
 
 static int getNumberLength(int nb)
 {
@@ -17,11 +16,13 @@ static int getNumberLength(int nb)
     return (len + 1);
 }
 
-static char *createString(int nb, char *str)
+char *createString(int nb)
 {
     int unit = 0;
     int i = 0;
     int minus = 0;
+    int len = getNumberLength(nb);
+    char *str = malloc(sizeof(char) * (len + 1));
 
     while (nb > 9) {
         unit = nb % 10;
@@ -39,11 +40,8 @@ static char *createString(int nb, char *str)
 
 void refreshCount(game_t *game)
 {
-    char *counter = game->display->sign->char_count;
+    char *counter = createString(game->gameplay->count);
 
-    int len = getNumberLength(game->gameplay->count);
-    counter = malloc(sizeof(char) * (len + 1));
-    counter = createString(game->gameplay->count, counter);
     sfText_setString(game->display->sign->count, strdup(counter));
     //* Color text in green if the player improve his highscore
     if (game->gameplay->count > my_getnbr(game->display->sign->bestScore) \

@@ -11,16 +11,23 @@ static void manageButtons(button_t **btn, game_t *game)
 {
     for (int i = 0; btn[i] != NULL; i++)
         if (CLICK_ON_BUTTON)
-            btn[i]->change_scene(btn[i], game->sound->click, &game->scene);
+            btn[i]->callback(game, btn[i]);
 }
 
 void manageMenuEvents(game_t *game)
 {
-    while (IS_EVENT) {
+    while (IS_EVENT)
+    {
         if (game->gameplay->event.type == sfEvtClosed)
+        {
             sfRenderWindow_close(game->win->win);
-        if (ESCAPE_IS_PRESSED)
             game->scene = QUIT;
+        }
+        if (ESCAPE_IS_PRESSED)
+        {
+            sfRenderWindow_close(game->win->win);
+            game->scene = QUIT;
+        }
         if (CLICK_IS_PRESSED)
             darkenButton(game->menu->btn, game->gameplay->mouse_rect);
         if (CLICK_IS_DETECTED)

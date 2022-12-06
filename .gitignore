@@ -3,5 +3,5 @@
 my_hunter
 vgcore.*
 lib/my/libmy.a
-config/
+config/bestScore.txt
 build_csfml.sh

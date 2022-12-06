@@ -17,6 +17,7 @@ $(NAME):	$(OBJ)
 	ar rc $(NAME) $(OBJ)
 	mkdir -p ../../include
 	cp my.h ../../include
+
 clean:
 	rm -f $(wildcard *~)
 	rm -f $(wildcard *#)
