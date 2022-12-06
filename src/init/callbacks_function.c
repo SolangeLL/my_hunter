@@ -95,19 +95,6 @@ void updateEffectsVolume(game_t *game, button_t *button, int val)
     button->pressed = 0;
 }
 
-//* To keep or not ?
-void muteVolume(game_t *game, button_t *btn)
-{
-    if (game->sound->isMute)
-        sfSound_setVolume(game->sound->game, 100);
-    else
-        sfSound_setVolume(game->sound->game, 0);
-    game->sound->isMute = !game->sound->isMute;
-    btn->pressed = 0;
-    sfSprite_setColor(btn->sprite, sfWhite);
-}
-//* To keep or not ?
-
 void changeSettingsTemplate(game_t *game, text_button_t *btn)
 {
     sfSound_play(game->sound->click);

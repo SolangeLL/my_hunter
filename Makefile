@@ -44,6 +44,7 @@ SRC_SETTINGS =	$(SETTINGS)/loop.c \
 
 SRC_UTILS	=	$(UTILS)/deleteNode.c \
 				$(UTILS)/destroy.c \
+				$(UTILS)/destroy_assets.c \
 				$(UTILS)/mouse.c \
 				$(UTILS)/score.c \
 				$(UTILS)/seconds.c \

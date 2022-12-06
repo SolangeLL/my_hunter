@@ -14,13 +14,14 @@ static sfText *createText(char *str, sfVector2f pos, sfColor color, sfFont *font
     return text;
 }
 
-static template_t *initGeneralTemplate()
+static template_t *initGeneralTemplate(sfFont *font)
 {
     template_t *template = malloc(sizeof(template_t));
     template->btn = malloc(sizeof(button_t *) * 1);
     template->btn[0] = NULL;
-    template->texts = malloc(sizeof(sfText *) * 1);
-    template->texts[0] = NULL;
+    template->texts = malloc(sizeof(sfText *) * 2);
+    template->texts[0] = createText("Coming soon...", SF2F{1256, 490}, sfWhite, font, 100);
+    template->texts[1] = NULL;
     template->text_btn = malloc(sizeof(text_button_t *) * 1);
     template->text_btn[0] = NULL;
     return template;
@@ -115,7 +116,7 @@ static template_t *initGraphicsTemplate(sfFont *fonts[])
 void initTemplates(game_t *game)
 {
     game->settings->templates = malloc(sizeof(template_t *) * 4);
-    game->settings->templates[0] = initGeneralTemplate();
+    game->settings->templates[0] = initGeneralTemplate(game->display->fonts[GOLDEN_AGE]);
     game->settings->templates[1] = initAudioTemplate(game->display->fonts[GOLDEN_AGE]);
     game->settings->templates[2] = initGraphicsTemplate(game->display->fonts);
     game->settings->templates[3] = NULL;

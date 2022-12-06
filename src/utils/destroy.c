@@ -7,7 +7,7 @@
 
 #include "../../include/my_hunter.h"
 
-void destroy_sprites(game_t *game)
+static void destroy_sprites(game_t *game)
 {
     sfSprite_destroy(game->display->sign->sp);
     sfSprite_destroy(game->display->background->back_sp);
@@ -20,7 +20,7 @@ void destroy_sprites(game_t *game)
     sfSprite_destroy(game->settings->content_sp);
 }
 
-void destroy_textures(game_t *game)
+static void destroy_textures(game_t *game)
 {
     sfTexture_destroy(game->display->background->back_texture);
     sfTexture_destroy(game->display->sign->texture);
@@ -33,17 +33,8 @@ void destroy_textures(game_t *game)
     sfTexture_destroy(game->settings->content_texture);
 }
 
-void destroy_sounds(sound_t *sound)
+static void destroy_sound_buffers(sound_t *sound)
 {
-    sfSound_destroy(sound->game);
-    sfSound_destroy(sound->skel_death);
-    sfSound_destroy(sound->slime_death);
-    sfSound_destroy(sound->click);
-    sfSound_destroy(sound->click2);
-    sfSound_destroy(sound->miss);
-    sfSound_destroy(sound->highScore);
-    sfSound_destroy(sound->levelUp);
-    sfSound_destroy(sound->menu);
     sfSoundBuffer_destroy(sound->game_buf);
     sfSoundBuffer_destroy(sound->skel_death_buf);
     sfSoundBuffer_destroy(sound->slime_buf);
@@ -55,7 +46,20 @@ void destroy_sounds(sound_t *sound)
     sfSoundBuffer_destroy(sound->menuBuf);
 }
 
-void destroy_texts(display_t *display)
+static void destroy_sounds(sound_t *sound)
+{
+    sfSound_destroy(sound->game);
+    sfSound_destroy(sound->skel_death);
+    sfSound_destroy(sound->slime_death);
+    sfSound_destroy(sound->click);
+    sfSound_destroy(sound->click2);
+    sfSound_destroy(sound->miss);
+    sfSound_destroy(sound->highScore);
+    sfSound_destroy(sound->levelUp);
+    sfSound_destroy(sound->menu);
+}
+
+static void destroy_texts(display_t *display)
 {
     free(display->sign->bestScore);
     sfFont_destroy(display->fonts[PIXELED]);
@@ -65,44 +69,23 @@ void destroy_texts(display_t *display)
     sfText_destroy(display->sign->bestScoreTxt);
 }
 
-void destroy_btn(button_t *btn)
-{
-    sfSprite_destroy(btn->sprite);
-    sfTexture_destroy(btn->texture);
-    free(btn);
-}
-
-void destroy_txt_btn(text_button_t *btn)
-{
-    sfText_destroy(btn->text);
-    free(btn);
-}
-
-void destroy_btn_tab(button_t **button_tab)
-{
-    for (int i = 0; button_tab[i] != NULL; i++)
-        destroy_btn(button_tab[i]);
-    free(button_tab);
-}
-
-void destroy_txt_btn_tab(text_button_t **tab)
-{
-    for (int i = 0; tab[i] != NULL; i++)
-        destroy_txt_btn(tab[i]);
-    free(tab);
-}
-
-void destroy_btn_tabs(game_t *game)
+static void destroy_btn_tabs(game_t *game)
 {
     destroy_btn_tab(game->menu->btn);
+    destroy_btn_tab(game->settings->templates[0]->btn);
+    destroy_btn_tab(game->settings->templates[1]->btn);
+    destroy_btn_tab(game->settings->templates[2]->btn);
 }
 
-void destroy_txt_btn_tabs(game_t *game)
+static void destroy_txt_btn_tabs(game_t *game)
 {
     destroy_txt_btn_tab(game->settings->text_btn);
+    destroy_txt_btn_tab(game->settings->templates[0]->text_btn);
+    destroy_txt_btn_tab(game->settings->templates[1]->text_btn);
+    destroy_txt_btn_tab(game->settings->templates[2]->text_btn);
 }
 
-void destroy_structures(game_t *game)
+static void destroy_structures(game_t *game)
 {
     free(game->win);
     free(game->display->background);
@@ -117,11 +100,14 @@ void destroy_structures(game_t *game)
     free(game->sound);
     free(game->animation);
     free(game->menu);
+    free(game->settings->templates[0]);
+    free(game->settings->templates[1]);
+    free(game->settings->templates[2]);
     free(game->settings);
     free(game);
 }
 
-void destroySkeletonList(skeleton_t **list)
+static void destroySkeletonList(skeleton_t **list)
 {
     skeleton_t *tmp = NULL;
 
@@ -135,7 +121,7 @@ void destroySkeletonList(skeleton_t **list)
     }
 }
 
-void destroySlimeList(slime_t **list)
+static void destroySlimeList(slime_t **list)
 {
     slime_t *tmp = NULL;
 
@@ -159,7 +145,11 @@ void destroyAll(game_t *game)
     destroy_sprites(game);
     destroy_textures(game);
     destroy_texts(game->display);
+    destroy_text_tab(game->settings->templates[0]->texts);
+    destroy_text_tab(game->settings->templates[1]->texts);
+    destroy_text_tab(game->settings->templates[2]->texts);
     destroy_sounds(game->sound);
+    destroy_sound_buffers(game->sound);
     destroy_btn_tabs(game);
     destroy_txt_btn_tabs(game);
     destroy_structures(game);

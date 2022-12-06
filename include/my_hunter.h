@@ -28,9 +28,13 @@ void spawnEnemies(enemies_t *enemies, animation_t *anim, sfSound *levelUpSound);
 void killMissedEnemies(game_t *game);
 skeleton_t *addSkeleton(skeleton_t *skeletons, int id);
 
+//* Destroy functions
 void deleteSkeleton(skeleton_t **skeletons, int id);
 void deleteSlime(slime_t **slimes, int id);
 void destroyAll(game_t *game);
+void destroy_text_tab(sfText **text_tab);
+void destroy_btn_tab(button_t **button_tab);
+void destroy_txt_btn_tab(text_button_t **tab);
 
 void drawGame(game_t *game);
 void drawMenu(game_t *game);
@@ -48,7 +52,6 @@ void goToQuit(game_t *game, button_t *btn);
 void updateMasterVolume(game_t *game, button_t *button, int val);
 void updateMusicVolume(game_t *game, button_t *button, int val);
 void updateEffectsVolume(game_t *game, button_t *button, int val);
-void muteVolume(game_t *game, button_t *btn);
 void changeSettingsTemplate(game_t *game, text_button_t *btn);
 void changeWindow(game_t *game, text_button_t *btn);
 void modifVolume(sfSound *sound, int volume);

@@ -223,13 +223,13 @@ typedef struct settings_s
 {
     int templateIndex;
     sfSprite *back_sp;
-    sfTexture *back_texture;
     sfSprite *titles_sp;
+    sfSprite *content_sp;
+    sfTexture *back_texture;
     sfTexture *titles_texture;
+    sfTexture *content_texture;
     sfVector2f titles_pos;
     sfVector2f titles_scale;
-    sfSprite *content_sp;
-    sfTexture *content_texture;
     sfVector2f content_pos;
     sfVector2f content_scale;
     text_button_t **text_btn;
